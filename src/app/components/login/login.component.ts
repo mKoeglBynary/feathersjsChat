@@ -1,11 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import { Router} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'app-login'
+  }
 })
 export class LoginComponent implements OnInit {
   loginAndRegisterForm;
@@ -26,6 +31,7 @@ export class LoginComponent implements OnInit {
     console.log(this.validateForm());
     if (!this.validateForm()) { return; }
     this.router.navigate(['/chat']);
+
     // TODO validate login information
     console.log('Login..');
   }

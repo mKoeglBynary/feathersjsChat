@@ -1,1 +1,56 @@
-<p>chat works!</p>
+<div class="c-chat-container">
+  <div class="chat-container__active-users">
+
+    <div class="active-users__header">
+      <span id="header__user-length">{{ users.length }}</span>
+      <span id="header__users"> users </span>
+    </div>
+
+    <div class="active-users__user">
+      <div class="user__user-container" *ngFor="let user of users">
+
+        <img src="{{ user.img }}" alt="">
+
+        <div>
+          {{ user.email }}
+        </div>
+
+      </div>
+    </div>
+
+    <div class="active-users__sign-out">
+      <button class="button" (click)="signOut()">Sign Out</button>
+    </div>
+
+  </div>
+
+  <div class="chat-container__message-container" >
+
+      <div class="message-container__messages">
+        <div class="messages__message"> <!-- *ngFor durch alle messages -->
+
+          <img src="" alt="">
+
+          <div class="message__header">
+            <span>UserEmail</span>
+            <span>DateOfMessage</span>
+          </div>
+
+          <div class="message__content">
+            MessageContent
+          </div>
+
+        </div>
+      </div>
+
+    <div class="message-container_input">
+      <label>
+        <input>
+      </label>
+      <button class="button" >Send</button>
+
+    </div>
+
+
+  </div>
+</div>
