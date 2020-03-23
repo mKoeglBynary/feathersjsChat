@@ -1,1 +1,17 @@
-<p>login works!</p>
+<div>
+  <form [formGroup]="loginAndRegisterForm" (ngSubmit)="onSubmit($event)">
+
+    <div>
+      <label for="email">E-Mail:</label>
+      <input id="email" type="text" formControlName="email">
+    </div>
+
+    <div>
+      <label for="password">Password:</label>
+      <input id="password" type="password" formControlName="password">
+    </div>
+
+    <button #loginButton name="login" type="button" (click)="onSubmit(loginButton.name)">Login</button>
+    <button #registerButton name="register" type="button" (click)="onSubmit(registerButton.name)">Register</button>
+  </form>
+</div>
