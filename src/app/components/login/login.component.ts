@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,10 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class LoginComponent implements OnInit {
   loginAndRegisterForm;
   errors: any = {};
-  constructor() {}
+
+  constructor(
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.loginAndRegisterForm = new FormGroup({
@@ -18,17 +22,23 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
-    this.validateForm();
+  login(): void {
+    console.log(this.validateForm());
+    if (!this.validateForm()) { return; }
+    this.router.navigate(['/chat']);
+    // TODO validate login information
     console.log('Login..');
   }
 
-  register() {
-    this.validateForm();
+  register(): void {
+    if (!this.validateForm()) { return; }
+    this.router.navigate(['/chat']);
+
+    // TODO register user and log user in
     console.log('Register..');
   }
 
-  validateForm() {
+  validateForm(): boolean {
     const errors: any = {};
     if (this.loginAndRegisterForm.get('email').errors) {
       errors.email = 'Please enter a valid E-Mail';
@@ -37,7 +47,7 @@ export class LoginComponent implements OnInit {
       errors.password = 'Password must be 5 characters';
     }
 
-    if (errors) {
+    if (Object.keys(errors).length !== 0) {
       this.errors = errors;
       return false;
     }
