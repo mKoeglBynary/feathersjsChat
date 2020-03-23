@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,25 +8,42 @@ import { FormBuilder} from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
   loginAndRegisterForm;
+  errors: any = {};
+  constructor() {}
 
-  constructor(
-    private formBuilder: FormBuilder
-  ) {
-    this.loginAndRegisterForm = this.formBuilder.group({
-      email: '',
-      password: '',
+  ngOnInit(): void {
+    this.loginAndRegisterForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(5)])
     });
   }
 
-  ngOnInit(): void {
+  login() {
+    this.validateForm();
+    console.log('Login..');
   }
 
-  onSubmit(buttonType: string) {
-    if (buttonType === 'login') {
-      console.log('login');
-    } else {
-      console.log('register');
+  register() {
+    this.validateForm();
+    console.log('Register..');
+  }
+
+  validateForm() {
+    const errors: any = {};
+    if (this.loginAndRegisterForm.get('email').errors) {
+      errors.email = 'Please enter a valid E-Mail';
     }
+    if (this.loginAndRegisterForm.get('password').errors) {
+      errors.password = 'Password must be 5 characters';
+    }
+
+    if (errors) {
+      this.errors = errors;
+      return false;
+    }
+
+    this.errors = {};
+    return true;
   }
 
 }

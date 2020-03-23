@@ -1,17 +1,19 @@
 <div>
-  <form [formGroup]="loginAndRegisterForm" (ngSubmit)="onSubmit($event)">
-
+  <form [formGroup]="loginAndRegisterForm">
     <div>
       <label for="email">E-Mail:</label>
-      <input id="email" type="text" formControlName="email">
+      <input id="email" type="email" formControlName="email">
+      <div *ngIf="errors?.email">{{ errors.email }}</div>
     </div>
 
     <div>
       <label for="password">Password:</label>
       <input id="password" type="password" formControlName="password">
+      <div *ngIf="errors?.password">{{ errors.password }}</div>
+
     </div>
 
-    <button #loginButton name="login" type="button" (click)="onSubmit(loginButton.name)">Login</button>
-    <button #registerButton name="register" type="button" (click)="onSubmit(registerButton.name)">Register</button>
+    <button  name="login" type="button" (click)="login()">Login</button>
+    <button  name="register" type="button" (click)="register()">Register</button>
   </form>
 </div>
