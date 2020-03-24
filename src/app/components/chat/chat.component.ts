@@ -26,4 +26,8 @@ export class ChatComponent implements OnInit {
     console.log('Sign Out...');
   }
 
+  sendMessage() {
+    console.log('Send Message...')
+  }
+
 }

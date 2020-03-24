@@ -61,14 +61,14 @@
         width: 100%;
 
         > .button {
-          color: #ffffff;
           background-color: #c916a9;
           border: none;
           border-radius: 5px;
+          color: #ffffff;
           font-size: 1rem;
           height: 2.5rem;
-          padding: 0.1rem;
           outline: none;
+          padding: 0.1rem;
           width: 6rem;
         }
 
@@ -76,10 +76,10 @@
     }
 
     > .chat-container__message-container {
-      position: relative;
       flex: 5;
       margin-left: 2rem;
       margin-right: 1rem;
+      position: relative;
 
       > .message-container__messages {
         height: calc(70% + 4rem);
@@ -89,17 +89,17 @@
           margin-top: 1rem;
 
           > img {
-            height: 3rem;
             border-radius: 100%;
             display: inline-block;
+            height: 3rem;
             margin-right: 0.9rem;
             width: 3.8rem;
           }
 
           > .message__details {
             display: flex;
-            flex-direction: column;
             flex: 1;
+            flex-direction: column;
             width: 10rem;
 
             > .details__header {
@@ -116,11 +116,12 @@
             }
 
             > .details_content {
-              flex: 2;
               color: #969696;
+              flex: 2;
+              height: fit-content;
+              line-height: 1.3rem;
               overflow-wrap: break-word;
               padding-top: 0.3rem;
-              height: fit-content;
             }
           }
 
@@ -135,7 +136,7 @@
         height: 4rem;
         justify-content: flex-end;
         position: absolute;
-        width: 100%;
+        min-width: 100%;
 
         > input {
           height: 2.5rem;
@@ -153,8 +154,8 @@
           border-radius: 5px;
           font-size: 1rem;
           height: 2.5rem;
-          padding: 0.1rem;
           outline: none;
+          padding: 0.1rem;
           width: 5rem;
         }
       }
