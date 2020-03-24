@@ -29,18 +29,22 @@
       <div class="message-container__messages">
         <div class="messages__message"> <!-- *ngFor durch alle messages -->
 
-          <img src="" alt="">
+          <img src="{{users[0].img}}" alt="">
 
-          <div class="message__header">
-            <span>UserEmail</span>
-            <span>DateOfMessage</span>
-          </div>
+          <div class="message__details">
+            <div class="details__header">
+              <span>User@Email.de</span>
+              <span id="header__date">Aug 25th, 11:50:11</span>
+            </div>
 
-          <div class="message__content">
-            MessageContent
+            <div class="details_content">
+              MessageContent
+            </div>
           </div>
 
         </div>
+
+
       </div>
 
     <div class="message-container_input">

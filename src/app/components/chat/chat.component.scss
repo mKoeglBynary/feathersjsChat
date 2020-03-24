@@ -63,6 +63,7 @@
         > button {
           color: #ffffff;
           background-color: #c916a9;
+          border: none;
           border-radius: 10px;
           font-size: 1rem;
           height: 3rem;
@@ -75,8 +76,52 @@
     }
 
     > .chat-container__message-container {
-      border: 2px solid black;
       flex: 5;
+      margin-left: 2rem;
+
+      > .message-container__messages {
+        height: 90%;
+
+        > .messages__message {
+          display: flex;
+          margin-top: 1rem;
+
+          > img {
+            height: 3rem;
+            border-radius: 100%;
+            display: inline-block;
+            margin-right: 0.9rem;
+            width: 3.8rem;
+          }
+
+          > .message__details {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            width: 10rem;
+
+            > .details__header {
+              flex: 1;
+              font-size: 0.9rem;
+              > #header__date {
+                color: #b8b8b8;
+                margin-left: 0.1rem;
+              }
+            }
+
+            > .details_content {
+              flex: 2;
+              color: #969696;
+              overflow-wrap: break-word;
+              padding-top: 0.3rem;
+              height: fit-content;
+            }
+          }
+
+
+        }
+
+      }
     }
   }
 }
