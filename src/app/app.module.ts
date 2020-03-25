@@ -22,7 +22,8 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NgxsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

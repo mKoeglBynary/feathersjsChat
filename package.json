@@ -19,8 +19,13 @@
     "@angular/platform-browser": "~9.0.6",
     "@angular/platform-browser-dynamic": "~9.0.6",
     "@angular/router": "~9.0.6",
+    "@feathersjs/authentication-client": "^4.5.2",
+    "@feathersjs/client": "^4.5.2",
+    "@feathersjs/feathers": "^4.5.2",
+    "@feathersjs/socketio-client": "^4.5.2",
     "@ngxs/store": "^3.6.2",
     "rxjs": "~6.5.4",
+    "socket.io": "^2.3.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
   },

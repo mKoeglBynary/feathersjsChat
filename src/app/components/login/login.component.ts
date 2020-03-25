@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
+import {FeathersService} from '../../services/feathersService/feathers.service';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   errors: any = {};
 
   constructor(
-    private router: Router
+    private router: Router,
+    private feathersService: FeathersService
   ) {}
 
   ngOnInit(): void {
@@ -36,11 +38,21 @@ export class LoginComponent implements OnInit {
     console.log('Login..');
   }
 
-  register(): void {
+  register() {
     if (!this.validateForm()) { return; }
-    this.router.navigate(['/chat']);
 
-    // TODO register user and log user in
+    const data = {
+      email: this.loginAndRegisterForm.get('email').value,
+      password: this.loginAndRegisterForm.get('password').value
+
+    };
+    this.feathersService.register(data).then( success => {
+      if (!success) {
+        this.errors.email = 'Already registered';
+      } else {
+        this.router.navigate(['/chat']);
+      }
+    });
     console.log('Register..');
   }
 

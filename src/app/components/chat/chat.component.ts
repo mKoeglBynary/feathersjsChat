@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {User} from '../../interfaces/user';
+import {FeathersService} from '../../services/feathersService/feathers.service';
 
 @Component({
   selector: 'app-chat',
@@ -17,7 +18,9 @@ export class ChatComponent implements OnInit {
     { _id: '98983424', img: 'https://picsum.photos/200/500', email: 'notMe@me.de' }
   ];
 
-  constructor() { }
+  constructor(
+    private feathersService: FeathersService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -27,7 +30,7 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage() {
-    console.log('Send Message...')
+    console.log('Send Message...');
   }
 
 }
