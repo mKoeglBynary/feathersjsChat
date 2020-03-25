@@ -2,14 +2,14 @@
   <div class="chat-container__active-users">
 
     <div class="active-users__header">
-      <span id="header__user-length">{{ users.length }}</span>
+      <span id="header__user-length">{{ users?.length }}</span>
       <span id="header__users"> users </span>
     </div>
 
     <div class="active-users__user">
       <div class="user__user-container" *ngFor="let user of users">
 
-        <img src="{{ user.img }}" alt="">
+        <img src="{{ user.avatar }}" alt="">
 
         <div>
           {{ user.email }}
@@ -24,21 +24,21 @@
 
   </div>
 
-  <div class="chat-container__message-container" >
+  <div #messageContainer class="chat-container__message-container" [scrollTop]="messageContainer.scrollHeight">
 
       <div class="message-container__messages">
-        <div class="messages__message"> <!-- *ngFor durch alle messages -->
+        <div class="messages__message" *ngFor="let message of messages">
 
-          <img src="{{users[0].img}}" alt="">
+          <img src="{{message.user.avatar}}" alt="">
 
           <div class="message__details">
             <div class="details__header">
-              <span>User@Email.de</span>
-              <span id="header__date">Aug 25th, 11:50:11</span>
+              <span>{{message.user.email}}</span>
+              <span id="header__date">{{message.createdAt | date }}</span>
             </div>
 
             <div class="details_content">
-              MessageContent
+              {{message.text}}
             </div>
           </div>
 
@@ -49,9 +49,9 @@
 
     <div class="message-container__input">
 
-      <input>
+      <input #input (keyup.enter)="sendMessage(input.value); input.value='';">
 
-      <button class="button" (click)="sendMessage()">Send</button>
+      <button class="button" (click)="sendMessage(input.value); input.value='' ">Send</button>
 
     </div>
 

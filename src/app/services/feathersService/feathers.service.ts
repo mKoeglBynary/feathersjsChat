@@ -3,6 +3,7 @@ import feathers from '@feathersjs/feathers';
 import socketio from '@feathersjs/socketio-client';
 import * as io from 'socket.io-client';
 import feathersAuthClient from '@feathersjs/authentication-client';
+import {from, Observable, of} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,14 +25,33 @@ export class FeathersService {
     }));
   }
 
+   getMessages(): Observable<any> {
+    return from(this.app.service('messages').find({
+      query: {
+        $sort: { createdAt: -1},
+        $limit: 25
+      }
+    }));
+  }
+
+  getNewMessages(addMessage) {
+    return this.app.service('messages').on('created', addMessage);
+  }
+
+  getNewUsers(addUser) {
+    return this.app.service('users').on('created', addUser);
+  }
+
+  getUsers(): Observable<any> {
+    return from(this.app.service('users').find());
+  }
+
   async register(data) {
     try {
       await this.app.service('users').create(data);
     } catch (e) {
-      console.log(e);
       return false;
     }
-
     await this.login(data);
     return true;
   }
@@ -48,8 +68,17 @@ export class FeathersService {
       }
       return true;
     } catch (error) {
-      console.log(error);
       return false;
     }
+  }
+
+  async logout() {
+    await this.app.logout();
+  }
+
+  async sendMessage(text) {
+   await this.app.service('messages').create({
+      text
+    });
   }
 }

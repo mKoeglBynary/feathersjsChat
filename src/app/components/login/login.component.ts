@@ -8,7 +8,7 @@ import {FeathersService} from '../../services/feathersService/feathers.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
   host: {
     class: 'app-login'
   }
@@ -22,14 +22,16 @@ export class LoginComponent implements OnInit {
     private feathersService: FeathersService
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     this.loginAndRegisterForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)])
     });
 
-    await this.feathersService.login().then(success => {
-      this.router.navigate(['/chat']);
+    this.feathersService.login().then(success => {
+      if (success) {
+        this.router.navigate(['/chat']);
+      }
     });
   }
 
@@ -42,7 +44,7 @@ export class LoginComponent implements OnInit {
       if (success) {
         this.router.navigate(['/chat']);
       } else {
-        this.errors.email = 'Something went wrong';
+        this.errors.email = 'Wrong E-Mail or Password';
       }
     });
   }
@@ -59,7 +61,6 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/chat']);
       }
     });
-    console.log('Register..');
   }
 
   validateForm(): boolean {

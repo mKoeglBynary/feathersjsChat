@@ -82,7 +82,8 @@
       position: relative;
 
       > .message-container__messages {
-        height: calc(70% + 4rem);
+        height: calc(80% + 4rem);
+        overflow: scroll;
 
         > .messages__message {
           display: flex;
