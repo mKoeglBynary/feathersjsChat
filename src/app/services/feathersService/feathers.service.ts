@@ -36,7 +36,20 @@ export class FeathersService {
     return true;
   }
 
-  login(data) {
-    console.log('trying to log in...');
+  async login(data?) {
+    try {
+      if (!data) {
+        await this.app.reAuthenticate();
+      } else {
+        await this.app.authenticate({
+          strategy: 'local',
+          ...data
+        });
+      }
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
   }
 }

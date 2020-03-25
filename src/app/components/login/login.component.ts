@@ -22,30 +22,36 @@ export class LoginComponent implements OnInit {
     private feathersService: FeathersService
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.loginAndRegisterForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)])
     });
+
+    await this.feathersService.login().then(success => {
+      this.router.navigate(['/chat']);
+    });
   }
 
   login(): void {
-    console.log(this.validateForm());
     if (!this.validateForm()) { return; }
-    this.router.navigate(['/chat']);
 
-    // TODO validate login information
-    console.log('Login..');
+    const data = this.getFormData();
+
+    this.feathersService.login(data).then( success => {
+      if (success) {
+        this.router.navigate(['/chat']);
+      } else {
+        this.errors.email = 'Something went wrong';
+      }
+    });
   }
 
   register() {
     if (!this.validateForm()) { return; }
 
-    const data = {
-      email: this.loginAndRegisterForm.get('email').value,
-      password: this.loginAndRegisterForm.get('password').value
+    const data = this.getFormData();
 
-    };
     this.feathersService.register(data).then( success => {
       if (!success) {
         this.errors.email = 'Already registered';
@@ -72,6 +78,14 @@ export class LoginComponent implements OnInit {
 
     this.errors = {};
     return true;
+  }
+
+  getFormData() {
+    return {
+      email: this.loginAndRegisterForm.get('email').value,
+      password: this.loginAndRegisterForm.get('password').value
+
+    };
   }
 
 }
