@@ -2,8 +2,8 @@ import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@an
 import { Router} from '@angular/router';
 import {FeathersService} from '../../services/feathersService/feathers.service';
 import {User} from '../../interfaces/user';
-import {Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {Messages} from '../../interfaces/messages';
+
 
 
 @Component({
@@ -17,8 +17,8 @@ import {map} from 'rxjs/operators';
   }
 })
 export class ChatComponent implements OnInit {
-  messages = [];
-  users = [] ;
+  messages: Messages[] = [];
+  users: User[] = [] ;
 
   constructor(
     private router: Router,
@@ -37,6 +37,7 @@ export class ChatComponent implements OnInit {
       });
       this.feathersService.getMessages().subscribe( obj => {
         this.messages = obj.data;
+        console.log(this.messages);
       });
 
       this.feathersService.getNewMessages(this.addMessage);
