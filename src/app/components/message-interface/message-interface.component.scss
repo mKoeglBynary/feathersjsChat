@@ -1,0 +1,10 @@
+app-message-interface {
+  height: inherit;
+
+  > .c-message-interface {
+    margin-left: 2rem;
+    margin-right: 1rem;
+    position: relative;
+    height: inherit;
+  }
+}

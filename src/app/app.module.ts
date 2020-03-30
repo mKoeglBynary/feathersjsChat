@@ -12,7 +12,8 @@ import { MessageComponent } from './components/message/message.component';
 import { MessageUserInputComponent } from './components/message-user-input/message-user-input.component';
 import { ActiveUsersHeaderComponent } from './components/active-users-header/active-users-header.component';
 import { ActiveUsersComponent } from './components/active-users/active-users.component';
-import { UsersContainerComponent } from './components/users-container/users-container.component';
+import { UsersInterfaceComponent } from './components/users-interface/users-interface.component';
+import { MessageInterfaceComponent } from './components/message-interface/message-interface.component';
 
 const appRoutes: Routes = [
   { path: 'chat', component: ChatComponent },
@@ -29,7 +30,8 @@ const appRoutes: Routes = [
     MessageUserInputComponent,
     ActiveUsersHeaderComponent,
     ActiveUsersComponent,
-    UsersContainerComponent
+    UsersInterfaceComponent,
+    MessageInterfaceComponent
   ],
   imports: [
     BrowserModule,

@@ -50,15 +50,4 @@ export class ChatComponent implements OnInit {
   addUser = user => {
     this.users.push(user);
   }
-
-  signOut() {
-    this.feathersService.logout().then( () => {
-      this.router.navigate(['/']);
-    });
-  }
-
-  sendMessage(input) {
-    this.feathersService.sendMessage(input);
-  }
-
 }

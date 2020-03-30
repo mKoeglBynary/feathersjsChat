@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {FeathersService} from '../../services/feathersService/feathers.service';
 
 @Component({
   selector: 'app-message-user-input',
@@ -11,15 +12,16 @@ import {ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output, ViewEn
   }
 })
 export class MessageUserInputComponent implements OnInit {
-  @Output() handleSendMessage: EventEmitter<any> = new EventEmitter<any>();
-  userInput;
-  constructor() { }
+  userInput: string;
+  constructor(
+    private feathersService: FeathersService,
+  ) { }
 
   ngOnInit(): void {
   }
 
-  emitSendMessage() {
-    this.handleSendMessage.emit(this.userInput);
+  async sendMessage() {
+    await this.feathersService.sendMessage(this.userInput)
     this.userInput = '';
   }
 

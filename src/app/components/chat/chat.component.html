@@ -1,12 +1,11 @@
 <div class="c-chat-container">
-  <app-users-container
-    [users]="users"
-    (handleSignOut)="signOut()">
-  </app-users-container>
 
+  <app-users-interface
+    [users]="users">
+  </app-users-interface>
 
-  <div class="chat-container__message-container" >
-    <app-messages [messages]="messages"></app-messages>
-    <app-message-user-input (handleSendMessage)="sendMessage($event)"></app-message-user-input>
-  </div>
+  <app-message-interface
+    [messages]="messages">
+  </app-message-interface>
+
 </div>
