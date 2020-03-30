@@ -23,6 +23,7 @@
     "@feathersjs/client": "^4.5.2",
     "@feathersjs/feathers": "^4.5.2",
     "@feathersjs/socketio-client": "^4.5.2",
+    "@ngxs/logger-plugin": "^3.6.2",
     "@ngxs/store": "^3.6.2",
     "rxjs": "~6.5.4",
     "socket.io": "^2.3.0",

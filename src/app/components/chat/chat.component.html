@@ -1,11 +1,11 @@
 <div class="c-chat-container">
 
   <app-users-interface
-    [users]="users">
+    [users]="users | async">
   </app-users-interface>
 
   <app-message-interface
-    [messages]="messages">
+    [messages]="messages | async">
   </app-message-interface>
 
 </div>

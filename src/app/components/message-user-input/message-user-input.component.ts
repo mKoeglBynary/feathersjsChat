@@ -21,8 +21,9 @@ export class MessageUserInputComponent implements OnInit {
   }
 
   async sendMessage() {
-    await this.feathersService.sendMessage(this.userInput)
+    const value = this.userInput;
     this.userInput = '';
+    await this.feathersService.sendMessage(value);
   }
 
 }

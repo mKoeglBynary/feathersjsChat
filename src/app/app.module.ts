@@ -15,6 +15,9 @@ import { UsersInterfaceComponent } from './components/users-interface/users-inte
 import { MessageInterfaceComponent } from './components/message-interface/message-interface.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import {ChatState} from './states/chatState';
+import {UserState} from './states/userState';
+import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 
 
 @NgModule({
@@ -34,7 +37,11 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    NgxsModule.forRoot(),
+    NgxsModule.forRoot([
+      ChatState,
+      UserState
+    ]),
+    NgxsLoggerPluginModule.forRoot(),
     FormsModule,
     AppRoutingModule
   ],

@@ -1,11 +1,40 @@
+import {State, Action, StateContext, Selector, Select} from '@ngxs/store';
+import {Messages} from '../interfaces/messages';
+import {AddMessage, AddMessages} from './actions/chat.actions';
+import {Injectable} from '@angular/core';
+
+export class ChatStateModel {
+  messages: Messages[];
+}
+
 @State<ChatStateModel>({
   name: 'chat',
   defaults: {
-    users: [],
-    messages: []
+    messages: [],
   }
 })
-
+@Injectable()
 export class ChatState {
-  constructor(private )
+
+  @Selector()
+  static getMessages(state: ChatStateModel) {
+    return state.messages;
+  }
+
+  @Action(AddMessage)
+  addMessage( {getState, patchState}: StateContext<ChatStateModel>, {payload}: AddMessage) {
+    const state = getState();
+    patchState({
+      messages: [payload, ...state.messages]
+    });
+  }
+
+  @Action(AddMessages)
+  addMessages( {getState, patchState}: StateContext<ChatStateModel>, {payload}: AddMessages){
+    const state = getState();
+    patchState({
+      messages: [...payload]
+    });
+  }
+
 }
