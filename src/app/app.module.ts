@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ChatComponent } from './components/chat/chat.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { MessagesComponent } from './components/messages/messages.component';
 import { MessageComponent } from './components/message/message.component';
 
 const appRoutes: Routes = [
@@ -19,6 +20,7 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     ChatComponent,
+    MessagesComponent,
     MessageComponent
   ],
   imports: [

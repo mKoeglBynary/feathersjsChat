@@ -1,0 +1,7 @@
+app-messages {
+  > .c-messages-container {
+    height: calc(80% + 4rem);
+    overflow: scroll;
+  }
+}
+

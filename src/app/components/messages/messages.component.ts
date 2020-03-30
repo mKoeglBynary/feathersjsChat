@@ -2,17 +2,18 @@ import {ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation} fr
 import {Messages} from '../../interfaces/messages';
 
 @Component({
-  selector: 'app-message',
-  templateUrl: './message.component.html',
-  styleUrls: ['./message.component.scss'],
+  selector: 'app-messages',
+  templateUrl: './messages.component.html',
+  styleUrls: ['./messages.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.Default,
   host: {
-    class: 'app-message'
+    class: 'app-messages',
   }
 })
-export class MessageComponent implements OnInit {
-  @Input() message: Messages;
+export class MessagesComponent implements OnInit {
+  @Input() messages: Messages[];
+
   constructor() { }
 
   ngOnInit(): void {
