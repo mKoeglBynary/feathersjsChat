@@ -10,6 +10,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MessagesComponent } from './components/messages/messages.component';
 import { MessageComponent } from './components/message/message.component';
 import { MessageUserInputComponent } from './components/message-user-input/message-user-input.component';
+import { ActiveUsersHeaderComponent } from './components/active-users-header/active-users-header.component';
 
 const appRoutes: Routes = [
   { path: 'chat', component: ChatComponent },
@@ -23,7 +24,8 @@ const appRoutes: Routes = [
     ChatComponent,
     MessagesComponent,
     MessageComponent,
-    MessageUserInputComponent
+    MessageUserInputComponent,
+    ActiveUsersHeaderComponent
   ],
   imports: [
     BrowserModule,

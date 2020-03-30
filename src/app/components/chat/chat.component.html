@@ -1,10 +1,7 @@
 <div class="c-chat-container">
   <div class="chat-container__active-users">
 
-    <div class="active-users__header">
-      <span id="header__user-length">{{ users?.length }}</span>
-      <span id="header__users"> users </span>
-    </div>
+   <app-active-users-header [usersLength]="users?.length"></app-active-users-header>
 
     <div class="active-users__user">
       <div class="user__user-container" *ngFor="let user of users">
@@ -25,10 +22,7 @@
   </div>
 
   <div class="chat-container__message-container" >
-      <app-messages [messages]="messages"></app-messages>
-
+    <app-messages [messages]="messages"></app-messages>
     <app-message-user-input (handleSendMessage)="sendMessage($event)"></app-message-user-input>
-
-
   </div>
 </div>
