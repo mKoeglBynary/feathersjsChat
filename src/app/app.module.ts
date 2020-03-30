@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes} from '@angular/router';
 import { NgxsModule} from '@ngxs/store';
 
 import { AppComponent } from './app.component';
@@ -14,11 +13,8 @@ import { ActiveUsersHeaderComponent } from './components/active-users-header/act
 import { ActiveUsersComponent } from './components/active-users/active-users.component';
 import { UsersInterfaceComponent } from './components/users-interface/users-interface.component';
 import { MessageInterfaceComponent } from './components/message-interface/message-interface.component';
+import { AppRoutingModule } from './app-routing.module';
 
-const appRoutes: Routes = [
-  { path: 'chat', component: ChatComponent },
-  { path: '', component: LoginComponent}
-];
 
 @NgModule({
   declarations: [
@@ -36,9 +32,9 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes),
     NgxsModule.forRoot(),
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
