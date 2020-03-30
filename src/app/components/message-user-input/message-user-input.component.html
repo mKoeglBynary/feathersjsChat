@@ -1,7 +1,7 @@
 <div class="c-message-input">
 
-  <input #input (keyup.enter)="emitSendMessage(input.value); input.value='';">
+  <input [(ngModel)]="userInput" (keyup.enter)="emitSendMessage()">
 
-  <button (click)="emitSendMessage(input.value); input.value='' ">Send</button>
+  <button (click)="emitSendMessage()">Send</button>
 
 </div>

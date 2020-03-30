@@ -11,14 +11,16 @@ import {ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output, ViewEn
   }
 })
 export class MessageUserInputComponent implements OnInit {
-  @Output handleSendMessage: EventEmitter = new EventEmitter<any>();
+  @Output() handleSendMessage: EventEmitter<any> = new EventEmitter<any>();
+  userInput;
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  emitSendMessage(input) {
-    this.handleSendMessage.emit(input);
+  emitSendMessage() {
+    this.handleSendMessage.emit(this.userInput);
+    this.userInput = '';
   }
 
 }

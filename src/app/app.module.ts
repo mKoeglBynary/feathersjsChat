@@ -6,7 +6,7 @@ import { NgxsModule} from '@ngxs/store';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { ChatComponent } from './components/chat/chat.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MessagesComponent } from './components/messages/messages.component';
 import { MessageComponent } from './components/message/message.component';
 import { MessageUserInputComponent } from './components/message-user-input/message-user-input.component';
@@ -29,7 +29,8 @@ const appRoutes: Routes = [
     BrowserModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
-    NgxsModule.forRoot()
+    NgxsModule.forRoot(),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
