@@ -26,11 +26,11 @@ export class FeathersService {
   }
 
    getMessages(): Observable<any> {
-    return from(this.app.service('messages').find({
-      query: {
-        $sort: { createdAt: -1},
-        $limit: 25
-      }
+        return from(this.app.service('messages').find({
+          query: {
+            $sort: { createdAt: -1},
+            $limit: 25
+          }
     }));
   }
 

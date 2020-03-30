@@ -37,7 +37,6 @@ export class ChatComponent implements OnInit {
       });
       this.feathersService.getMessages().subscribe( obj => {
         this.messages = obj.data;
-        console.log(this.messages);
       });
 
       this.feathersService.getNewMessages(this.addMessage);

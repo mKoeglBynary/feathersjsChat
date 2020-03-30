@@ -24,23 +24,11 @@
 
   </div>
 
-  <div #messageContainer class="chat-container__message-container" [scrollTop]="messageContainer.scrollHeight">
+  <div class="chat-container__message-container" >
 
       <div class="message-container__messages">
         <div class="messages__message" *ngFor="let message of messages">
-
-          <img src="{{message.user.avatar}}" alt="">
-
-          <div class="message__details">
-            <div class="details__header">
-              <span>{{message.user.email}}</span>
-              <span id="header__date">{{message.createdAt | date }}</span>
-            </div>
-
-            <div class="details_content">
-              {{message.text}}
-            </div>
-          </div>
+          <app-message [message]= "message"></app-message>
 
         </div>
 

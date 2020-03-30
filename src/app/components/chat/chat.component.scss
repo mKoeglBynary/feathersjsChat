@@ -86,49 +86,8 @@
         overflow: scroll;
 
         > .messages__message {
-          display: flex;
-          margin-top: 1rem;
-
-          > img {
-            border-radius: 100%;
-            display: inline-block;
-            height: 3rem;
-            margin-right: 0.9rem;
-            width: 3.8rem;
-          }
-
-          > .message__details {
-            display: flex;
-            flex: 1;
-            flex-direction: column;
-            width: 10rem;
-
-            > .details__header {
-              display: flex;
-              flex: 1;
-              font-size: 0.9rem;
-
-
-              > #header__date {
-                color: #b8b8b8;
-                margin-left: 0.1rem;
-                min-width: fit-content;
-              }
-            }
-
-            > .details_content {
-              color: #969696;
-              flex: 2;
-              height: fit-content;
-              line-height: 1.3rem;
-              overflow-wrap: break-word;
-              padding-top: 0.3rem;
-            }
-          }
-
 
         }
-
       }
 
       > .message-container__input {
@@ -141,7 +100,7 @@
 
         > input {
           height: 2.5rem;
-          flex:5;
+          flex: 5;
           font-size: 1rem;
           margin-right: 1rem;
           outline: none;
@@ -161,5 +120,8 @@
         }
       }
     }
+
   }
+
+
 }

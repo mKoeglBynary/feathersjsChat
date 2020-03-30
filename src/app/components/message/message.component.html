@@ -1,0 +1,15 @@
+<div class="c-message-container">
+  <img src="{{message.user.avatar}}" alt="">
+
+  <div class="message__details">
+    <div class="details__header">
+      <span>{{message.user.email}}</span>
+      <span id="header__date">{{message.createdAt | date }}</span>
+    </div>
+
+    <div class="details_content">
+      {{message.text}}
+    </div>
+  </div>
+</div>
+
