@@ -1,0 +1,31 @@
+app-users-container {
+  height: inherit;
+
+  > .c-users-container {
+    background-color: #dbd9d9;
+    position: relative;
+    height: inherit;
+
+    > .active-users__sign-out {
+      bottom: 0;
+      display: flex;
+      height: 4rem;
+      justify-content: center;
+      position: absolute;
+      width: 100%;
+
+      > .button {
+        background-color: #c916a9;
+        border: none;
+        border-radius: 5px;
+        color: #ffffff;
+        font-size: 1rem;
+        height: 2.5rem;
+        outline: none;
+        padding: 0.1rem;
+        width: 6rem;
+      }
+
+    }
+  }
+}
