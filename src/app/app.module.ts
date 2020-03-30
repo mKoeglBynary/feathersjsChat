@@ -14,6 +14,7 @@ import { ActiveUsersComponent } from './components/active-users/active-users.com
 import { UsersInterfaceComponent } from './components/users-interface/users-interface.component';
 import { MessageInterfaceComponent } from './components/message-interface/message-interface.component';
 import { AppRoutingModule } from './app-routing.module';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AppRoutingModule } from './app-routing.module';
     ActiveUsersHeaderComponent,
     ActiveUsersComponent,
     UsersInterfaceComponent,
-    MessageInterfaceComponent
+    MessageInterfaceComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
