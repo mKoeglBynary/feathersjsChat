@@ -3,10 +3,11 @@ import {RouterModule, Routes} from '@angular/router';
 import {ChatComponent} from './components/chat/chat.component';
 import {LoginComponent} from './components/login/login.component';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
+import {AuthGuard} from './guards/auth.guard';
 
 
 const appRoutes: Routes = [
-  { path: 'chat', component: ChatComponent },
+  { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
   { path: '', component: LoginComponent},
   { path: '**', component: PageNotFoundComponent}
 ];
@@ -14,6 +15,9 @@ const appRoutes: Routes = [
   declarations: [],
   imports: [
     RouterModule.forRoot(appRoutes),
+  ],
+  exports: [
+    RouterModule
   ]
 })
 export class AppRoutingModule { }

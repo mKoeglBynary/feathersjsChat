@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {User} from '../../interfaces/user';
-import {FeathersService} from '../../services/feathersService/feathers.service';
 import {Router} from '@angular/router';
+import {AuthService} from '../../services/authService/auth.service';
 
 @Component({
   selector: 'app-users-interface',
@@ -18,7 +18,7 @@ export class UsersInterfaceComponent implements OnInit {
   @Output() handleSignOut: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
-    private feathersService: FeathersService,
+    private authService: AuthService,
     private router: Router
   ) { }
 
@@ -26,7 +26,7 @@ export class UsersInterfaceComponent implements OnInit {
   }
 
   signOut() {
-    this.feathersService.logout().then( () => {
+    this.authService.logout().then( () => {
       this.router.navigate(['/']);
     });
   }

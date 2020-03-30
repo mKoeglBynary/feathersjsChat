@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@an
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {FeathersService} from '../../services/feathersService/feathers.service';
+import {AuthService} from '../../services/authService/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private feathersService: FeathersService
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.minLength(5)])
     });
 
-    this.feathersService.login().then(success => {
+    this.authService.login().then(success => {
       if (success) {
         this.router.navigate(['/chat']);
       }
@@ -40,7 +41,7 @@ export class LoginComponent implements OnInit {
 
     const data = this.getFormData();
 
-    this.feathersService.login(data).then( success => {
+    this.authService.login(data).then( success => {
       if (success) {
         this.router.navigate(['/chat']);
       } else {
@@ -54,7 +55,7 @@ export class LoginComponent implements OnInit {
 
     const data = this.getFormData();
 
-    this.feathersService.register(data).then( success => {
+    this.authService.register(data).then( success => {
       if (!success) {
         this.errors.email = 'Already registered';
       } else {

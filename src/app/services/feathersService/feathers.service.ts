@@ -4,6 +4,7 @@ import socketio from '@feathersjs/socketio-client';
 import * as io from 'socket.io-client';
 import feathersAuthClient from '@feathersjs/authentication-client';
 import {from, Observable, of} from 'rxjs';
+import {AuthService} from '../authService/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -44,36 +45,6 @@ export class FeathersService {
 
   getUsers(): Observable<any> {
     return from(this.app.service('users').find());
-  }
-
-  async register(data) {
-    try {
-      await this.app.service('users').create(data);
-    } catch (e) {
-      return false;
-    }
-    await this.login(data);
-    return true;
-  }
-
-  async login(data?) {
-    try {
-      if (!data) {
-        await this.app.reAuthenticate();
-      } else {
-        await this.app.authenticate({
-          strategy: 'local',
-          ...data
-        });
-      }
-      return true;
-    } catch (error) {
-      return false;
-    }
-  }
-
-  async logout() {
-    await this.app.logout();
   }
 
   async sendMessage(text) {

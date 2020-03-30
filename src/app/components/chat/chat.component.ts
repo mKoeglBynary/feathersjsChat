@@ -26,12 +26,6 @@ export class ChatComponent implements OnInit {
   ) {}
 
     ngOnInit() {
-      this.feathersService.login().then(success => {
-        if (!success) {
-          this.router.navigate(['/']);
-        }
-      });
-
       this.feathersService.getUsers().subscribe( obj => {
         this.users = obj.data;
       });
