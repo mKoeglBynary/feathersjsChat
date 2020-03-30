@@ -8,30 +8,7 @@
       position: relative;
       flex: 1;
 
-      > .active-users__user {
-        display: flex;
-        flex-direction: column;
-        height: 70vh;
 
-        > .user__user-container {
-          display: flex;
-          height: 3rem;
-          margin: 1rem 1rem;
-
-          > img {
-            border-radius: 100%;
-            margin-right: 0.9rem;
-            width: 3.8rem;
-          }
-
-          > div {
-            display: flex;
-            line-height: 3rem;
-            vertical-align: center;
-            width: 10rem;
-          }
-        }
-      }
 
       > .active-users__sign-out {
         bottom: 0;

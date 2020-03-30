@@ -1,19 +1,10 @@
 <div class="c-chat-container">
+
   <div class="chat-container__active-users">
 
-   <app-active-users-header [usersLength]="users?.length"></app-active-users-header>
+    <app-active-users-header [usersLength]="users?.length"></app-active-users-header>
+    <app-active-users [users]="users"></app-active-users>
 
-    <div class="active-users__user">
-      <div class="user__user-container" *ngFor="let user of users">
-
-        <img src="{{ user.avatar }}" alt="">
-
-        <div>
-          {{ user.email }}
-        </div>
-
-      </div>
-    </div>
 
     <div class="active-users__sign-out">
       <button class="button" (click)="signOut()">Sign Out</button>
