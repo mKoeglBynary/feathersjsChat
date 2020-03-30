@@ -1,0 +1,7 @@
+<div class="c-message-input">
+
+  <input #input (keyup.enter)="emitSendMessage(input.value); input.value='';">
+
+  <button (click)="emitSendMessage(input.value); input.value='' ">Send</button>
+
+</div>

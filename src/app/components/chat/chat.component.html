@@ -27,13 +27,7 @@
   <div class="chat-container__message-container" >
       <app-messages [messages]="messages"></app-messages>
 
-    <div class="message-container__input">
-
-      <input #input (keyup.enter)="sendMessage(input.value); input.value='';">
-
-      <button class="button" (click)="sendMessage(input.value); input.value='' ">Send</button>
-
-    </div>
+    <app-message-user-input (handleSendMessage)="sendMessage($event)"></app-message-user-input>
 
 
   </div>

@@ -9,6 +9,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { MessagesComponent } from './components/messages/messages.component';
 import { MessageComponent } from './components/message/message.component';
+import { MessageUserInputComponent } from './components/message-user-input/message-user-input.component';
 
 const appRoutes: Routes = [
   { path: 'chat', component: ChatComponent },
@@ -21,7 +22,8 @@ const appRoutes: Routes = [
     LoginComponent,
     ChatComponent,
     MessagesComponent,
-    MessageComponent
+    MessageComponent,
+    MessageUserInputComponent
   ],
   imports: [
     BrowserModule,
