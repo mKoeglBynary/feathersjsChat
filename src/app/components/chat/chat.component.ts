@@ -1,13 +1,11 @@
 import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import { Router} from '@angular/router';
-import { Store} from '@ngxs/store';
 import {Observable} from 'rxjs';
-
+import {FeathersService} from '../../services/feathersService/feathers.service';
+import {ChatFacade} from '../../states/facade/chatFacade';
 import {User} from '../../interfaces/user';
 import {Messages} from '../../interfaces/messages';
-import {FeathersService} from '../../services/feathersService/feathers.service';
-import {AddMessage, AddMessages} from '../../states/actions/chat.actions';
-import {AddUser, AddUsers} from '../../states/actions/user.action';
+import {UsersFacade} from '../../states/facade/usersFacade';
 
 @Component({
   selector: 'app-chat',
@@ -26,7 +24,8 @@ export class ChatComponent implements OnInit {
   constructor(
     private router: Router,
     private feathersService: FeathersService,
-    private store: Store,
+    private chatFacade: ChatFacade,
+    private usersFacade: UsersFacade
   ) {}
 
     ngOnInit() {
@@ -36,26 +35,25 @@ export class ChatComponent implements OnInit {
 
   setAndConnectMessages() {
     this.feathersService.getMessages().subscribe( obj => {
-      this.store.dispatch(new AddMessages(obj.data));
+      this.chatFacade.addMessages(obj.data);
     });
     this.feathersService.getNewMessages(this.addMessage);
-    this.messages = this.store.select(state => state.chat.messages);
+    this.messages = this.chatFacade.getAllMessages();
   }
 
   setAndConnectUsers() {
     this.feathersService.getUsers().subscribe( obj => {
-      this.store.dispatch(new AddUsers(obj.data));
+      this.usersFacade.addUsers(obj.data);
     });
     this.feathersService.getNewUsers(this.addUser);
-    this.users = this.store.select(state => state.user.users);
+    this.users = this.usersFacade.getAllUsers();
   }
 
-  addMessage = message => {
-    console.log("only one time..");
-    this.store.dispatch(new AddMessage(message));
+  addMessage = (message: Messages) => {
+    this.chatFacade.addMessage(message);
   }
 
-  addUser = user => {
-    this.store.dispatch(new AddUser(user));
+  addUser = (user: User) => {
+    this.usersFacade.addUser(user);
   }
 }
