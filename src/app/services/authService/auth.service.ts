@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import {FeathersService} from '../feathersService/feathers.service';
+import {ActiveUserFacade} from '../../states/facade/activeUserFacade';
+import {User} from '../../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  isLoggedIn = false;
   app = this.feathersService.app;
 
   constructor(
-    private feathersService: FeathersService
+    private feathersService: FeathersService,
+    private activeUserFacade: ActiveUserFacade,
   ) { }
 
   async login(data?) {
@@ -18,19 +20,19 @@ export class AuthService {
         await this.app.reAuthenticate();
       } else {
         await this.app.authenticate({
-          strategy: 'local',
-          ...data
+            strategy: 'local',
+            ...data
         });
       }
-      this.isLoggedIn = true;
-      return true;
+      const {user} = await this.app.get('authentication');
+      this.activeUserFacade.login(user);
     } catch (error) {
-      return false;
+      return;
     }
   }
 
   async logout() {
-    this.isLoggedIn = false;
+    this.activeUserFacade.logout();
     this.removeFeathersjsListeners();
     await this.app.logout();
   }
@@ -43,10 +45,8 @@ export class AuthService {
   async register(data) {
     try {
       await this.app.service('users').create(data);
-    } catch (e) {
-      return false;
+    } catch (error) {
+      return;
     }
-    await this.login(data);
-    return true;
   }
 }

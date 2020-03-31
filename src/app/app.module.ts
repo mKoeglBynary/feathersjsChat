@@ -18,6 +18,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import {ChatState} from './states/chatState';
 import {UserState} from './states/userState';
 import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
+import {ActiveUserState} from './states/activeUserState';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
     BrowserModule,
     ReactiveFormsModule,
     NgxsModule.forRoot([
+      ActiveUserState,
       ChatState,
       UserState
     ]),

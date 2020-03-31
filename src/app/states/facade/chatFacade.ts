@@ -16,11 +16,11 @@ export class ChatFacade {
     return this.store.select(state => state.chat.messages);
   }
 
-  addMessage(message: Messages): void {
+  addMessage(message: Messages) {
     this.store.dispatch(new AddMessage(message));
   }
 
-  addMessages(messages: Messages[]): void {
+  addMessages(messages: Messages[]) {
     this.store.dispatch(new AddMessages(messages));
   }
 }

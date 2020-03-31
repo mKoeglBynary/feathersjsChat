@@ -17,11 +17,11 @@ export class UsersFacade {
     return this.store.select( state => state.user.users);
   }
 
-  addUser(user: User): void {
+  addUser(user: User) {
     this.store.dispatch(new AddUser(user));
   }
 
-  addUsers(users: User[]): void {
+  addUsers(users: User[]) {
     this.store.dispatch(new AddUsers(users));
   }
 }

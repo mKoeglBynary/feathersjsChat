@@ -2,6 +2,7 @@ import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@an
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/authService/auth.service';
+import {ActiveUserFacade} from '../../states/facade/activeUserFacade';
 
 @Component({
   selector: 'app-login',
@@ -19,48 +20,47 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private activeUserFacade: ActiveUserFacade
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     this.loginAndRegisterForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)])
     });
 
-    this.authService.login().then(success => {
-      if (success) {
-        this.router.navigate(['/chat']);
+    if (localStorage.getItem('auth')) {
+      await this.login();
+    }
+  }
+
+  async login(data?, error?) {
+    await this.authService.login(data);
+    this.activeUserFacade.getLoggedIn().subscribe(async isLoggedIn => {
+      if (isLoggedIn) {
+        await this.router.navigate(['/chat']);
+      } else {
+        this.errors = {...error};
       }
     });
   }
 
-  login(): void {
+  async submitLogin() {
+    const errors = { email: 'Wrong E-Mail or Password'};
     if (!this.validateForm()) { return; }
 
     const data = this.getFormData();
-
-    this.authService.login(data).then( success => {
-      if (success) {
-        this.router.navigate(['/chat']);
-      } else {
-        this.errors.email = 'Wrong E-Mail or Password';
-      }
-    });
+    await this.login(data, errors );
   }
 
-  register() {
+  async register() {
+    const errors = { email: 'Already registered'};
     if (!this.validateForm()) { return; }
 
     const data = this.getFormData();
-
-    this.authService.register(data).then( success => {
-      if (!success) {
-        this.errors.email = 'Already registered';
-      } else {
-        this.router.navigate(['/chat']);
-      }
-    });
+    await this.authService.register(data);
+    await this.login(data, errors);
   }
 
   validateForm(): boolean {
@@ -71,12 +71,10 @@ export class LoginComponent implements OnInit {
     if (this.loginAndRegisterForm.get('password').errors) {
       errors.password = 'Password must be 5 characters';
     }
-
     if (Object.keys(errors).length !== 0) {
       this.errors = errors;
       return false;
     }
-
     this.errors = {};
     return true;
   }
