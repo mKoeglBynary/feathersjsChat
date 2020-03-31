@@ -51,6 +51,7 @@ export class ChatComponent implements OnInit {
   }
 
   addMessage = message => {
+    console.log("only one time..");
     this.store.dispatch(new AddMessage(message));
   }
 

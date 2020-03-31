@@ -33,7 +33,13 @@ export class AuthService {
 
   async logout() {
     this.isLoggedIn = false;
+    this.removeFeathersjsListeners();
     await this.app.logout();
+  }
+
+  async removeFeathersjsListeners() {
+    await this.app.service('messages').off('created');
+    await this.app.service('users').off('created');
   }
 
   async register(data) {

@@ -3,11 +3,13 @@ app-active-users {
     display: flex;
     flex-direction: column;
     height: 70vh;
+    overflow: scroll;
 
     > .users__user-container {
       display: flex;
       height: 3rem;
       margin: 1rem 1rem;
+
 
       > img {
         border-radius: 100%;
@@ -18,8 +20,11 @@ app-active-users {
       > div {
         display: flex;
         line-height: 3rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
         vertical-align: center;
         width: 10rem;
+        white-space: nowrap;
       }
     }
   }
