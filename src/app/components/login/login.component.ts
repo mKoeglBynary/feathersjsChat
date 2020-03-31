@@ -1,7 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {FeathersService} from '../../services/feathersService/feathers.service';
 import {AuthService} from '../../services/authService/auth.service';
 
 @Component({

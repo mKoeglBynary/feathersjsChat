@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import {Observable, of} from 'rxjs';
-import {delay, tap} from 'rxjs/operators';
 import {FeathersService} from '../feathersService/feathers.service';
 
 @Injectable({

@@ -1,14 +1,14 @@
 import { User} from '../../interfaces/user';
 
 export class AddUser {
-  static readonly type = '[User] add';
+  static readonly type = '[User] Add';
 
   constructor(public payload: User) {
   }
 }
 
 export class AddUsers {
-  static readonly  type = '[Users] add';
+  static readonly  type = '[Users] Add';
 
   constructor(public payload: User[]) {
   }
