@@ -1,4 +1,4 @@
-import {State, Action, StateContext, Selector, Select} from '@ngxs/store';
+import {State, Action, StateContext, Selector} from '@ngxs/store';
 import {Messages} from '../interfaces/messages';
 import {AddMessage, AddMessages} from './actions/chat.actions';
 import {Injectable} from '@angular/core';
@@ -30,8 +30,7 @@ export class ChatState {
   }
 
   @Action(AddMessages)
-  addMessages( {getState, patchState}: StateContext<ChatStateModel>, {payload}: AddMessages){
-    const state = getState();
+  addMessages( {patchState}: StateContext<ChatStateModel>, {payload}: AddMessages) {
     patchState({
       messages: [...payload]
     });

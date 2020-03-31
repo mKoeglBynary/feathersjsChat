@@ -1,4 +1,4 @@
-import {State, Action, StateContext, Selector, Select} from '@ngxs/store';
+import {State, Action, StateContext, Selector} from '@ngxs/store';
 import {Injectable} from '@angular/core';
 import {User} from '../interfaces/user';
 import {AddUser, AddUsers} from './actions/user.action';
@@ -31,7 +31,6 @@ export class UserState {
 
   @Action(AddUsers)
   addUsers( {getState, patchState}: StateContext<UserStateModel>, {payload}: AddUsers) {
-    const state = getState();
     patchState( {
       users: [...payload]
     });
