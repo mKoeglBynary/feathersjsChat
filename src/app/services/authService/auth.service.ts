@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {FeathersService} from '../feathersService/feathers.service';
-import {ActiveUserFacade} from '../../states/facade/activeUserFacade';
+import {AuthFacade} from '../../states/facade/authFacade';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class AuthService {
 
   constructor(
     private feathersService: FeathersService,
-    private activeUserFacade: ActiveUserFacade,
+    private activeUserFacade: AuthFacade,
   ) { }
 
   async login(data?) {
@@ -23,10 +23,10 @@ export class AuthService {
             ...data
         });
       }
-      const {user} = await this.app.get('authentication');
-      this.activeUserFacade.login(user);
+      const {user} =  await this.app.get('authentication');
+      return user;
     } catch (error) {
-      return;
+      return null;
     }
   }
 
@@ -44,8 +44,9 @@ export class AuthService {
   async register(data) {
     try {
       await this.app.service('users').create(data);
+      return true;
     } catch (error) {
-      return;
+      return null;
     }
   }
 }

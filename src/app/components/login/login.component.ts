@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@an
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/authService/auth.service';
-import {ActiveUserFacade} from '../../states/facade/activeUserFacade';
+import {AuthFacade} from '../../states/facade/authFacade';
 
 @Component({
   selector: 'app-login',
@@ -20,8 +20,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService,
-    private activeUserFacade: ActiveUserFacade
+    private authFacade: AuthFacade
   ) {}
 
   async ngOnInit() {
@@ -36,14 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   async login(data?, error?) {
-    await this.authService.login(data);
-    this.activeUserFacade.getLoggedIn().subscribe(async isLoggedIn => {
-      if (isLoggedIn) {
-        await this.router.navigate(['/chat']);
-      } else {
-        this.errors = {...error};
-      }
-    });
+    await this.authFacade.login(data);
   }
 
   async submitLogin() {
@@ -59,8 +51,7 @@ export class LoginComponent implements OnInit {
     if (!this.validateForm()) { return; }
 
     const data = this.getFormData();
-    await this.authService.register(data);
-    await this.login(data, errors);
+    this.authFacade.register(data);
   }
 
   validateForm(): boolean {

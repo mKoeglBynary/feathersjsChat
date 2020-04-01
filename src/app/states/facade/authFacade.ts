@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Store} from '@ngxs/store';
-import {UserLogin, UserLogout} from '../actions/activeUser.actions';
+import {UserLogin, UserLogout, UserRegister} from '../actions/activeUser.actions';
 import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ActiveUserFacade {
+export class AuthFacade {
   constructor(
     private store: Store
   ) {}
@@ -17,6 +17,14 @@ export class ActiveUserFacade {
 
   logout(): void {
     this.store.dispatch(new UserLogout());
+  }
+
+  register(user): void {
+    this.store.dispatch(new UserRegister(user)).subscribe(obj => {
+      if (obj) {
+        this.login(user);
+      }
+    });
   }
 
   getLoggedIn(): Observable<boolean> {

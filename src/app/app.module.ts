@@ -19,6 +19,7 @@ import {ChatState} from './states/chatState';
 import {UserState} from './states/userState';
 import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 import {ActiveUserState} from './states/activeUserState';
+import { InputComponent } from './components/common/input/input.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {ActiveUserState} from './states/activeUserState';
     ActiveUsersComponent,
     UsersInterfaceComponent,
     MessageInterfaceComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,
