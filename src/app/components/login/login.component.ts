@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
     await this.login(data, errors );
   }
 
-  async register() {
+  async submitRegister() {
     const errors = { email: 'Already registered'};
     if (!this.validateForm()) { return; }
 
