@@ -24,18 +24,25 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.loginAndRegisterForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [Validators.required, Validators.minLength(5)])
-    });
+    this.createFormGroup();
 
     if (localStorage.getItem('auth')) {
       this.authFacade.login();
     }
+
+    this.authFacade.getErrors().subscribe( err => {
+      this.errors = err;
+    });
+  }
+
+  createFormGroup() {
+    this.loginAndRegisterForm = new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(5)])
+    });
   }
 
   submitLogin() {
-    const errors = { email: 'Wrong E-Mail or Password'};
     if (!this.validateForm()) { return; }
 
     const data = this.getFormData();
@@ -43,7 +50,6 @@ export class LoginComponent implements OnInit {
   }
 
   submitRegister() {
-    const errors = { email: 'Already registered'};
     if (!this.validateForm()) { return; }
 
     const data = this.getFormData();
@@ -59,10 +65,10 @@ export class LoginComponent implements OnInit {
       errors.password = 'Password must be 5 characters';
     }
     if (Object.keys(errors).length !== 0) {
-      this.errors = errors;
+      this.authFacade.addErrors(errors);
       return false;
     }
-    this.errors = {};
+    this.authFacade.addErrors({});
     return true;
   }
 

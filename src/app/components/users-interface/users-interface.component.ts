@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {User} from '../../interfaces/user';
 import {Router} from '@angular/router';
-import {AuthService} from '../../services/authService/auth.service';
+import {AuthFacade} from '../../states/facade/authFacade';
 
 @Component({
   selector: 'app-users-interface',
@@ -18,17 +18,14 @@ export class UsersInterfaceComponent implements OnInit {
   @Output() handleSignOut: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
-    private authService: AuthService,
-    private router: Router
+    private authFacade: AuthFacade,
   ) { }
 
   ngOnInit(): void {
   }
 
   signOut() {
-    this.authService.logout().then( () => {
-      this.router.navigate(['/']);
-    });
+    this.authFacade.logout();
   }
 
 }

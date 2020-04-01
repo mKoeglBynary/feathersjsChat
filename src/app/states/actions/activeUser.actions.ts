@@ -11,3 +11,9 @@ export class UserRegister {
   static readonly type = '[User] register';
   constructor(public payload) {}
 }
+
+export class UserErrors {
+  static readonly type = '[User] errors';
+  constructor(public payload) {
+  }
+}

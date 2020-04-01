@@ -10,7 +10,6 @@ export class AuthService {
 
   constructor(
     private feathersService: FeathersService,
-    private activeUserFacade: AuthFacade,
   ) { }
 
   async login(data?) {
@@ -31,7 +30,6 @@ export class AuthService {
   }
 
   async logout() {
-    this.activeUserFacade.logout();
     this.removeFeathersjsListeners();
     await this.app.logout();
   }

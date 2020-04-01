@@ -1,7 +1,7 @@
 import {User} from '../interfaces/user';
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {Injectable, NgZone} from '@angular/core';
-import {UserLogin, UserLogout, UserRegister} from './actions/activeUser.actions';
+import {UserErrors, UserLogin, UserLogout, UserRegister} from './actions/activeUser.actions';
 import {AuthService} from '../services/authService/auth.service';
 import {Router} from '@angular/router';
 
@@ -36,9 +36,16 @@ export class ActiveUserState {
     return state.errors;
   }
 
+  @Action(UserErrors)
+  userErrors({patchState}: StateContext<ActiveUserStateModel>, {payload}: UserErrors) {
+    patchState({
+      errors: {...payload}
+    });
+  }
+
   @Action(UserRegister)
-  async userRegister({dispatch, patchState}: StateContext<ActiveUserStateModel>, {payload}: UserRegister) {
-    await this.authService.register(payload).then(obj => {
+  userRegister({dispatch, patchState}: StateContext<ActiveUserStateModel>, {payload}: UserRegister) {
+    this.authService.register(payload).then(obj => {
       if (obj) {
         dispatch(new UserLogin(payload));
       } else {
@@ -64,19 +71,25 @@ export class ActiveUserState {
         errors: {}
       });
 
-      this.ngZone.run( () => {
-        this.router.navigate(['/chat']);
-      }
-    );
+      this.navigateTo('/chat');
     }
   }
 
   @Action(UserLogout)
-  userLogout( {patchState}: StateContext<ActiveUserStateModel>) {
+  async userLogout( {patchState}: StateContext<ActiveUserStateModel>) {
+    await this.authService.logout();
     patchState({
       user: {},
       isLoggedIn: false
     });
+    this.navigateTo('');
+  }
+
+  navigateTo(item) {
+    this.ngZone.run( () => {
+        this.router.navigate([item]);
+      }
+    );
   }
 
 }

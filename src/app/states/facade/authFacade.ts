@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Store} from '@ngxs/store';
-import {UserLogin, UserLogout, UserRegister} from '../actions/activeUser.actions';
+import {UserLogin, UserLogout, UserRegister, UserErrors} from '../actions/activeUser.actions';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -23,8 +23,16 @@ export class AuthFacade {
     this.store.dispatch(new UserRegister(user));
   }
 
+  addErrors(errors) {
+    this.store.dispatch(new UserErrors(errors));
+  }
+
   getLoggedIn(): Observable<boolean> {
     return this.store.select(state => state.activeUser.isLoggedIn);
+  }
+
+  getErrors(): Observable<any> {
+    return this.store.select(state => state.activeUser.errors);
   }
 
 }
