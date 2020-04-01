@@ -31,9 +31,22 @@ export class ActiveUserState {
     return state.isLoggedIn;
   }
 
+  @Selector()
+  static getErrors(state: ActiveUserStateModel) {
+    return state.errors;
+  }
+
   @Action(UserRegister)
-  async userRegister({getState, patchState}: StateContext<ActiveUserStateModel>, {payload}: UserRegister) {
-    await this.authService.register(payload);
+  async userRegister({dispatch, patchState}: StateContext<ActiveUserStateModel>, {payload}: UserRegister) {
+    await this.authService.register(payload).then(obj => {
+      if (obj) {
+        dispatch(new UserLogin(payload));
+      } else {
+        patchState({
+          errors: {email: 'Already registered'}
+        });
+      }
+    });
   }
 
 
@@ -41,11 +54,16 @@ export class ActiveUserState {
   async userLogin({patchState}: StateContext<ActiveUserStateModel>, {payload}: UserLogin) {
     const user = await this.authService.login(payload);
     if (!user) {
+      patchState({
+        errors: {email: 'Wrong E-Mail or password'}
+      });
     } else {
       patchState({
         user,
-        isLoggedIn: true
+        isLoggedIn: true,
+        errors: {}
       });
+
       this.ngZone.run( () => {
         this.router.navigate(['/chat']);
       }

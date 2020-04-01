@@ -11,7 +11,7 @@ export class AuthFacade {
     private store: Store
   ) {}
 
-  login(user): void {
+  login(user?): void {
     this.store.dispatch(new UserLogin(user));
   }
 
@@ -20,11 +20,7 @@ export class AuthFacade {
   }
 
   register(user): void {
-    this.store.dispatch(new UserRegister(user)).subscribe(obj => {
-      if (obj) {
-        this.login(user);
-      }
-    });
+    this.store.dispatch(new UserRegister(user));
   }
 
   getLoggedIn(): Observable<boolean> {

@@ -23,30 +23,26 @@ export class LoginComponent implements OnInit {
     private authFacade: AuthFacade
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     this.loginAndRegisterForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)])
     });
 
     if (localStorage.getItem('auth')) {
-      await this.login();
+      this.authFacade.login();
     }
   }
 
-  async login(data?, error?) {
-    await this.authFacade.login(data);
-  }
-
-  async submitLogin() {
+  submitLogin() {
     const errors = { email: 'Wrong E-Mail or Password'};
     if (!this.validateForm()) { return; }
 
     const data = this.getFormData();
-    await this.login(data, errors );
+    this.authFacade.login(data);
   }
 
-  async submitRegister() {
+  submitRegister() {
     const errors = { email: 'Already registered'};
     if (!this.validateForm()) { return; }
 
