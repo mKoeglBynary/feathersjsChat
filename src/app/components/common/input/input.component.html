@@ -1,1 +1,4 @@
-<p>input works!</p>
+<label for="{{ formControlName }}">{{label}}</label>
+<input id="{{ formControlName }}" type="{{type}}" formControlName="{{ formControlName }}">
+<div class="form__input-error" *ngIf="this.errors && this.errors[this.formControlName]">{{ errors[formControlName] }}</div>
+

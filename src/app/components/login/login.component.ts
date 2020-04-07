@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
 
   submitLogin() {
     if (!this.validateForm()) { return; }
-
     const data = this.getFormData();
     this.authFacade.login(data);
   }

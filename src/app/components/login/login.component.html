@@ -1,17 +1,15 @@
 <div class="c-login-container">
   <form [formGroup]="loginAndRegisterForm" class="c-login-container__form" (ngSubmit)="submitLogin()">
 
-    <div class="form__input-email">
-      <label for="email">E-Mail:</label>
-      <input id="email" type="email" formControlName="email">
-      <div class="form__input-error" *ngIf="errors?.email">{{ errors.email }}</div>
-    </div>
+    <app-input class="form__input-email"
+               [data]="{ formControlName: 'email', type: 'text' , label: 'E-Mail'}"
+               [errors]="errors">
+    </app-input>
 
-    <div class="form__input-password">
-      <label for="password">Password:</label>
-      <input id="password" type="password" formControlName="password">
-      <div class="form__input-error" *ngIf="errors?.password">{{ errors.password }}</div>
-    </div>
+    <app-input class="form__input-password"
+               [data]="{ formControlName: 'password', type: 'password', label: 'Password'}"
+               [errors]="errors">
+    </app-input>
 
     <div class="form__buttons">
       <button  name="login" type="submit" >Login</button>
