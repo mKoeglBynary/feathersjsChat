@@ -20,6 +20,8 @@ import {UserState} from './states/userState';
 import {NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 import {ActiveUserState} from './states/activeUserState';
 import { InputComponent } from './components/common/input/input.component';
+import { ButtonDirective } from './directives/button.directive';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -35,10 +37,12 @@ import { InputComponent } from './components/common/input/input.component';
     UsersInterfaceComponent,
     MessageInterfaceComponent,
     PageNotFoundComponent,
-    InputComponent
+    InputComponent,
+    ButtonDirective
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     NgxsModule.forRoot([
       ActiveUserState,
