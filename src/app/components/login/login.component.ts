@@ -1,8 +1,8 @@
 import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Router} from '@angular/router';
-import {AuthService} from '../../services/authService/auth.service';
 import {AuthFacade} from '../../states/facade/authFacade';
+import {buttonClickedAnimations} from '../../animations/loginButtons';
+import {InputControls} from '../../interfaces/inputControls';
 
 @Component({
   selector: 'app-login',
@@ -16,10 +16,12 @@ import {AuthFacade} from '../../states/facade/authFacade';
 })
 export class LoginComponent implements OnInit {
   loginAndRegisterForm;
-  errors: any = {};
+  errors;
+
+  email: InputControls;
+  password: InputControls;
 
   constructor(
-    private router: Router,
     private authFacade: AuthFacade
   ) {}
 
@@ -40,6 +42,25 @@ export class LoginComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)])
     });
+    this.email = {
+      formControl: this.loginAndRegisterForm.get('email'),
+      name: 'email',
+      label: 'E-Mail',
+      type: 'text',
+      errors: [
+        { name: 'required', text: 'E-Mail is required'},
+        { name: 'email', text: 'Must be a valid E-Mail'}]
+    };
+    this.password = {
+      formControl: this.loginAndRegisterForm.get('password'),
+      name: 'password',
+      label: 'Password',
+      type: 'password',
+      errors: [
+        { name: 'required', text: 'Password is required'},
+        { name: 'minlength', text: 'Must be min. 5 characters'}]
+    };
+
   }
 
   submitLogin() {
@@ -54,28 +75,27 @@ export class LoginComponent implements OnInit {
     this.authFacade.register(data);
   }
 
+  resetErrors() {
+    if (!this.errors || this.errors.length === 0) {
+      return;
+    }
+    this.authFacade.addErrors('');
+  }
+
   validateForm(): boolean {
-    const errors: any = {};
-    if (this.loginAndRegisterForm.get('email').errors) {
-      errors.email = 'Please enter a valid E-Mail';
-    }
-    if (this.loginAndRegisterForm.get('password').errors) {
-      errors.password = 'Password must be 5 characters';
-    }
-    if (Object.keys(errors).length !== 0) {
-      this.authFacade.addErrors(errors);
-      return false;
-    }
-    this.authFacade.addErrors({});
-    return true;
+    this.loginAndRegisterForm.markAllAsTouched();
+    return !this.loginAndRegisterForm.invalid;
   }
 
   getFormData() {
     return {
       email: this.loginAndRegisterForm.get('email').value,
       password: this.loginAndRegisterForm.get('password').value
-
     };
+  }
+
+  get isAuthError(): boolean {
+    return this.errors && this.errors.length && this.validateForm();
   }
 
 }

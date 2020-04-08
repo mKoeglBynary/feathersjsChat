@@ -50,7 +50,7 @@ export class ActiveUserState {
         dispatch(new UserLogin(payload));
       } else {
         patchState({
-          errors: {email: 'Already registered'}
+          errors: 'Already registered'
         });
       }
     });
@@ -62,7 +62,7 @@ export class ActiveUserState {
     const user = await this.authService.login(payload);
     if (!user) {
       patchState({
-        errors: {email: 'Wrong E-Mail or password'}
+        errors: 'Wrong E-Mail or password'
       });
     } else {
       patchState({
