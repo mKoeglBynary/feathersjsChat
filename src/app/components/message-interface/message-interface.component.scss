@@ -1,7 +1,8 @@
 app-message-interface {
+  display: block;
   height: inherit;
 
-  > .c-message-interface {
+  > .app-message-interface {
     margin-left: 2rem;
     margin-right: 1rem;
     position: relative;

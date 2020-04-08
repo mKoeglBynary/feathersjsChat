@@ -1,5 +1,7 @@
-.app-chat{
-  > .c-chat-container{
+app-chat{
+  display: block;
+
+  > .app-chat-container{
     display: flex;
     height: 100vh;
 
@@ -10,10 +12,5 @@
     > app-message-interface {
       flex: 5;
     }
-
-
-
   }
-
-
 }

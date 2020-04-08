@@ -1,9 +1,9 @@
-<div class="c-users-container">
+<div class="app-users-container">
   <app-active-users-header [usersLength]="users?.length"></app-active-users-header>
   <app-active-users [users]="users"></app-active-users>
 
-  <div class="active-users__sign-out">
-    <button class="button" (click)="signOut()" appButton>Sign Out</button>
+  <div class="app-users-container__sign-out">
+    <button (click)="signOut()" appButton>Sign Out</button>
   </div>
 
 </div>

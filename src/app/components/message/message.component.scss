@@ -1,5 +1,7 @@
 app-message {
-  > .c-message {
+  display: block;
+
+  > .app-message {
     display: flex;
     margin-top: 1rem;
 
@@ -11,26 +13,26 @@ app-message {
       width: 3.8rem;
     }
 
-    > .message__details {
+    > .app-message__details {
       display: flex;
       flex: 1;
       flex-direction: column;
       width: 10rem;
 
-      > .details__header {
+      > .app-message__header {
         display: flex;
         flex: 1;
         font-size: 0.9rem;
 
 
-        > #header__date {
+        > #app-message__date {
           color: #b8b8b8;
           margin-left: 0.1rem;
           min-width: fit-content;
         }
       }
 
-      > .details_content {
+      > .app-message_content {
         color: #969696;
         flex: 2;
         height: fit-content;

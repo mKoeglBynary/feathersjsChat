@@ -1,18 +1,20 @@
 app-active-users-header {
-  > .c-active-users-header {
+  display: block;
+
+  > .app-active-users-header {
     align-items: center;
     display: flex;
     font-size: 1.2rem;
     height: 4rem;
     justify-content: center;
 
-    > #header__user-length {
+    > #app-active-users-header__length {
       color: #c916a9;
       font-weight: 800;
       padding-right: 1rem;
     }
 
-    > #header__users {
+    > #app-active-users-header__users {
       color: #bfbfbf;
       letter-spacing: 0.6px;
     }

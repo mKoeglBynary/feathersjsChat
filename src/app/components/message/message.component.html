@@ -1,13 +1,13 @@
-<div class="c-message">
+<div class="app-message">
   <img src="{{message.user.avatar}}" alt="">
 
-  <div class="message__details">
-    <div class="details__header">
+  <div class="app-message__details">
+    <div class="app-message__header">
       <span>{{message.user.email}}</span>
-      <span id="header__date">{{message.createdAt | date }}</span>
+      <span id="app-message__date">{{message.createdAt | date }}</span>
     </div>
 
-    <div class="details_content">
+    <div class="app-message_content">
       {{message.text}}
     </div>
   </div>

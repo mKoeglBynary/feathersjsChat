@@ -30,13 +30,13 @@ export class ButtonDirective {
 
   @HostListener('click')
   onClick() {
-    const normalStyle = () => style({color: 'white', transform: 'translateY(-1px)'});
-    const clickedStyle = () =>  style({color: 'black', transform: 'translateY(1px)'});
+    const normalStyle = () => style({color: '#ffffff', transform: 'translateY(-1px)'});
+    const clickedStyle = () =>  style({color: '#230925', transform: 'translateY(1px)'});
 
-    const animateClick = animate('200ms ease-in', clickedStyle());
+    const animateClick = animate('50ms', clickedStyle());
     const playerClick = this.animation(animateClick, normalStyle());
 
-    const animateNormal = animate('300ms ease-in', normalStyle());
+    const animateNormal = animate('100ms ease-in', normalStyle());
     const playerNormal = this.animation(animateNormal, clickedStyle());
 
     playerClick.onDone(() => {
