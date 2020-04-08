@@ -1,9 +1,23 @@
 app-chat{
   display: block;
 
-  > .app-chat-container{
+  > .app-chat__header {
+    align-items: center;
+    background: #c916a9;
+    color: #ffffff;
     display: flex;
-    height: 100vh;
+    font-size: 2rem;
+    font-weight: lighter;
+    height: 5vh;
+    letter-spacing: 0.05rem;
+    justify-content: center;
+    padding: 2rem;
+    width: 100%;
+  }
+
+  > .app-chat__container{
+    display: flex;
+    height: 94vh;
 
     > app-users-interface {
       flex: 1;
