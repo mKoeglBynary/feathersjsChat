@@ -34,6 +34,5 @@ export class InputComponent implements OnInit {
   }
   isErrorState(control: FormControl): boolean {
     return !!(control && control.invalid && (control.dirty || control.touched));
-
   }
 }

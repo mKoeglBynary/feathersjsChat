@@ -5,13 +5,13 @@ app-login {
 app-login {
 
   > .app-login__container {
-    box-shadow: -1px -2px 18px 6px rgba(0, 0, 0, 0.75);
+    border-radius: 1rem;
+    box-shadow: -1px -1px 20px 3px rgba(0, 0, 0, 0.75);
     display: block;
     height: 30rem;
     margin: 3rem auto;
     position: relative;
     width: 20rem;
-
 
     > .app-login__form {
       display: flex;
@@ -25,7 +25,7 @@ app-login {
         border-radius: 10px;
         color: #fc0303;
         font-size: 1.1rem;
-        font-weight: 700;
+        font-weight: 400;
         padding: 3px;
         position: absolute;
         text-align: center;
@@ -47,9 +47,13 @@ app-login {
         margin-top: 1rem;
 
         > button {
+          border: 0.1rem solid black;
+          border-radius: 1rem;
           font-size: 1.3rem;
           height: 2.5rem;
           margin-top: 1rem;
+          outline: none;
+
         }
       }
     }

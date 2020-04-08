@@ -8,18 +8,23 @@ import {InputControls} from '../../interfaces/inputControls';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  animations: [
+    buttonClickedAnimations
+  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.Default,
   host: {
     class: 'app-login'
   }
 })
+
 export class LoginComponent implements OnInit {
   loginAndRegisterForm;
   errors;
-
   email: InputControls;
   password: InputControls;
+  registerClicked = false;
+  loginClicked = false;
 
   constructor(
     private authFacade: AuthFacade
