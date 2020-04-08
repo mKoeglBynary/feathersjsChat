@@ -1,5 +1,5 @@
 <div class="app-login__container">
-  <form [formGroup]="loginAndRegisterForm" class="app-login__form" (ngSubmit)="submitLogin()">
+  <form [formGroup]="loginAndRegisterForm" class="app-login__form" (ngSubmit)="submitLogin(); loginClicked = !loginClicked">
     <div class="app-login__error" *ngIf="isAuthError">
       {{ errors }}
     </div>
@@ -8,7 +8,7 @@
     <app-input [data]="password" (keydown)="resetErrors()"></app-input>
 
     <div class="app-login__buttons">
-      <button  [@clicked]='loginClicked' (click)="loginClicked = !loginClicked" name="login" type="submit" >Login</button>
+      <button  [@clicked]='loginClicked' name="login" type="submit" >Login</button>
       <button [@clicked]='registerClicked' name="register" type="button" (click)="submitRegister(); registerClicked = !registerClicked"
       >Register</button>
     </div>
