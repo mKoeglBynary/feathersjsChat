@@ -18,6 +18,7 @@ import {ControlContainer, FormControl, FormGroupDirective} from '@angular/forms'
 export class InputComponent implements OnInit {
   @Input() data;
   errors;
+  error;
   name: string;
   formControl;
   type;
@@ -33,6 +34,15 @@ export class InputComponent implements OnInit {
     this.errors = errors;
   }
   isErrorState(control: FormControl): boolean {
+    this.setErrors();
     return !!(control && control.invalid && (control.dirty || control.touched));
+  }
+  setErrors() {
+    for (const error of this.errors) {
+      if (this.formControl.hasError(error.name)) {
+        this.error = error.text;
+        break;
+      }
+    }
   }
 }

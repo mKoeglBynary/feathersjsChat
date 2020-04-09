@@ -1,13 +1,7 @@
-<label for="{{ name }}">{{ label }}</label>
+<label for="{{ name }}">{{label}}</label>
 
 <input id="{{ name }}" type="{{type}}" [formControl]="formControl">
 
 <div class="form__input-error" *ngIf="isErrorState(formControl)">
-  <div *ngFor="let error of errors">
-
-    <div *ngIf="formControl.hasError(error.name)">
-      {{ error.text }}
-    </div>
-
-  </div>
+      {{ error}}
 </div>

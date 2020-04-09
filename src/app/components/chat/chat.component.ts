@@ -33,7 +33,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   messages: Observable<Messages[]>;
   users: Observable<User[]> ;
   load = false;
-  loadOtherElements;
+  loadOtherElements = false;
 
   constructor(
     private router: Router,

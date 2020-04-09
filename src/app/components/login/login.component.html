@@ -1,5 +1,6 @@
 <div class="app-login__container">
   <form [formGroup]="loginAndRegisterForm" class="app-login__form" (ngSubmit)="submitLogin(); loginClicked = !loginClicked">
+
     <div class="app-login__error" *ngIf="isAuthError">
       {{ errors }}
     </div>
