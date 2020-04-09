@@ -1,6 +1,23 @@
 app-chat{
   display: block;
 
+  > .app-chat__overlay {
+    background: none;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    opacity: 0;
+    position: absolute;
+    visibility: hidden;
+    width: 100vw;
+    z-index: 2;
+
+    > .iconify {
+      height: 20%;
+      width: 50%;
+    }
+  }
+
   > .app-chat__header {
     align-items: center;
     background: #c916a9;
@@ -12,11 +29,15 @@ app-chat{
     justify-content: center;
     padding: 0.5rem;
     width: 100%;
+
+    > .iconify {
+      margin-right: 0.5rem;
+    }
   }
 
   > .app-chat__container{
     display: flex;
-    height: 94vh;
+    height: 95vh;
 
     > app-users-interface {
       flex: 1;

@@ -7,7 +7,7 @@ export const routerAnimations = trigger('routeAnimations', [
 
 function chatToLoginTransition() {
   return transition('chat => login', [
-    style({ position: 'relative'}),
+    style({ position: 'relative', background: 'red'}),
     query(':enter, :leave', [
       style({
         position: 'absolute',
@@ -19,16 +19,14 @@ function chatToLoginTransition() {
     query(':enter', [
       style({ left: '100%'})
     ]),
-    query(':leave', animateChild()),
     group([
       query(':leave', [
-        animate('300ms ease-out', style({ left: '-100%'}))
+        animate('800ms ease-out', style({ bottom: '-100%'}))
       ]),
       query(':enter', [
-        animate('300ms ease-out', style({ left: '0%'}))
+        animate('800ms ease-out', style({ left: '0%'}))
       ])
     ]),
-    query(':enter', animateChild())
   ]);
 }
 
@@ -44,18 +42,16 @@ function loginToChatTransition() {
       })
     ]),
     query(':enter', [
-      style({ left: '-100%'})
+      style({ left: '-100%', opacity: 0})
     ]),
-    query(':leave', animateChild()),
     group([
       query(':leave', [
-        animate('300ms ease-out', style({ left: '100%'}))
+        animate('900ms ease-in-out', style({ left: '100%', opacity: 0}))
       ]),
       query(':enter', [
-        animate('300ms ease-out', style({ left: '0%'}))
+        animate('900ms ease-out', style({ left: '0%'}))
       ])
     ]),
-    query(':enter', animateChild())
   ]);
 }
 

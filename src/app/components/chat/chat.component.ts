@@ -1,4 +1,12 @@
-import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {
+  AfterContentInit,
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  ViewEncapsulation
+} from '@angular/core';
 import { Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {FeathersService} from '../../services/feathersService/feathers.service';
@@ -6,31 +14,42 @@ import {ChatFacade} from '../../states/facade/chatFacade';
 import {User} from '../../interfaces/user';
 import {Messages} from '../../interfaces/messages';
 import {UsersFacade} from '../../states/facade/usersFacade';
+import {fadeInAfter, fadeInOverlay} from '../../animations/fadeIn';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss'],
+  animations: [
+    fadeInOverlay, fadeInAfter
+  ],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.Default,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'app-chat'
   }
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewInit {
   messages: Observable<Messages[]>;
   users: Observable<User[]> ;
+  load = false;
+  loadOtherElements;
 
   constructor(
     private router: Router,
     private feathersService: FeathersService,
     private chatFacade: ChatFacade,
-    private usersFacade: UsersFacade
+    private usersFacade: UsersFacade,
+    private ref: ChangeDetectorRef
   ) {}
 
     ngOnInit() {
       this.setAndConnectMessages();
       this.setAndConnectUsers();
+    }
+
+  ngAfterViewInit(): void {
+    this.load = true;
   }
 
   setAndConnectMessages() {

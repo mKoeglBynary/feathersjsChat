@@ -1,8 +1,18 @@
-<div class="app-chat__header">
+<div class="app-chat__overlay"
+     [@fadeInOverlay]="load"
+     (@fadeInOverlay.done)="loadOtherElements = true">
+  <span class="iconify" data-icon="logos-feathersjs" data-inline="false"></span>
+</div>
+
+
+<div class="app-chat__header" [@fadeInAfter]="loadOtherElements">
+
   <span class="iconify" data-icon="logos-feathersjs" data-inline="false"></span>
   FeathersChat
 </div>
-<div class="app-chat__container">
+
+<div class="app-chat__container" [@fadeInAfter]="loadOtherElements">
+
   <app-users-interface
     [users]="users | async">
   </app-users-interface>
