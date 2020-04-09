@@ -9,7 +9,7 @@ import {AuthFacade} from '../states/facade/authFacade';
 })
 export class AuthGuard implements CanActivate {
   constructor(
-    private activeUserFacade: AuthFacade,
+    private authFacade: AuthFacade,
     private authService: AuthService,
     private router: Router
   ) {
@@ -22,9 +22,15 @@ export class AuthGuard implements CanActivate {
 
   async checkLogin() {
     let isLoggedIn = false;
-    this.activeUserFacade.getLoggedIn().subscribe( loggedIn => {
-      isLoggedIn = loggedIn;
-    });
+    if (localStorage.getItem('auth')) {
+      this.authFacade.login();
+      isLoggedIn = true;
+    } else {
+      this.authFacade.getLoggedIn().subscribe(loggedIn => {
+        isLoggedIn = loggedIn;
+      });
+    }
+
     if (isLoggedIn) {return true; }
 
     await this.router.navigate(['']);
