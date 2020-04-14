@@ -38,6 +38,11 @@ export class AuthService {
     await this.app.service('users').off('created');
   }
 
+  async changeLanguage(lang){
+    const {user} = await this.app.get('authentication');
+    await this.app.service('users').patch(user._id, {language: lang});
+  }
+
   async register(data) {
     try {
       await this.app.service('users').create(data);

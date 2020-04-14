@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthFacade} from '../../states/facade/authFacade';
 import {buttonClickedAnimations} from '../../animations/loginButtons';
 import {InputControls} from '../../interfaces/inputControls';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -27,8 +28,11 @@ export class LoginComponent implements OnInit {
   loginClicked = false;
 
   constructor(
-    private authFacade: AuthFacade
-  ) {}
+    private authFacade: AuthFacade,
+  ) {
+
+
+  }
 
   ngOnInit() {
     if (localStorage.getItem('auth')) {
@@ -50,19 +54,19 @@ export class LoginComponent implements OnInit {
     this.email = {
       formControl: this.loginAndRegisterForm.get('email'),
       name: 'email',
-      label: 'E-Mail',
+      label: 'LOGIN.EMAIL',
       errors: [
-        { name: 'required', text: 'E-Mail is required'},
-        { name: 'email', text: 'Must be a valid E-Mail'}]
+        { name: 'required', text: 'LOGIN.ERRORS.EMAIL.REQUIRED'},
+        { name: 'email', text: 'LOGIN.ERRORS.EMAIL.INVALID'}]
     };
     this.password = {
       formControl: this.loginAndRegisterForm.get('password'),
       name: 'password',
-      label: 'Password',
+      label: 'LOGIN.PASSWORD',
       type: 'password',
       errors: [
-        { name: 'required', text: 'Password is required'},
-        { name: 'minlength', text: 'Must be min. 5 characters'}]
+        { name: 'required', text: 'LOGIN.ERRORS.PASSWORD.REQUIRED'},
+        { name: 'minlength', text: 'LOGIN.ERRORS.PASSWORD.MINLENGTH'}]
     };
 
   }
@@ -73,10 +77,13 @@ export class LoginComponent implements OnInit {
     this.authFacade.login(data);
   }
 
-  submitRegister() {
+  async submitRegister() {
     if (!this.validateForm()) { return; }
-    const data = this.getFormData();
-    this.authFacade.register(data);
+    this.authFacade.getLanguage().subscribe(lang => {
+      const data = this.getFormData();
+      data.language = lang;
+      this.authFacade.register(data);
+    });
   }
 
   resetErrors() {
@@ -94,7 +101,8 @@ export class LoginComponent implements OnInit {
   getFormData() {
     return {
       email: this.loginAndRegisterForm.get('email').value,
-      password: this.loginAndRegisterForm.get('password').value
+      password: this.loginAndRegisterForm.get('password').value,
+      language: ''
     };
   }
 

@@ -24,7 +24,7 @@ export const fadeInOverlay = trigger('fadeInOverlay', [
       transform: 'rotate(-90deg) translateY(-100px) scale(0.3)',
     })),
   ])
-])
+]);
 
 export const fadeInAfter = trigger('fadeInAfter', [
   state('true', style({opacity: 1, visibility: 'visible'})),
@@ -32,4 +32,4 @@ export const fadeInAfter = trigger('fadeInAfter', [
   transition('false => true', [
     animate('1.5s 2s ease-in')
   ])
-])
+]);

@@ -22,7 +22,15 @@ import {ActiveUserState} from './states/activeUserState';
 import { InputComponent } from './components/common/input/input.component';
 import { ButtonDirective } from './directives/button.directive';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { LanguageSelectorComponent } from './components/common/language-selector/language-selector.component';
+import { LocalizedDatePipe } from './pipes/localized-date.pipe';
 
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -38,18 +46,28 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     MessageInterfaceComponent,
     PageNotFoundComponent,
     InputComponent,
-    ButtonDirective
+    ButtonDirective,
+    LanguageSelectorComponent,
+    LocalizedDatePipe,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    HttpClientModule,
     NgxsModule.forRoot([
       ActiveUserState,
       ChatState,
       UserState
     ]),
     NgxsLoggerPluginModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
+      }
+    }),
     FormsModule,
     AppRoutingModule
   ],

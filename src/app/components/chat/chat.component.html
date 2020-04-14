@@ -3,16 +3,15 @@
      (@fadeInOverlay.done)="loadOtherElements = true">
 
   <span class="iconify" data-icon="logos-feathersjs" data-inline="false"></span>
-
 </div>
 
 
 <div class="app-chat__header"
      [@fadeInAfter]="loadOtherElements">
+  <app-language-selector></app-language-selector>
 
   <span class="iconify" data-icon="logos-feathersjs" data-inline="false"></span>
   FeathersChat
-
 </div>
 
 <div class="app-chat__container"

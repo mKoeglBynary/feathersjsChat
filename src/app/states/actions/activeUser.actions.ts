@@ -17,3 +17,9 @@ export class UserErrors {
   constructor(public payload) {
   }
 }
+
+export class UserChangeLanguage {
+  static readonly type = '[User] change language';
+  constructor(public payload) {
+  }
+}

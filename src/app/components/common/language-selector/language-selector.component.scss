@@ -1,0 +1,25 @@
+app-language-selector{
+  display: block;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 1;
+
+  > .options {
+    display: flex;
+
+    > select {
+      margin: 1rem;
+      font-size: 1rem;
+      background: none;
+      border: none;
+      outline: none;
+
+    }
+
+
+  }
+}
+
+

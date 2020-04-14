@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Store} from '@ngxs/store';
-import {UserLogin, UserLogout, UserRegister, UserErrors} from '../actions/activeUser.actions';
+import {UserLogin, UserLogout, UserRegister, UserErrors, UserChangeLanguage} from '../actions/activeUser.actions';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -33,6 +33,14 @@ export class AuthFacade {
 
   getErrors(): Observable<any> {
     return this.store.select(state => state.activeUser.errors);
+  }
+
+  changeLanguage(lang) {
+    this.store.dispatch(new UserChangeLanguage(lang));
+  }
+
+  getLanguage(): Observable<string> {
+    return this.store.select(state => state.activeUser.language);
   }
 
 }

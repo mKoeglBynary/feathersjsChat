@@ -4,7 +4,7 @@
   <div class="app-message__details">
     <div class="app-message__header">
       <span>{{message.user.email}}</span>
-      <span id="app-message__date">{{message.createdAt | date }}</span>
+      <span id="app-message__date">{{message.createdAt | localizedDate }}</span>
     </div>
 
     <div class="app-message_content">

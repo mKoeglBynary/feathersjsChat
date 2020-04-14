@@ -1,13 +1,14 @@
 import {User} from '../interfaces/user';
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {Injectable, NgZone} from '@angular/core';
-import {UserErrors, UserLogin, UserLogout, UserRegister} from './actions/activeUser.actions';
+import {UserChangeLanguage, UserErrors, UserLogin, UserLogout, UserRegister} from './actions/activeUser.actions';
 import {AuthService} from '../services/authService/auth.service';
 import {Router} from '@angular/router';
 
 export class ActiveUserStateModel {
   user: User | {};
   isLoggedIn: boolean;
+  language: string;
   errors?: {};
 }
 
@@ -16,6 +17,7 @@ export class ActiveUserStateModel {
   defaults: {
     user: {},
     isLoggedIn: false,
+    language: 'en'
   }
 })
 @Injectable()
@@ -36,6 +38,11 @@ export class ActiveUserState {
     return state.errors;
   }
 
+  @Selector()
+  static getLanguage(state: ActiveUserStateModel) {
+    return state.language;
+  }
+
   @Action(UserErrors)
   userErrors({patchState}: StateContext<ActiveUserStateModel>, {payload}: UserErrors) {
     patchState({
@@ -50,7 +57,7 @@ export class ActiveUserState {
         dispatch(new UserLogin(payload));
       } else {
         patchState({
-          errors: 'Already registered'
+          errors: 'LOGIN.ERRORS.AUTH.REGISTERED'
         });
       }
     });
@@ -62,13 +69,14 @@ export class ActiveUserState {
     const user = await this.authService.login(payload);
     if (!user) {
       patchState({
-        errors: 'Wrong E-Mail or password'
+        errors: 'LOGIN.ERRORS.AUTH.WRONGINPUT'
       });
     } else {
       patchState({
         user,
         isLoggedIn: true,
-        errors: {}
+        errors: {},
+        language: user.language
       });
 
       this.navigateTo('/chat');
@@ -83,6 +91,18 @@ export class ActiveUserState {
       isLoggedIn: false
     });
     this.navigateTo('');
+  }
+
+  @Action(UserChangeLanguage)
+  async userChangeLanguage( {patchState, getState}: StateContext<ActiveUserStateModel>, {payload}: UserChangeLanguage) {
+    // TODO: change in Database
+    const state = getState();
+    if (state.isLoggedIn){
+      await this.authService.changeLanguage(payload);
+    }
+    patchState({
+      language: payload
+    });
   }
 
   navigateTo(item) {

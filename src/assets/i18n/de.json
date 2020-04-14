@@ -1,0 +1,27 @@
+{
+  "LOGIN": {
+    "EMAIL": "E-Mail",
+    "PASSWORD": "Passwort",
+    "LOGIN": "Login",
+    "REGISTER": "Registrieren",
+    "ERRORS": {
+      "AUTH": {
+        "WRONGINPUT": "Falsche E-Mail oder Passwort",
+        "REGISTERED": "E-Mail schon registriert"
+      },
+      "EMAIL": {
+        "REQUIRED": "E-Mail ist erforderlich",
+        "INVALID": "Muss eine valide E-Mail sein"
+      },
+      "PASSWORD":{
+        "REQUIRED": "Passwort ist erforderlich",
+        "MINLENGTH": "Mindestens 5 Zeichen"
+      }
+    }
+  },
+  "CHAT": {
+    "USERS": "Benutzer",
+    "SIGNOUT": "Ausloggen",
+    "SEND": "Senden"
+  }
+}
