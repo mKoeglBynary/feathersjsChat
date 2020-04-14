@@ -7,9 +7,6 @@ export const routerAnimations = trigger('routeAnimations', [
 
 function chatToLoginTransition() {
   return (transition('chat => login', [
-    style({
-      position: 'relative'
-    }),
     query('.app-chat__header, .app-chat__container', style({
       opacity: 1,
       visibility: 'visible'
@@ -21,11 +18,11 @@ function chatToLoginTransition() {
       width: '100%'
     })),
     group([
-      query(':enter', animate('900ms ease-in', keyframes([
+      query(':enter', animate('900ms ease-in-out', keyframes([
         style({ left: '-100%'}),
         style({ left: '0%'}),
       ]))),
-      query(':leave', animate('900ms ease-in', keyframes([
+      query(':leave', animate('900ms ease-in-out', keyframes([
         style({ left: '0%'}),
         style({ left: '100%'}),
       ])))
@@ -35,26 +32,18 @@ function chatToLoginTransition() {
 
 function loginToChatTransition() {
   return transition('login => chat', [
-    style({ position: 'relative'}),
-    query(':enter, :leave', [
-      style({
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%'
-      })
-    ]),
-    query(':enter', [
-      style({ left: '-100%', opacity: 0})
-    ]),
-    group([
-      query(':leave', [
-        animate('900ms ease-in-out', style({ left: '100%', opacity: 0}))
-      ]),
-      query(':enter', [
-        animate('900ms ease-out', style({ left: '0%'}))
-      ])
-    ]),
+    query(':leave', style({
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%'
+    })),
+    query(':leave', animate('800ms ease-in-out', keyframes([
+        style({
+          transform: 'scale(3)',
+          opacity: 0
+        }),
+      ])))
   ]);
 }
 
