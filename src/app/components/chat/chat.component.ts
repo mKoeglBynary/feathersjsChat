@@ -1,8 +1,6 @@
 import {
-  AfterContentInit,
   AfterViewInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   OnInit,
   ViewEncapsulation
@@ -40,7 +38,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
     private feathersService: FeathersService,
     private chatFacade: ChatFacade,
     private usersFacade: UsersFacade,
-    private ref: ChangeDetectorRef
   ) {}
 
     ngOnInit() {

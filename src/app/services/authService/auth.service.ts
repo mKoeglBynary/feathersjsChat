@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import {FeathersService} from '../feathersService/feathers.service';
-import {AuthFacade} from '../../states/facade/authFacade';
 
 @Injectable({
   providedIn: 'root'

@@ -31,11 +31,11 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.createFormGroup();
-
     if (localStorage.getItem('auth')) {
       this.authFacade.login();
     }
+
+    this.createFormGroup();
 
     this.authFacade.getErrors().subscribe( err => {
       this.errors = err;
@@ -51,7 +51,6 @@ export class LoginComponent implements OnInit {
       formControl: this.loginAndRegisterForm.get('email'),
       name: 'email',
       label: 'E-Mail',
-      type: 'text',
       errors: [
         { name: 'required', text: 'E-Mail is required'},
         { name: 'email', text: 'Must be a valid E-Mail'}]

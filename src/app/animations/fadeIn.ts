@@ -28,12 +28,8 @@ export const fadeInOverlay = trigger('fadeInOverlay', [
 
 export const fadeInAfter = trigger('fadeInAfter', [
   state('true', style({opacity: 1, visibility: 'visible'})),
-  state('*', style({opacity: 0, visibility: 'hidden'})),
-  transition('* => true', [
-    style({visibility: 'hidden', opacity: '0'}),
-    animate('1.5s 2s ease-in', style({
-      opacity: 1,
-      visibility: 'visible'
-    }))
+  state('false', style({opacity: 0, visibility: 'hidden'})),
+  transition('false => true', [
+    animate('1.5s 2s ease-in')
   ])
 ])

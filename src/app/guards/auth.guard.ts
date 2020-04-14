@@ -17,11 +17,13 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
     return this.checkLogin();
   }
 
   async checkLogin() {
     let isLoggedIn = false;
+
     if (localStorage.getItem('auth')) {
       this.authFacade.login();
       isLoggedIn = true;

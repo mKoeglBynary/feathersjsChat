@@ -17,28 +17,32 @@ import {ControlContainer, FormControl, FormGroupDirective} from '@angular/forms'
 })
 export class InputComponent implements OnInit {
   @Input() data;
-  errors;
-  error;
+  allErrors: {name: string, text: string}[];
+  error: string;
   name: string;
-  formControl;
-  type;
+  formControl: FormControl;
+  type: string;
   label: string;
   constructor() { }
 
   ngOnInit(): void {
-    const {formControl, name, type, label, errors}  = this.data;
+    const {formControl, name, type = 'text', label, errors = []}  = this.data;
     this.name = name;
     this.type = type;
     this.label = label;
     this.formControl = formControl;
-    this.errors = errors;
+    this.allErrors = errors;
   }
+
   isErrorState(control: FormControl): boolean {
+    if (this.allErrors.length === 0) { return false; }
+
     this.setErrors();
     return !!(control && control.invalid && (control.dirty || control.touched));
   }
+
   setErrors() {
-    for (const error of this.errors) {
+    for (const error of this.allErrors) {
       if (this.formControl.hasError(error.name)) {
         this.error = error.text;
         break;
