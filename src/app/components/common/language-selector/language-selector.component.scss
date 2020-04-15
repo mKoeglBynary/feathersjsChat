@@ -18,6 +18,15 @@ app-language-selector{
 
     }
 
+    > .asdf{
+      width: 300px;
+      height: 300px;
+      border: 2px solid black;
+      font-size: 2rem;
+      color: black;
+      cursor: pointer;
+    }
+
 
   }
 }

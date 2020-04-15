@@ -95,9 +95,8 @@ export class ActiveUserState {
 
   @Action(UserChangeLanguage)
   async userChangeLanguage( {patchState, getState}: StateContext<ActiveUserStateModel>, {payload}: UserChangeLanguage) {
-    // TODO: change in Database
     const state = getState();
-    if (state.isLoggedIn){
+    if (state.isLoggedIn) {
       await this.authService.changeLanguage(payload);
     }
     patchState({

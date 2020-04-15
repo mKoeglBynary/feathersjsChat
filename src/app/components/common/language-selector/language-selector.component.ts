@@ -13,20 +13,16 @@ import {AuthFacade} from '../../../states/facade/authFacade';
   }
 })
 export class LanguageSelectorComponent implements OnInit {
-  selectedValue = 'en';
+  selectedValue: string;
   languages = [
-    {
-      value: 'en',
-    }, {
-      value: 'de',
-    }, ];
+    {value: 'en'},
+    {value: 'de'}, ];
+
 
   constructor(
     public translateService: TranslateService,
     private authFacade: AuthFacade
   ) {
-    translateService.addLangs(['de', 'en']);
-    translateService.setDefaultLang('en');
   }
 
   changeLanguage() {
