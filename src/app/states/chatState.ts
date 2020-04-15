@@ -17,12 +17,12 @@ export class ChatStateModel {
 export class ChatState {
 
   @Selector()
-  static getMessages(state: ChatStateModel) {
+  static getMessages(state: ChatStateModel): Messages[] {
     return state.messages;
   }
 
   @Action(AddMessage)
-  addMessage( {getState, patchState}: StateContext<ChatStateModel>, {payload}: AddMessage) {
+  addMessage( {getState, patchState}: StateContext<ChatStateModel>, {payload}: AddMessage): void {
     const state = getState();
     patchState({
       messages: [payload, ...state.messages]
@@ -30,7 +30,7 @@ export class ChatState {
   }
 
   @Action(AddMessages)
-  addMessages( {patchState}: StateContext<ChatStateModel>, {payload}: AddMessages) {
+  addMessages( {patchState}: StateContext<ChatStateModel>, {payload}: AddMessages): void {
     patchState({
       messages: [...payload]
     });

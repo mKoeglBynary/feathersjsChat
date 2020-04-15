@@ -1,5 +1,5 @@
 import {Directive, ElementRef, HostListener} from '@angular/core';
-import {animate, AnimationBuilder, style} from '@angular/animations';
+import {animate, AnimationAnimateMetadata, AnimationBuilder, AnimationPlayer, AnimationStyleMetadata, style} from '@angular/animations';
 
 @Directive({
   selector: '[appButton]',
@@ -45,11 +45,14 @@ export class ButtonDirective {
     playerClick.play();
   }
 
-  animation(animateVal, oldState) {
+  animation(animateVal: AnimationAnimateMetadata,
+            state: AnimationStyleMetadata): AnimationPlayer {
+
     const animation = this.builder.build([
-      oldState,
+      state,
       animateVal
     ]);
+
     return animation.create(this.element.nativeElement);
   }
 }

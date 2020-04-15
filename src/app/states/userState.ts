@@ -17,12 +17,12 @@ export class UserStateModel {
 export class UserState {
 
   @Selector()
-  static getUsers(state: UserStateModel) {
+  static getUsers(state: UserStateModel): User[] {
     return state.users;
   }
 
   @Action(AddUser)
-  addUser( {getState, patchState}: StateContext<UserStateModel>, {payload}: AddUser) {
+  addUser( {getState, patchState}: StateContext<UserStateModel>, {payload}: AddUser): void {
     const state = getState();
     patchState({
       users: [...state.users, payload]
@@ -30,7 +30,7 @@ export class UserState {
   }
 
   @Action(AddUsers)
-  addUsers( {getState, patchState}: StateContext<UserStateModel>, {payload}: AddUsers) {
+  addUsers( {getState, patchState}: StateContext<UserStateModel>, {payload}: AddUsers): void {
     patchState( {
       users: [...payload]
     });

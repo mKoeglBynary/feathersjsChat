@@ -21,17 +21,17 @@ export class AuthGuard implements CanActivate {
     return this.checkLogin();
   }
 
-  async checkLogin() {
+  async checkLogin(): Promise<boolean> {
     let isLoggedIn = false;
 
     if (localStorage.getItem('auth')) {
       this.authFacade.login();
-      isLoggedIn = true;
-    } else {
-      this.authFacade.getLoggedIn().subscribe(loggedIn => {
+    }
+
+    this.authFacade.getLoggedIn().subscribe(loggedIn => {
         isLoggedIn = loggedIn;
       });
-    }
+
 
     if (isLoggedIn) {return true; }
 

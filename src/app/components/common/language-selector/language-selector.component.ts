@@ -1,6 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {AuthFacade} from '../../../states/facade/authFacade';
+import {LanguageSetting} from '../../../configs/language-settings.config';
 
 @Component({
   selector: 'app-language-selector',
@@ -15,8 +16,8 @@ import {AuthFacade} from '../../../states/facade/authFacade';
 export class LanguageSelectorComponent implements OnInit {
   selectedValue: string;
   languages = [
-    {value: 'en'},
-    {value: 'de'}, ];
+    {value: LanguageSetting.EN},
+    {value: LanguageSetting.DE}, ];
 
 
   constructor(
@@ -25,12 +26,12 @@ export class LanguageSelectorComponent implements OnInit {
   ) {
   }
 
-  changeLanguage() {
+  changeLanguage(): void {
     this.authFacade.changeLanguage(this.selectedValue);
   }
 
-  ngOnInit() {
-    this.authFacade.getLanguage().subscribe(lang => {
+  ngOnInit(): void {
+    this.authFacade.getLanguage().subscribe((lang: string) => {
       this.selectedValue = lang;
       this.translateService.use(lang);
     });

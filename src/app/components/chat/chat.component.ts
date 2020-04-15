@@ -65,11 +65,11 @@ export class ChatComponent implements OnInit, AfterViewInit {
     this.users = this.usersFacade.getAllUsers();
   }
 
-  addMessage = (message: Messages) => {
+  addMessage = (message: Messages): void => {
     this.chatFacade.addMessage(message);
   }
 
-  addUser = (user: User) => {
+  addUser = (user: User): void => {
     this.usersFacade.addUser(user);
   }
 }

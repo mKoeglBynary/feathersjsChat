@@ -1,16 +1,7 @@
 import { Injectable } from '@angular/core';
 import {FeathersService} from '../feathersService/feathers.service';
+import {FeathersSettings} from '../../configs/feathers-settings.config';
 import {User} from '../../interfaces/user';
-
-
-
-enum Feathers {
-  Strategy = 'local',
-  Authentication = 'authentication',
-  LocationMessages = 'messages',
-  LocationUsers = 'users',
-  EventCreated = 'created'
-}
 
 @Injectable({
   providedIn: 'root'
@@ -22,21 +13,20 @@ export class AuthService {
     private feathersService: FeathersService,
   ) { }
 
-  async login(data?: Partial<User>): Promise< Partial<User> > {
+  async login(data?: Partial<User>): Promise< User > {
     try {
       if (!data) {
         await this.app.reAuthenticate();
       } else {
         await this.app.authenticate({
-            strategy: Feathers.Strategy,
+            strategy: FeathersSettings.Strategy,
             ...data
         });
       }
-      const {user} =  await this.app.get(Feathers.Authentication);
+      const {user} =  await this.app.get(FeathersSettings.Authentication);
       return user;
 
     } catch (error) {
-      return null;
     }
   }
 
@@ -46,18 +36,18 @@ export class AuthService {
   }
 
   async removeFeathersjsListeners(): Promise<void> {
-    await this.app.service(Feathers.LocationMessages).off(Feathers.EventCreated);
-    await this.app.service(Feathers.LocationUsers).off(Feathers.EventCreated);
+    await this.app.service(FeathersSettings.LocationMessages).off(FeathersSettings.EventCreated);
+    await this.app.service(FeathersSettings.LocationUsers).off(FeathersSettings.EventCreated);
   }
 
   async changeLanguage(lang: string) {
-    const {user} = await this.app.get(Feathers.Authentication);
-    await this.app.service(Feathers.LocationUsers).patch(user._id, {language: lang});
+    const {user} = await this.app.get(FeathersSettings.Authentication);
+    await this.app.service(FeathersSettings.LocationUsers).patch(user._id, {language: lang});
   }
 
   async register(data: Partial<User>): Promise<boolean> {
     try {
-      await this.app.service(Feathers.LocationUsers).create(data);
+      await this.app.service(FeathersSettings.LocationUsers).create(data);
       return true;
     } catch (error) {
       return false;

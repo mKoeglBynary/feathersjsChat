@@ -4,12 +4,13 @@ import {Injectable, NgZone} from '@angular/core';
 import {UserChangeLanguage, UserErrors, UserLogin, UserLogout, UserRegister} from './actions/activeUser.actions';
 import {AuthService} from '../services/authService/auth.service';
 import {Router} from '@angular/router';
+import {LanguageSetting} from '../configs/language-settings.config';
 
 export class ActiveUserStateModel {
   user: User | {};
   isLoggedIn: boolean;
   language: string;
-  errors?: {};
+  errors?: string;
 }
 
 @State<ActiveUserStateModel>({
@@ -17,7 +18,7 @@ export class ActiveUserStateModel {
   defaults: {
     user: {},
     isLoggedIn: false,
-    language: 'en'
+    language: LanguageSetting.EN
   }
 })
 @Injectable()
@@ -29,24 +30,24 @@ export class ActiveUserState {
   ) {}
 
   @Selector()
-  static getLoggedIn(state: ActiveUserStateModel) {
+  static getLoggedIn(state: ActiveUserStateModel): boolean {
     return state.isLoggedIn;
   }
 
   @Selector()
-  static getErrors(state: ActiveUserStateModel) {
+  static getErrors(state: ActiveUserStateModel): string {
     return state.errors;
   }
 
   @Selector()
-  static getLanguage(state: ActiveUserStateModel) {
+  static getLanguage(state: ActiveUserStateModel): string {
     return state.language;
   }
 
   @Action(UserErrors)
-  userErrors({patchState}: StateContext<ActiveUserStateModel>, {payload}: UserErrors) {
+  userErrors({patchState}: StateContext<ActiveUserStateModel>, {payload}: UserErrors): void {
     patchState({
-      errors: {...payload}
+      errors: payload
     });
   }
 
@@ -65,8 +66,8 @@ export class ActiveUserState {
 
 
   @Action(UserLogin)
-  async userLogin({patchState}: StateContext<ActiveUserStateModel>, {payload}: UserLogin) {
-    const user = await this.authService.login(payload);
+  async userLogin({patchState}: StateContext<ActiveUserStateModel>, {payload}: UserLogin): Promise<void> {
+    const user: User = await this.authService.login(payload);
     if (!user) {
       patchState({
         errors: 'LOGIN.ERRORS.AUTH.WRONGINPUT'
@@ -75,7 +76,7 @@ export class ActiveUserState {
       patchState({
         user,
         isLoggedIn: true,
-        errors: {},
+        errors: '',
         language: user.language
       });
 
@@ -84,7 +85,7 @@ export class ActiveUserState {
   }
 
   @Action(UserLogout)
-  async userLogout( {patchState}: StateContext<ActiveUserStateModel>) {
+  async userLogout( {patchState}: StateContext<ActiveUserStateModel>): Promise<void> {
     await this.authService.logout();
     patchState({
       user: {},
@@ -94,8 +95,8 @@ export class ActiveUserState {
   }
 
   @Action(UserChangeLanguage)
-  async userChangeLanguage( {patchState, getState}: StateContext<ActiveUserStateModel>, {payload}: UserChangeLanguage) {
-    const state = getState();
+  async userChangeLanguage( {patchState, getState}: StateContext<ActiveUserStateModel>, {payload}: UserChangeLanguage): Promise<void> {
+    const state: ActiveUserStateModel = getState();
     if (state.isLoggedIn) {
       await this.authService.changeLanguage(payload);
     }
@@ -104,7 +105,7 @@ export class ActiveUserState {
     });
   }
 
-  navigateTo(item) {
+  navigateTo(item): void {
     this.ngZone.run( () => {
         this.router.navigate([item]);
       }

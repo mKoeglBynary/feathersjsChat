@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Store} from '@ngxs/store';
 import {UserLogin, UserLogout, UserRegister, UserErrors, UserChangeLanguage} from '../actions/activeUser.actions';
 import {Observable} from 'rxjs';
+import {User} from '../../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AuthFacade {
     private store: Store
   ) {}
 
-  login(user?): void {
+  login(user?: Partial<User>): void {
     this.store.dispatch(new UserLogin(user));
   }
 
@@ -19,11 +20,11 @@ export class AuthFacade {
     this.store.dispatch(new UserLogout());
   }
 
-  register(user): void {
+  register(user: Partial<User>): void {
     this.store.dispatch(new UserRegister(user));
   }
 
-  addErrors(errors) {
+  addErrors(errors: string) {
     this.store.dispatch(new UserErrors(errors));
   }
 
@@ -31,11 +32,11 @@ export class AuthFacade {
     return this.store.select(state => state.activeUser.isLoggedIn);
   }
 
-  getErrors(): Observable<any> {
+  getErrors(): Observable<string> {
     return this.store.select(state => state.activeUser.errors);
   }
 
-  changeLanguage(lang) {
+  changeLanguage(lang: string): void {
     this.store.dispatch(new UserChangeLanguage(lang));
   }
 
