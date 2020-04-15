@@ -1,8 +1,15 @@
-<div class="app-language-selector__options" >
-  <select [(ngModel)]="selectedValue" (ngModelChange)="changeLanguage()" >
-    <option  *ngFor="let language of languages" value="{{language.value}}">
-      {{language.value | uppercase}}
-    </option>
-  </select>
-</div>
+ <div class="app-language-selector__container" (appClickOutside)="dropdownClicked=false">
+   <div class="app-language-selector__dropdown" >
+     <img  class="app-language-selector__flag" [src]="selectedLanguage.img" (click)="dropdownClicked = !dropdownClicked" alt=""/>
+   </div>
+    <div *ngIf="dropdownClicked">
+    <div class="app-language-selector__options" *ngFor="let language of languages">
+      <img *ngIf="language != selectedLanguage"
+           (click)="selectedLanguage = language;
+           dropdownClicked = false;
+           changeLanguage()"
+           [src]="language.img" alt=""/>
+    </div>
+  </div>
+  </div>
 

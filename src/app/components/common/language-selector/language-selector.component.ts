@@ -14,10 +14,11 @@ import {LanguageSetting} from '../../../configs/language-settings.config';
   }
 })
 export class LanguageSelectorComponent implements OnInit {
-  selectedValue: string;
+  selectedLanguage: { value: LanguageSetting; img: LanguageSetting; };
+  dropdownClicked = false;
   languages = [
-    {value: LanguageSetting.EN},
-    {value: LanguageSetting.DE}, ];
+    {value: LanguageSetting.EN, img: LanguageSetting.ENIMG},
+    {value: LanguageSetting.DE, img: LanguageSetting.DEIMG}, ];
 
 
   constructor(
@@ -27,12 +28,12 @@ export class LanguageSelectorComponent implements OnInit {
   }
 
   changeLanguage(): void {
-    this.authFacade.changeLanguage(this.selectedValue);
+    this.authFacade.changeLanguage(this.selectedLanguage.value);
   }
 
   ngOnInit(): void {
     this.authFacade.getLanguage().subscribe((lang: string) => {
-      this.selectedValue = lang;
+      this.selectedLanguage = this.languages.find(languages => languages.value === lang);
       this.translateService.use(lang);
     });
   }

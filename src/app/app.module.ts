@@ -28,6 +28,7 @@ import {UserState} from './states/userState';
 import {ActiveUserState} from './states/activeUserState';
 import { ButtonDirective } from './directives/button.directive';
 import { LocalizedDatePipe } from './pipes/localized-date.pipe';
+import { ClickOutsideDirective } from './directives/click-outside.directive';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
@@ -50,6 +51,7 @@ export function createTranslateLoader(http: HttpClient) {
     ButtonDirective,
     LanguageSelectorComponent,
     LocalizedDatePipe,
+    ClickOutsideDirective,
   ],
   imports: [
     BrowserModule,

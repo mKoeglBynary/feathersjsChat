@@ -1,11 +1,11 @@
-import {animate, query, state, style, transition, trigger} from '@angular/animations';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 export const fadeInEnter = trigger('fadeIn', [
   transition(':enter', [
     style({ opacity: 0}),
     animate('800ms ease-in'),
   ]),
-])
+]);
 
 export const fadeInOverlay = trigger('fadeInOverlay', [
   transition('* => true', [
@@ -30,6 +30,6 @@ export const fadeInAfter = trigger('fadeInAfter', [
   state('hidden', style({opacity: 0, visibility: 'hidden'})),
   state('show', style({opacity: 1, visibility: 'visible'})),
   transition('hidden => show', [
-    animate('0.7s ease-in')
+    animate('0.4s ease-in')
   ])
 ]);

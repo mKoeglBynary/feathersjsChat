@@ -6,17 +6,20 @@ app-language-selector{
   left: 0;
   opacity: 1;
 
-  > .app-language-selector__options {
-    display: flex;
-
-    > select {
-      background: none;
-      border: none;
-      font-size: 1rem;
-      margin: 1rem;
-      outline: none;
-    }
+  img {
+    width: 1.8rem;
+    z-index: 2;
   }
+
+  .app-language-selector__container{
+    height: fit-content;
+    margin: 0.7rem;
+    position: absolute;
+    top: 0;
+    width: fit-content;
+    z-index: 2;
+  }
+
 }
 
 
