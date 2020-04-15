@@ -1,13 +1,13 @@
 app-active-users {
   display: block;
 
-  > .app-users {
+  > .app-active-users__users {
     display: flex;
     flex-direction: column;
     height: 76vh;
     overflow: scroll;
 
-    > .app-users__container {
+    > .app-active-users__container {
       display: flex;
       height: 3rem;
       margin: 1rem 1rem;

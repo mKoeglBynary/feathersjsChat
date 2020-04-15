@@ -3,7 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthFacade} from '../../states/facade/authFacade';
 import {buttonClickedAnimations} from '../../animations/loginButtons';
 import {InputControls} from '../../interfaces/inputControls';
-import {TranslateService} from '@ngx-translate/core';
+import {User} from '../../interfaces/user';
 
 @Component({
   selector: 'app-login',
@@ -20,8 +20,8 @@ import {TranslateService} from '@ngx-translate/core';
 })
 
 export class LoginComponent implements OnInit {
-  loginAndRegisterForm;
-  errors;
+  loginAndRegisterForm: FormGroup;
+  errors: string;
   email: InputControls;
   password: InputControls;
   registerClicked = false;
@@ -29,38 +29,37 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private authFacade: AuthFacade,
-  ) {
+  ) {}
 
-
-  }
-
-  ngOnInit() {
+  ngOnInit(): void {
     if (localStorage.getItem('auth')) {
       this.authFacade.login();
     }
 
     this.createFormGroup();
 
-    this.authFacade.getErrors().subscribe( err => {
+    this.authFacade.getErrors().subscribe( (err) => {
       this.errors = err;
     });
   }
 
-  createFormGroup() {
+  createFormGroup(): void {
     this.loginAndRegisterForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(5)])
     });
+
     this.email = {
-      formControl: this.loginAndRegisterForm.get('email'),
+      formControl: this.loginAndRegisterForm.get('email') as FormControl,
       name: 'email',
       label: 'LOGIN.EMAIL',
       errors: [
         { name: 'required', text: 'LOGIN.ERRORS.EMAIL.REQUIRED'},
         { name: 'email', text: 'LOGIN.ERRORS.EMAIL.INVALID'}]
     };
+
     this.password = {
-      formControl: this.loginAndRegisterForm.get('password'),
+      formControl: this.loginAndRegisterForm.get('password') as FormControl,
       name: 'password',
       label: 'LOGIN.PASSWORD',
       type: 'password',
@@ -71,26 +70,27 @@ export class LoginComponent implements OnInit {
 
   }
 
-  submitLogin() {
+  submitLogin(): void {
     if (!this.validateForm()) { return; }
-    const data = this.getFormData();
+
+    const data: Partial<User> = this.getFormData();
     this.authFacade.login(data);
   }
 
-  async submitRegister() {
+  async submitRegister(): Promise<void> {
     if (!this.validateForm()) { return; }
+
     this.authFacade.getLanguage().subscribe(lang => {
-      const data = this.getFormData();
+      const data: Partial<User> = this.getFormData();
       data.language = lang;
       this.authFacade.register(data);
     });
   }
 
-  resetErrors() {
-    if (!this.errors || this.errors.length === 0) {
-      return;
+  resetErrors(): void {
+    if (this.errors && this.errors.length > 0) {
+      this.authFacade.addErrors('');
     }
-    this.authFacade.addErrors('');
   }
 
   validateForm(): boolean {
@@ -98,7 +98,7 @@ export class LoginComponent implements OnInit {
     return !this.loginAndRegisterForm.invalid;
   }
 
-  getFormData() {
+  getFormData(): Partial<User> {
     return {
       email: this.loginAndRegisterForm.get('email').value,
       password: this.loginAndRegisterForm.get('password').value,

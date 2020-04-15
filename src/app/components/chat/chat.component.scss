@@ -18,33 +18,36 @@ app-chat{
     }
   }
 
-  > .app-chat__header {
-    align-items: center;
-    background: #c916a9;
-    color: #ffffff;
-    display: flex;
-    font-size: 1.8rem;
-    font-weight: lighter;
-    letter-spacing: 0.05rem;
-    justify-content: center;
-    padding: 0.5rem;
-    width: 100%;
+  >.app-chat__animation-container {
 
-    > .iconify {
-      margin-right: 0.5rem;
-    }
-  }
+    > .app-chat__header {
+      align-items: center;
+      background: #c916a9;
+      color: #ffffff;
+      display: flex;
+      font-size: 1.8rem;
+      font-weight: lighter;
+      letter-spacing: 0.05rem;
+      justify-content: center;
+      padding: 0.5rem;
+      width: 100%;
 
-  > .app-chat__container{
-    display: flex;
-    height: 95vh;
-
-    > app-users-interface {
-      flex: 1;
+      > .iconify {
+        margin-right: 0.5rem;
+      }
     }
 
-    > app-message-interface {
-      flex: 5;
+    > .app-chat__container {
+      display: flex;
+      height: 95vh;
+
+      > app-users-interface {
+        flex: 1;
+      }
+
+      > app-message-interface {
+        flex: 5;
+      }
     }
   }
 }

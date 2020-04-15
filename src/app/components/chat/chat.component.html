@@ -1,28 +1,19 @@
 <div class="app-chat__overlay"
      [@fadeInOverlay]="load"
      (@fadeInOverlay.done)="loadOtherElements = true">
-
   <span class="iconify" data-icon="logos-feathersjs" data-inline="false"></span>
 </div>
 
+<div class="app-chat__animation-container" [@fadeInAfter]="loadOtherElements">
 
-<div class="app-chat__header"
-     [@fadeInAfter]="loadOtherElements">
-  <app-language-selector></app-language-selector>
+  <div class="app-chat__header">
+    <app-language-selector></app-language-selector>
+    <span class="iconify" data-icon="logos-feathersjs" data-inline="false"></span>
+    {{'CHAT.TITLE' | translate}}
+  </div>
 
-  <span class="iconify" data-icon="logos-feathersjs" data-inline="false"></span>
-  FeathersChat
-</div>
-
-<div class="app-chat__container"
-     [@fadeInAfter]="loadOtherElements">
-
-  <app-users-interface
-    [users]="users | async">
-  </app-users-interface>
-
-  <app-message-interface
-    [messages]="messages | async">
-  </app-message-interface>
-
+  <div class="app-chat__container">
+    <app-users-interface [users]="users | async"></app-users-interface>
+    <app-message-interface [messages]="messages | async"></app-message-interface>
+  </div>
 </div>

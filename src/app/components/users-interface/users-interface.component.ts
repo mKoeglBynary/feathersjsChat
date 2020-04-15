@@ -1,6 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {User} from '../../interfaces/user';
-import {Router} from '@angular/router';
 import {AuthFacade} from '../../states/facade/authFacade';
 
 @Component({
@@ -24,7 +23,7 @@ export class UsersInterfaceComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  signOut() {
+  signOut(): void {
     this.authFacade.logout();
   }
 

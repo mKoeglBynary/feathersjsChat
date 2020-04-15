@@ -6,28 +6,16 @@ app-language-selector{
   left: 0;
   opacity: 1;
 
-  > .options {
+  > .app-language-selector__options {
     display: flex;
 
     > select {
-      margin: 1rem;
-      font-size: 1rem;
       background: none;
       border: none;
+      font-size: 1rem;
+      margin: 1rem;
       outline: none;
-
     }
-
-    > .asdf{
-      width: 300px;
-      height: 300px;
-      border: 2px solid black;
-      font-size: 2rem;
-      color: black;
-      cursor: pointer;
-    }
-
-
   }
 }
 

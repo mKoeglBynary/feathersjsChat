@@ -1,7 +1,7 @@
-<label for="{{ name }}">{{label | translate}} </label>
+<label for="{{ inputControl.name }}">{{inputControl.label | translate}} </label>
 
-<input id="{{ name }}" type="{{type}}" [formControl]="formControl">
+<input id="{{ inputControl.name }}" type="{{inputControl.type}}" [formControl]="inputControl.formControl">
 
-<div class="form__input-error" *ngIf="isErrorState(formControl)">
+<div class="form__input-error" *ngIf="isErrorState()">
       {{ error | translate}}
 </div>

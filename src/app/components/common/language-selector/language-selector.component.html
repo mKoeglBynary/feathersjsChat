@@ -1,4 +1,4 @@
-<div class="options" >
+<div class="app-language-selector__options" >
   <select [(ngModel)]="selectedValue" (ngModelChange)="changeLanguage()" >
     <option  *ngFor="let language of languages" value="{{language.value}}">
       {{language.value | uppercase}}

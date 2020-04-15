@@ -20,6 +20,7 @@
     }
   },
   "CHAT": {
+    "TITLE": "FeathersJsChat",
     "USERS": "Users",
     "SIGNOUT": "Sign Out",
     "SEND": "Send"

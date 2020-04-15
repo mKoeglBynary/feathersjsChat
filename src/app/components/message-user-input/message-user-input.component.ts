@@ -20,10 +20,12 @@ export class MessageUserInputComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async sendMessage() {
-    const value = this.userInput;
+  async sendMessage(): Promise<void> {
+    const value: string = this.userInput;
     this.userInput = '';
+
     if (!value || value.length === 0) { return; }
+
     await this.feathersService.sendMessage(value);
   }
 

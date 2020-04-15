@@ -40,7 +40,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
     private usersFacade: UsersFacade,
   ) {}
 
-    ngOnInit() {
+    ngOnInit(): void {
       this.setAndConnectMessages();
       this.setAndConnectUsers();
     }
@@ -49,7 +49,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
     this.load = true;
   }
 
-  setAndConnectMessages() {
+  setAndConnectMessages(): void {
     this.feathersService.getMessages().subscribe( obj => {
       this.chatFacade.addMessages(obj.data);
     });
