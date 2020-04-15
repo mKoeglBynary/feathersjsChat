@@ -1,4 +1,4 @@
-import {animate, group, keyframes, query, style, transition, trigger} from '@angular/animations';
+import {animate, animateChild, group, keyframes, query, style, transition, trigger} from '@angular/animations';
 
 export const routerAnimations = trigger('routeAnimations', [
   loginToChatTransition(),
@@ -7,7 +7,7 @@ export const routerAnimations = trigger('routeAnimations', [
 
 function chatToLoginTransition() {
   return (transition('chat => login', [
-    query('.app-chat__header, .app-chat__container', style({
+    query('.app-chat__animation-container', style({
       opacity: 1,
       visibility: 'visible'
     })),
@@ -26,7 +26,7 @@ function chatToLoginTransition() {
         style({ left: '0%'}),
         style({ left: '100%'}),
       ])))
-    ]),
+    ])
   ]));
 }
 
@@ -38,12 +38,15 @@ function loginToChatTransition() {
       left: 0,
       width: '100%'
     })),
-    query(':leave', animate('800ms ease-in-out', keyframes([
+    group([
+      query(':leave', animate('800ms ease-in-out',
         style({
           transform: 'scale(3)',
           opacity: 0
         }),
-      ])))
+      )),
+      query('.app-chat__overlay', animateChild())
+    ]),
   ]);
 }
 

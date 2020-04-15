@@ -26,11 +26,13 @@ export class AuthGuard implements CanActivate {
 
     if (localStorage.getItem('auth')) {
       this.authFacade.login();
-    }
-
-    this.authFacade.getLoggedIn().subscribe(loggedIn => {
+      isLoggedIn = true;
+    } else {
+      this.authFacade.getLoggedIn().subscribe(loggedIn => {
         isLoggedIn = loggedIn;
       });
+
+    }
 
 
     if (isLoggedIn) {return true; }

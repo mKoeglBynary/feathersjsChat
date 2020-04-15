@@ -1,11 +1,8 @@
-<div class="app-chat__overlay"
-     [@fadeInOverlay]="load"
-     (@fadeInOverlay.done)="loadOtherElements = true">
+<div class="app-chat__overlay" [@fadeInOverlay]="load" (@fadeInOverlay.done)="loadOtherElements='show'">
   <span class="iconify" data-icon="logos-feathersjs" data-inline="false"></span>
 </div>
 
 <div class="app-chat__animation-container" [@fadeInAfter]="loadOtherElements">
-
   <div class="app-chat__header">
     <app-language-selector></app-language-selector>
     <span class="iconify" data-icon="logos-feathersjs" data-inline="false"></span>

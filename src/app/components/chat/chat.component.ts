@@ -31,7 +31,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   messages: Observable<Messages[]>;
   users: Observable<User[]> ;
   load = false;
-  loadOtherElements = false;
+  loadOtherElements = 'hidden';
 
   constructor(
     private router: Router,
@@ -43,10 +43,11 @@ export class ChatComponent implements OnInit, AfterViewInit {
     ngOnInit(): void {
       this.setAndConnectMessages();
       this.setAndConnectUsers();
+      this.load = true;
     }
 
   ngAfterViewInit(): void {
-    this.load = true;
+
   }
 
   setAndConnectMessages(): void {

@@ -50,7 +50,8 @@ export class FeathersService {
   }
 
   async sendMessage(text: string): Promise<void> {
-   await this.app.service(FeathersSettings.LocationMessages).create({
+    console.log(text);
+    await this.app.service(FeathersSettings.LocationMessages).create({
       text
     });
   }
