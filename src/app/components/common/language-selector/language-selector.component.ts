@@ -20,7 +20,6 @@ export class LanguageSelectorComponent implements OnInit {
     {value: LanguageSetting.EN, img: LanguageSetting.ENIMG},
     {value: LanguageSetting.DE, img: LanguageSetting.DEIMG}, ];
 
-
   constructor(
     public translateService: TranslateService,
     private authFacade: AuthFacade

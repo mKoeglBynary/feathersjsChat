@@ -1,23 +1,37 @@
 app-language-selector{
+  bottom: 0;
   display: block;
   height: 100%;
-  position: absolute;
-  bottom: 0;
   left: 0;
   opacity: 1;
+  position: absolute;
+  z-index: 3;
 
-  img {
+
+  .app-language-selector__flag {
     width: 1.8rem;
-    z-index: 2;
   }
 
   .app-language-selector__container{
     height: fit-content;
     margin: 0.7rem;
-    position: absolute;
+    position: relative;
     top: 0;
     width: fit-content;
-    z-index: 2;
+
+    > .app-language-selector__dropdown {
+      display: flex;
+      position: relative;
+
+      > .arrow-up {
+        content: url('https://api.iconify.design/dashicons-arrow-up-alt2.svg?height=20');
+      }
+      > .arrow-down {
+        content: url('https://api.iconify.design/dashicons-arrow-down-alt2.svg?height=20');
+      }
+
+    }
+
   }
 
 }
