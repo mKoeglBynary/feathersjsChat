@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Store} from '@ngxs/store';
-import {UserLogin, UserLogout, UserRegister, UserErrors, UserChangeLanguage} from '../actions/activeUser.actions';
+import {UserLogin, UserLogout, UserRegister, UserErrors, UserChangeLanguage} from '../actions/active-user.actions';
 import {Observable} from 'rxjs';
 import {User} from '../../interfaces/user';
+import {LanguageSetting} from '../../configs/language-settings.config';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,7 @@ export class AuthFacade {
     return this.store.select(state => state.activeUser.errors);
   }
 
-  changeLanguage(lang: string): void {
+  changeLanguage(lang: LanguageSetting): void {
     this.store.dispatch(new UserChangeLanguage(lang));
   }
 

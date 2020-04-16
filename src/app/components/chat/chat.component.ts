@@ -1,18 +1,18 @@
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
-  Component,
+  Component, OnDestroy,
   OnInit,
   ViewEncapsulation
 } from '@angular/core';
 import { Router} from '@angular/router';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {FeathersService} from '../../services/feathersService/feathers.service';
 import {ChatFacade} from '../../states/facade/chatFacade';
 import {User} from '../../interfaces/user';
 import {Messages} from '../../interfaces/messages';
 import {UsersFacade} from '../../states/facade/usersFacade';
 import {fadeInAfter, fadeInOverlay} from '../../animations/fadeIn';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-chat',
@@ -27,50 +27,57 @@ import {fadeInAfter, fadeInOverlay} from '../../animations/fadeIn';
     class: 'app-chat'
   }
 })
-export class ChatComponent implements OnInit, AfterViewInit {
+export class ChatComponent implements OnInit, OnDestroy {
+  private readonly _onDestroy = new Subject();
   messages: Observable<Messages[]>;
   users: Observable<User[]> ;
   load = false;
   loadOtherElements = 'hidden';
 
   constructor(
-    private router: Router,
-    private feathersService: FeathersService,
-    private chatFacade: ChatFacade,
-    private usersFacade: UsersFacade,
-  ) {}
+    private readonly _router: Router,
+    private readonly _feathersService: FeathersService,
+    private readonly _chatFacade: ChatFacade,
+    private readonly _usersFacade: UsersFacade,
+) {}
 
-    ngOnInit(): void {
-      this.setAndConnectMessages();
-      this.setAndConnectUsers();
+  ngOnInit(): void {
+      this._setAndConnectMessages();
+      this._setAndConnectUsers();
       this.load = true;
-    }
-
-  ngAfterViewInit(): void {
-
   }
 
-  setAndConnectMessages(): void {
-    this.feathersService.getMessages().subscribe( obj => {
-      this.chatFacade.addMessages(obj.data);
-    });
-    this.feathersService.getNewMessages(this.addMessage);
-    this.messages = this.chatFacade.getAllMessages();
+  ngOnDestroy() {
+    this._onDestroy.next();
+    this._onDestroy.complete();
   }
 
-  setAndConnectUsers() {
-    this.feathersService.getUsers().subscribe( obj => {
-      this.usersFacade.addUsers(obj.data);
+
+  _setAndConnectMessages(): void {
+    this._feathersService.getMessages()
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe( obj => {
+      this._chatFacade.addMessages(obj.data);
     });
-    this.feathersService.getNewUsers(this.addUser);
-    this.users = this.usersFacade.getAllUsers();
+    this._feathersService.getNewMessages(this.addMessage);
+    this.messages = this._chatFacade.getAllMessages();
+  }
+
+  _setAndConnectUsers() {
+    this._feathersService.getUsers()
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe( obj => {
+      this._usersFacade.addUsers(obj.data);
+    });
+    this._feathersService.getNewUsers(this.addUser);
+    this.users = this._usersFacade.getAllUsers();
   }
 
   addMessage = (message: Messages): void => {
-    this.chatFacade.addMessage(message);
+    this._chatFacade.addMessage(message);
   }
 
   addUser = (user: User): void => {
-    this.usersFacade.addUser(user);
+    this._usersFacade.addUser(user);
   }
 }

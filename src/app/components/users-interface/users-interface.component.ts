@@ -17,14 +17,14 @@ export class UsersInterfaceComponent implements OnInit {
   @Output() handleSignOut: EventEmitter<any> = new EventEmitter<any>();
 
   constructor(
-    private authFacade: AuthFacade,
+    private readonly _authFacade: AuthFacade,
   ) { }
 
   ngOnInit(): void {
   }
 
   signOut(): void {
-    this.authFacade.logout();
+    this._authFacade.logout();
   }
 
 }

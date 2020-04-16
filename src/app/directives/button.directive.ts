@@ -12,7 +12,7 @@ export class ButtonDirective {
 
   constructor(
     el: ElementRef,
-    private builder: AnimationBuilder
+    private readonly _builder: AnimationBuilder
   ) {
     this.element = el;
     this.style = el.nativeElement.style;
@@ -48,7 +48,7 @@ export class ButtonDirective {
   animation(animateVal: AnimationAnimateMetadata,
             state: AnimationStyleMetadata): AnimationPlayer {
 
-    const animation = this.builder.build([
+    const animation = this._builder.build([
       state,
       animateVal
     ]);

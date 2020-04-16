@@ -1,7 +1,7 @@
 import {User} from '../interfaces/user';
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {Injectable, NgZone} from '@angular/core';
-import {UserChangeLanguage, UserErrors, UserLogin, UserLogout, UserRegister} from './actions/activeUser.actions';
+import {UserChangeLanguage, UserErrors, UserLogin, UserLogout, UserRegister} from './actions/active-user.actions';
 import {AuthService} from '../services/authService/auth.service';
 import {Router} from '@angular/router';
 import {LanguageSetting} from '../configs/language-settings.config';

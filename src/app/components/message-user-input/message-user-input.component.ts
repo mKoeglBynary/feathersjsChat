@@ -14,7 +14,7 @@ import {FeathersService} from '../../services/feathersService/feathers.service';
 export class MessageUserInputComponent implements OnInit {
   userInput: string;
   constructor(
-    private feathersService: FeathersService,
+    private readonly _feathersService: FeathersService,
   ) { }
 
   ngOnInit(): void {
@@ -26,7 +26,7 @@ export class MessageUserInputComponent implements OnInit {
 
     if (!value || value.length === 0) { return; }
 
-    await this.feathersService.sendMessage(value);
+    await this._feathersService.sendMessage(value);
   }
 
 }

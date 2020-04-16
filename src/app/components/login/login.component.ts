@@ -1,9 +1,11 @@
-import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthFacade} from '../../states/facade/authFacade';
 import {buttonClickedAnimations} from '../../animations/loginButtons';
-import {InputControls} from '../../interfaces/inputControls';
+import {InputControls} from '../../interfaces/input-controls';
 import {User} from '../../interfaces/user';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +21,8 @@ import {User} from '../../interfaces/user';
   }
 })
 
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
+  private readonly _onDestroy = new Subject();
   loginAndRegisterForm: FormGroup;
   errors: string;
   email: InputControls;
@@ -28,19 +31,25 @@ export class LoginComponent implements OnInit {
   loginClicked = false;
 
   constructor(
-    private authFacade: AuthFacade,
+    private readonly _authFacade: AuthFacade,
   ) {}
 
   ngOnInit(): void {
     if (localStorage.getItem('auth')) {
-      this.authFacade.login();
+      this._authFacade.login();
     }
-
     this.createFormGroup();
 
-    this.authFacade.getErrors().subscribe( (err) => {
+    this._authFacade.getErrors()
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe( (err) => {
       this.errors = err;
     });
+  }
+
+  ngOnDestroy(): void {
+    this._onDestroy.next();
+    this._onDestroy.complete();
   }
 
   createFormGroup(): void {
@@ -74,22 +83,24 @@ export class LoginComponent implements OnInit {
     if (!this.validateForm()) { return; }
 
     const data: Partial<User> = this.getFormData();
-    this.authFacade.login(data);
+    this._authFacade.login(data);
   }
 
   async submitRegister(): Promise<void> {
     if (!this.validateForm()) { return; }
-
-    this.authFacade.getLanguage().subscribe(lang => {
+    //TODO: change in subscription
+    this._authFacade.getLanguage()
+      .pipe(takeUntil(this._onDestroy))
+      .subscribe(lang => {
       const data: Partial<User> = this.getFormData();
       data.language = lang;
-      this.authFacade.register(data);
+      this._authFacade.register(data);
     });
   }
 
   resetErrors(): void {
     if (this.errors && this.errors.length > 0) {
-      this.authFacade.addErrors('');
+      this._authFacade.addErrors('');
     }
   }
 
