@@ -6,16 +6,16 @@ import {animate, AnimationAnimateMetadata, AnimationBuilder, AnimationPlayer, An
 
 })
 export class ButtonDirective {
-  element;
-  style;
+  element: ElementRef;
+  style: CSSStyleDeclaration;
   hoverColor = '#fc21d1';
 
   constructor(
-    el: ElementRef,
+    private readonly _el: ElementRef,
     private readonly _builder: AnimationBuilder
   ) {
-    this.element = el;
-    this.style = el.nativeElement.style;
+    this.element = _el;
+    this.style = _el.nativeElement.style;
   }
 
   @HostListener('mouseenter')

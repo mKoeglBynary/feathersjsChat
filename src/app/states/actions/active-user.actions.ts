@@ -1,5 +1,5 @@
 import {User} from '../../interfaces/user';
-import {LanguageSetting} from '../../configs/language-settings.config';
+import {Language} from '../../configs/language-settings.config';
 
 export class UserLogin {
   static readonly type = '[User] login';
@@ -23,6 +23,6 @@ export class UserErrors {
 
 export class UserChangeLanguage {
   static readonly type = '[User] change language';
-  constructor(public payload: LanguageSetting) {
+  constructor(public payload: Language) {
   }
 }

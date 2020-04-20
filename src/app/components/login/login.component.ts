@@ -6,7 +6,7 @@ import {InputControls} from '../../interfaces/input-controls';
 import {User} from '../../interfaces/user';
 import {Subject} from 'rxjs';
 import {take, takeUntil} from 'rxjs/operators';
-import {LanguageSetting} from '../../configs/language-settings.config';
+import {Language} from '../../configs/language-settings.config';
 
 @Component({
   selector: 'app-login',
@@ -80,19 +80,17 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   }
 
-  submitLogin(): void {
+  async submitLogin(): Promise<void> {
     if (!this.validateForm()) { return; }
 
-    const data: Partial<User> = this.getFormData();
+    const data: Partial<User> = await this.getFormData();
     this._authFacade.login(data);
   }
 
   async submitRegister(): Promise<void> {
     if (!this.validateForm()) { return; }
 
-    const language: LanguageSetting = await this._authFacade.getLanguage().pipe(take(1)).toPromise();
-    const data: Partial<User> = this.getFormData();
-    data.language = language;
+    const data: Partial<User> = await this.getFormData();
 
     this._authFacade.register(data);
   }
@@ -108,11 +106,12 @@ export class LoginComponent implements OnInit, OnDestroy {
     return !this.loginAndRegisterForm.invalid;
   }
 
-  getFormData(): Partial<User> {
+  async getFormData(): Promise< Partial<User> > {
+    const language: Language = await this._authFacade.getLanguage().pipe(take(1)).toPromise();
     return {
       email: this.loginAndRegisterForm.get('email').value,
       password: this.loginAndRegisterForm.get('password').value,
-      language: ''
+      language
     };
   }
 

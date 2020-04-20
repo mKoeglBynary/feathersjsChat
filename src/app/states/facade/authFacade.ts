@@ -3,7 +3,7 @@ import {Store} from '@ngxs/store';
 import {UserLogin, UserLogout, UserRegister, UserErrors, UserChangeLanguage} from '../actions/active-user.actions';
 import {Observable} from 'rxjs';
 import {User} from '../../interfaces/user';
-import {LanguageSetting} from '../../configs/language-settings.config';
+import {Language} from '../../configs/language-settings.config';
 
 @Injectable({
   providedIn: 'root'
@@ -37,11 +37,11 @@ export class AuthFacade {
     return this.store.select(state => state.activeUser.errors);
   }
 
-  changeLanguage(lang: LanguageSetting): void {
+  changeLanguage(lang: Language): void {
     this.store.dispatch(new UserChangeLanguage(lang));
   }
 
-  getLanguage(): Observable<LanguageSetting> {
+  getLanguage(): Observable<Language> {
     return this.store.select(state => state.activeUser.language);
   }
 

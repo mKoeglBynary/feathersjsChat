@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 import {AuthFacade} from '../../../states/facade/authFacade';
-import {LanguageSetting} from '../../../configs/language-settings.config';
+import {Language} from '../../../configs/language-settings.config';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 
@@ -17,11 +17,10 @@ import {takeUntil} from 'rxjs/operators';
 })
 export class LanguageSelectorComponent implements OnInit, OnDestroy {
   private readonly _onDestroy = new Subject();
-  selectedLanguage: { value: LanguageSetting; img: LanguageSetting; };
+  selectedLanguage: Language;
   dropdownClicked = false;
-  languages = [
-    {value: LanguageSetting.EN, img: LanguageSetting.ENIMG},
-    {value: LanguageSetting.DE, img: LanguageSetting.DEIMG}, ];
+  languages: Language[] = Object.keys(Language).map(language => Language[language]);
+
 
   constructor(
     public readonly _translateService: TranslateService,
@@ -30,15 +29,15 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
   }
 
   changeLanguage(): void {
-    this._authFacade.changeLanguage(this.selectedLanguage.value);
+    this._authFacade.changeLanguage(this.selectedLanguage);
   }
 
   ngOnInit(): void {
     this._authFacade.getLanguage()
       .pipe(takeUntil(this._onDestroy))
-      .subscribe((lang: LanguageSetting) => {
-      this.selectedLanguage = this.languages.find(languages => languages.value === lang);
-      this._translateService.use(lang);
+      .subscribe((language: Language) => {
+        this.selectedLanguage = language;
+        this._translateService.use(this.selectedLanguage.value);
     });
   }
 

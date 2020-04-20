@@ -6,6 +6,16 @@ export const environment = {
   production: false
 };
 
+export const FeathersEnvironment = {
+  strategy: 'local',
+  url: 'http://localhost:3030',
+  storageKey: 'auth'
+};
+
+export const DateFormat = 'LLLL';
+
+
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

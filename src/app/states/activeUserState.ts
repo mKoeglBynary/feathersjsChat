@@ -4,12 +4,12 @@ import {Injectable, NgZone} from '@angular/core';
 import {UserChangeLanguage, UserErrors, UserLogin, UserLogout, UserRegister} from './actions/active-user.actions';
 import {AuthService} from '../services/authService/auth.service';
 import {Router} from '@angular/router';
-import {LanguageSetting} from '../configs/language-settings.config';
+import {Language} from '../configs/language-settings.config';
 
 export class ActiveUserStateModel {
   user: User | {};
   isLoggedIn: boolean;
-  language: string;
+  language: Language;
   errors?: string;
 }
 
@@ -18,7 +18,7 @@ export class ActiveUserStateModel {
   defaults: {
     user: {},
     isLoggedIn: false,
-    language: LanguageSetting.EN
+    language: Language.ENGLISH
   }
 })
 @Injectable()
@@ -40,7 +40,7 @@ export class ActiveUserState {
   }
 
   @Selector()
-  static getLanguage(state: ActiveUserStateModel): string {
+  static getLanguage(state: ActiveUserStateModel): Language {
     return state.language;
   }
 

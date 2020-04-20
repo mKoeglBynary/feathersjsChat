@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
 import { Observable } from 'rxjs';
-import {AuthService} from '../services/authService/auth.service';
 import {AuthFacade} from '../states/facade/authFacade';
+import {first, map, take} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,6 @@ import {AuthFacade} from '../states/facade/authFacade';
 export class AuthGuard implements CanActivate {
   constructor(
     private readonly _authFacade: AuthFacade,
-    private readonly _authService: AuthService,
     private readonly _router: Router
   ) {
   }
@@ -21,24 +20,20 @@ export class AuthGuard implements CanActivate {
     return this.checkLogin();
   }
 
-  async checkLogin(): Promise<boolean> {
-    let isLoggedIn = false;
-
+  checkLogin(): Observable<boolean | UrlTree>  {
     if (localStorage.getItem('auth')) {
       this._authFacade.login();
-      isLoggedIn = true;
-    } else {
-      this._authFacade.getLoggedIn().subscribe(loggedIn => {
-        isLoggedIn = loggedIn;
-      });
-
     }
 
-
-    if (isLoggedIn) {return true; }
-
-    await this._router.navigate(['']);
-    return false;
+    return this._authFacade.getLoggedIn()
+      .pipe(
+        first(),
+        map(loggedIn => {
+          if (loggedIn) {
+            return true;
+          }
+          return this._router.parseUrl('');
+        }));
   }
 
 }

@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
+import {DateFormat} from '../../environments/environment';
 import * as moment from 'moment';
-import {LanguageSetting} from '../configs/language-settings.config';
 
 @Pipe({
   name: 'localizedDate',
@@ -15,7 +15,7 @@ export class LocalizedDatePipe implements PipeTransform {
   transform(value: number): string {
     moment.locale(this.translateService.currentLang);
 
-    return moment(value).format(LanguageSetting.MomentDateFormat);
+    return moment(value).format(DateFormat);
   }
 
 }

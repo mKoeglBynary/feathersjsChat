@@ -4,9 +4,10 @@ import socketio from '@feathersjs/socketio-client';
 import * as io from 'socket.io-client';
 import feathersAuthClient from '@feathersjs/authentication-client';
 import {from, Observable} from 'rxjs';
-import {FeathersSettings} from '../../configs/feathers-settings.config';
+import {ServiceName, ServiceEvent} from '../../configs/feathers-settings.config';
 import {Messages} from '../../interfaces/messages';
 import {User} from '../../interfaces/user';
+import {FeathersEnvironment} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -21,15 +22,15 @@ export class FeathersService {
 
   initialize(): void {
     this.app = feathers();
-    this.socket = io(FeathersSettings.Url);
+    this.socket = io(FeathersEnvironment.url);
     this.app.configure(socketio(this.socket));
     this.app.configure(feathersAuthClient({
-      storageKey: FeathersSettings.StorageKey
+      storageKey: FeathersEnvironment.storageKey
     }));
   }
 
    getMessages(): Observable<any> {
-        return from(this.app.service(FeathersSettings.LocationMessages).find({
+        return from(this.app.service(ServiceName.MESSAGES).find({
           query: {
             $sort: { createdAt: -1},
             $limit: 25
@@ -38,20 +39,20 @@ export class FeathersService {
   }
 
   getNewMessages(addMessage: (message: Messages) => void ): void {
-    this.app.service(FeathersSettings.LocationMessages).on(FeathersSettings.EventCreated, addMessage);
+    this.app.service(ServiceName.MESSAGES).on(ServiceEvent.CREATED, addMessage);
   }
 
   getNewUsers(addUser: (user: User) => void ): void {
-    this.app.service(FeathersSettings.LocationUsers).on(FeathersSettings.EventCreated, addUser);
+    this.app.service(ServiceName.USERS).on(ServiceEvent.CREATED, addUser);
   }
 
   getUsers(): Observable<any> {
-    return from(this.app.service(FeathersSettings.LocationUsers).find());
+    return from(this.app.service(ServiceName.USERS).find());
   }
 
   async sendMessage(text: string): Promise<void> {
     console.log(text);
-    await this.app.service(FeathersSettings.LocationMessages).create({
+    await this.app.service(ServiceName.MESSAGES).create({
       text
     });
   }

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import {FeathersService} from '../feathersService/feathers.service';
-import {FeathersSettings} from '../../configs/feathers-settings.config';
+import {ServiceName, ServiceEvent} from '../../configs/feathers-settings.config';
+import {FeathersEnvironment} from '../../../environments/environment';
 import {User} from '../../interfaces/user';
+import {Language} from '../../configs/language-settings.config';
 
 @Injectable({
   providedIn: 'root'
@@ -19,11 +21,11 @@ export class AuthService {
         await this.app.reAuthenticate();
       } else {
         await this.app.authenticate({
-            strategy: FeathersSettings.Strategy,
+            strategy: FeathersEnvironment.strategy,
             ...data
         });
       }
-      const {user} =  await this.app.get(FeathersSettings.Authentication);
+      const {user} =  await this.app.get(ServiceName.AUTHENTICATION);
       return user;
 
     } catch (error) {
@@ -36,18 +38,18 @@ export class AuthService {
   }
 
   async removeFeathersjsListeners(): Promise<void> {
-    await this.app.service(FeathersSettings.LocationMessages).off(FeathersSettings.EventCreated);
-    await this.app.service(FeathersSettings.LocationUsers).off(FeathersSettings.EventCreated);
+    await this.app.service(ServiceName.MESSAGES).off(ServiceEvent.CREATED);
+    await this.app.service(ServiceName.USERS).off(ServiceEvent.CREATED);
   }
 
-  async changeLanguage(lang: string) {
-    const {user} = await this.app.get(FeathersSettings.Authentication);
-    await this.app.service(FeathersSettings.LocationUsers).patch(user._id, {language: lang});
+  async changeLanguage(lang: Language) {
+    const {user} = await this.app.get(ServiceName.AUTHENTICATION);
+    await this.app.service(ServiceName.USERS).patch(user._id, {language: lang});
   }
 
   async register(data: Partial<User>): Promise<boolean> {
     try {
-      await this.app.service(FeathersSettings.LocationUsers).create(data);
+      await this.app.service(ServiceName.USERS).create(data);
       return true;
     } catch (error) {
       return false;
