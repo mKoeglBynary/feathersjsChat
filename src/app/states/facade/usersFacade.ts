@@ -3,6 +3,7 @@ import {Store} from '@ngxs/store';
 import {Observable} from 'rxjs';
 import {IUser} from '../../interfaces/user';
 import {AddUser, AddUsers} from '../actions/user.action';
+import {UserState} from '../userState';
 
 
 @Injectable({
@@ -14,7 +15,7 @@ export class UsersFacade {
   ) {}
 
   getAllUsers(): Observable<IUser[]> {
-    return this._store.select( state => state.user.users);
+    return this._store.select(UserState.users);
   }
 
   addUser(user: IUser) {

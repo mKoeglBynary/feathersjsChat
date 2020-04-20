@@ -17,7 +17,7 @@ export class UserStateModel {
 export class UserState {
 
   @Selector()
-  static getUsers(state: UserStateModel): IUser[] {
+  static users(state: UserStateModel): IUser[] {
     return state.users;
   }
 

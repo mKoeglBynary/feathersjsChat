@@ -4,6 +4,7 @@ import {UserLogin, UserLogout, UserRegister, UserErrors, UserChangeLanguage} fro
 import {Observable} from 'rxjs';
 import {IUser} from '../../interfaces/user';
 import {Language} from '../../configs/language-settings.config';
+import {ActiveUserState} from '../activeUserState';
 
 @Injectable({
   providedIn: 'root'
@@ -30,11 +31,11 @@ export class AuthFacade {
   }
 
   getLoggedIn(): Observable<boolean> {
-    return this._store.select(state => state.activeUser.isLoggedIn);
+    return this._store.select(ActiveUserState.isLoggedIn);
   }
 
   getErrors(): Observable<string> {
-    return this._store.select(state => state.activeUser.errors);
+    return this._store.select(ActiveUserState.errors);
   }
 
   changeLanguage(lang: Language): void {
@@ -42,7 +43,7 @@ export class AuthFacade {
   }
 
   getLanguage(): Observable<Language> {
-    return this._store.select(state => state.activeUser.language);
+    return this._store.select(ActiveUserState.language);
   }
 
 }

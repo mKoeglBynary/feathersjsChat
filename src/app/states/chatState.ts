@@ -1,9 +1,10 @@
-import {State, Action, StateContext, Selector} from '@ngxs/store';
+import {State, Action, StateContext, Selector, Select} from '@ngxs/store';
 import {IMessages} from '../interfaces/messages';
 import {AddMessage, AddMessages} from './actions/chat.actions';
 import {Injectable} from '@angular/core';
+import {Observable} from 'rxjs';
 
-export class ChatStateModel {
+export interface ChatStateModel {
   messages: IMessages[];
 }
 
@@ -16,8 +17,9 @@ export class ChatStateModel {
 @Injectable()
 export class ChatState {
 
+
   @Selector()
-  static getMessages(state: ChatStateModel): IMessages[] {
+  static messages(state: ChatStateModel): IMessages[] {
     return state.messages;
   }
 

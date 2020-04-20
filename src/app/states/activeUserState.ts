@@ -30,17 +30,17 @@ export class ActiveUserState {
   ) {}
 
   @Selector()
-  static getLoggedIn(state: ActiveUserStateModel): boolean {
+  static isLoggedIn(state: ActiveUserStateModel): boolean {
     return state.isLoggedIn;
   }
 
   @Selector()
-  static getErrors(state: ActiveUserStateModel): string {
+  static errors(state: ActiveUserStateModel): string {
     return state.errors;
   }
 
   @Selector()
-  static getLanguage(state: ActiveUserStateModel): Language {
+  static language(state: ActiveUserStateModel): Language {
     return state.language;
   }
 
@@ -52,16 +52,15 @@ export class ActiveUserState {
   }
 
   @Action(UserRegister)
-  userRegister({dispatch, patchState}: StateContext<ActiveUserStateModel>, {payload}: UserRegister) {
-    this._authService.register(payload).then(obj => {
-      if (obj) {
-        dispatch(new UserLogin(payload));
-      } else {
-        patchState({
-          errors: 'LOGIN.ERRORS.AUTH.REGISTERED'
-        });
-      }
-    });
+  async userRegister({dispatch, patchState}: StateContext<ActiveUserStateModel>, {payload}: UserRegister) {
+    const result: boolean = await this._authService.register(payload);
+    if (result) {
+      dispatch(new UserLogin(payload));
+    } else {
+      patchState({
+        errors: 'LOGIN.ERRORS.AUTH.REGISTERED'
+      });
+    }
   }
 
 
