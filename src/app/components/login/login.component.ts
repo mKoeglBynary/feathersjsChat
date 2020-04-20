@@ -2,8 +2,8 @@ import {ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthFacade} from '../../states/facade/authFacade';
 import {buttonClickedAnimations} from '../../animations/loginButtons';
-import {InputControls} from '../../interfaces/input-controls';
-import {User} from '../../interfaces/user';
+import {IInputControls} from '../../interfaces/input-controls';
+import {IUser} from '../../interfaces/user';
 import {Subject} from 'rxjs';
 import {take, takeUntil} from 'rxjs/operators';
 import {Language} from '../../configs/language-settings.config';
@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   private readonly _onDestroy = new Subject();
   loginAndRegisterForm: FormGroup;
   errors: string;
-  email: InputControls;
-  password: InputControls;
+  email: IInputControls;
+  password: IInputControls;
   registerClicked = false;
   loginClicked = false;
 
@@ -83,14 +83,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   async submitLogin(): Promise<void> {
     if (!this.validateForm()) { return; }
 
-    const data: Partial<User> = await this.getFormData();
+    const data: Partial<IUser> = await this.getFormData();
     this._authFacade.login(data);
   }
 
   async submitRegister(): Promise<void> {
     if (!this.validateForm()) { return; }
 
-    const data: Partial<User> = await this.getFormData();
+    const data: Partial<IUser> = await this.getFormData();
 
     this._authFacade.register(data);
   }
@@ -106,7 +106,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     return !this.loginAndRegisterForm.invalid;
   }
 
-  async getFormData(): Promise< Partial<User> > {
+  async getFormData(): Promise< Partial<IUser> > {
     const language: Language = await this._authFacade.getLanguage().pipe(take(1)).toPromise();
     return {
       email: this.loginAndRegisterForm.get('email').value,

@@ -1,4 +1,4 @@
-import {User} from '../interfaces/user';
+import {IUser} from '../interfaces/user';
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {Injectable, NgZone} from '@angular/core';
 import {UserChangeLanguage, UserErrors, UserLogin, UserLogout, UserRegister} from './actions/active-user.actions';
@@ -7,7 +7,7 @@ import {Router} from '@angular/router';
 import {Language} from '../configs/language-settings.config';
 
 export class ActiveUserStateModel {
-  user: User | {};
+  user: IUser | {};
   isLoggedIn: boolean;
   language: Language;
   errors?: string;
@@ -67,7 +67,7 @@ export class ActiveUserState {
 
   @Action(UserLogin)
   async userLogin({patchState}: StateContext<ActiveUserStateModel>, {payload}: UserLogin): Promise<void> {
-    const user: User = await this.authService.login(payload);
+    const user: IUser = await this.authService.login(payload);
     if (!user) {
       patchState({
         errors: 'LOGIN.ERRORS.AUTH.WRONGINPUT'

@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {Messages} from '../../interfaces/messages';
+import {IMessages} from '../../interfaces/messages';
 import {fadeInEnter} from '../../animations/fadeIn';
 
 @Component({
@@ -16,7 +16,7 @@ import {fadeInEnter} from '../../animations/fadeIn';
   }
 })
 export class MessagesComponent implements OnInit {
-  @Input() messages: Messages[];
+  @Input() messages: IMessages[];
   constructor() { }
 
   ngOnInit(): void {

@@ -8,8 +8,8 @@ import { Router} from '@angular/router';
 import {Observable, Subject} from 'rxjs';
 import {FeathersService} from '../../services/feathersService/feathers.service';
 import {ChatFacade} from '../../states/facade/chatFacade';
-import {User} from '../../interfaces/user';
-import {Messages} from '../../interfaces/messages';
+import {IUser} from '../../interfaces/user';
+import {IMessages} from '../../interfaces/messages';
 import {UsersFacade} from '../../states/facade/usersFacade';
 import {fadeInAfter, fadeInOverlay} from '../../animations/fadeIn';
 import {takeUntil} from 'rxjs/operators';
@@ -29,8 +29,8 @@ import {takeUntil} from 'rxjs/operators';
 })
 export class ChatComponent implements OnInit, OnDestroy {
   private readonly _onDestroy = new Subject();
-  messages: Observable<Messages[]>;
-  users: Observable<User[]> ;
+  messages: Observable<IMessages[]>;
+  users: Observable<IUser[]> ;
   load = false;
   loadOtherElements = 'hidden';
 
@@ -73,11 +73,11 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.users = this._usersFacade.getAllUsers();
   }
 
-  addMessage = (message: Messages): void => {
+  addMessage = (message: IMessages): void => {
     this._chatFacade.addMessage(message);
   }
 
-  addUser = (user: User): void => {
+  addUser = (user: IUser): void => {
     this._usersFacade.addUser(user);
   }
 }

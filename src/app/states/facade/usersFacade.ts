@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Store} from '@ngxs/store';
 import {Observable} from 'rxjs';
-import {User} from '../../interfaces/user';
+import {IUser} from '../../interfaces/user';
 import {AddUser, AddUsers} from '../actions/user.action';
 
 
@@ -13,15 +13,15 @@ export class UsersFacade {
     private store: Store
   ) {}
 
-  getAllUsers(): Observable<User[]> {
+  getAllUsers(): Observable<IUser[]> {
     return this.store.select( state => state.user.users);
   }
 
-  addUser(user: User) {
+  addUser(user: IUser) {
     this.store.dispatch(new AddUser(user));
   }
 
-  addUsers(users: User[]) {
+  addUsers(users: IUser[]) {
     this.store.dispatch(new AddUsers(users));
   }
 }

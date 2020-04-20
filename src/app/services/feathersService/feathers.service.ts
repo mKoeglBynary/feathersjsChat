@@ -5,8 +5,8 @@ import * as io from 'socket.io-client';
 import feathersAuthClient from '@feathersjs/authentication-client';
 import {from, Observable} from 'rxjs';
 import {ServiceName, ServiceEvent} from '../../configs/feathers-settings.config';
-import {Messages} from '../../interfaces/messages';
-import {User} from '../../interfaces/user';
+import {IMessages} from '../../interfaces/messages';
+import {IUser} from '../../interfaces/user';
 import {FeathersEnvironment} from '../../../environments/environment';
 
 @Injectable({
@@ -38,11 +38,11 @@ export class FeathersService {
     }));
   }
 
-  getNewMessages(addMessage: (message: Messages) => void ): void {
+  getNewMessages(addMessage: (message: IMessages) => void ): void {
     this.app.service(ServiceName.MESSAGES).on(ServiceEvent.CREATED, addMessage);
   }
 
-  getNewUsers(addUser: (user: User) => void ): void {
+  getNewUsers(addUser: (user: IUser) => void ): void {
     this.app.service(ServiceName.USERS).on(ServiceEvent.CREATED, addUser);
   }
 

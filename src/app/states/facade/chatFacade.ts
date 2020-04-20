@@ -2,7 +2,7 @@ import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
 import { Store } from '@ngxs/store';
 import {AddMessage, AddMessages} from '../actions/chat.actions';
-import {Messages} from '../../interfaces/messages';
+import {IMessages} from '../../interfaces/messages';
 
 @Injectable({
   providedIn: 'root'
@@ -12,15 +12,15 @@ export class ChatFacade {
     private store: Store
   ) {}
 
-  getAllMessages(): Observable<Messages[]> {
+  getAllMessages(): Observable<IMessages[]> {
     return this.store.select(state => state.chat.messages);
   }
 
-  addMessage(message: Messages) {
+  addMessage(message: IMessages) {
     this.store.dispatch(new AddMessage(message));
   }
 
-  addMessages(messages: Messages[]) {
+  addMessages(messages: IMessages[]) {
     this.store.dispatch(new AddMessages(messages));
   }
 }

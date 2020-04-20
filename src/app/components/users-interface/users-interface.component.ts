@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
-import {User} from '../../interfaces/user';
+import {IUser} from '../../interfaces/user';
 import {AuthFacade} from '../../states/facade/authFacade';
 
 @Component({
@@ -13,7 +13,7 @@ import {AuthFacade} from '../../states/facade/authFacade';
   }
 })
 export class UsersInterfaceComponent implements OnInit {
-  @Input() users: User[];
+  @Input() users: IUser[];
 
   constructor(
     private readonly _authFacade: AuthFacade,

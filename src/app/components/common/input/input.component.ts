@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {ControlContainer, FormGroupDirective} from '@angular/forms';
-import { InputControls } from '../../../interfaces/input-controls';
+import { IInputControls } from '../../../interfaces/input-controls';
 
 @Component({
   selector: 'app-input',
@@ -17,9 +17,9 @@ import { InputControls } from '../../../interfaces/input-controls';
   }]
 })
 export class InputComponent implements OnInit {
-  @Input() data: InputControls;
+  @Input() data: IInputControls;
 
-  inputControl: InputControls;
+  inputControl: IInputControls;
   error: string;
 
   constructor() { }

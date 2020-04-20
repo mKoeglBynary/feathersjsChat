@@ -1,6 +1,6 @@
 import {Language} from '../configs/language-settings.config';
 
-export interface User {
+export interface IUser {
   _id: string;
   avatar: string;
   email: string;

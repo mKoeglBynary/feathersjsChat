@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {FeathersService} from '../feathersService/feathers.service';
 import {ServiceName, ServiceEvent} from '../../configs/feathers-settings.config';
 import {FeathersEnvironment} from '../../../environments/environment';
-import {User} from '../../interfaces/user';
+import {IUser} from '../../interfaces/user';
 import {Language} from '../../configs/language-settings.config';
 
 @Injectable({
@@ -15,7 +15,7 @@ export class AuthService {
     private feathersService: FeathersService,
   ) { }
 
-  async login(data?: Partial<User>): Promise< User > {
+  async login(data?: Partial<IUser>): Promise< IUser > {
     try {
       if (!data) {
         await this.app.reAuthenticate();
@@ -47,7 +47,7 @@ export class AuthService {
     await this.app.service(ServiceName.USERS).patch(user._id, {language: lang});
   }
 
-  async register(data: Partial<User>): Promise<boolean> {
+  async register(data: Partial<IUser>): Promise<boolean> {
     try {
       await this.app.service(ServiceName.USERS).create(data);
       return true;

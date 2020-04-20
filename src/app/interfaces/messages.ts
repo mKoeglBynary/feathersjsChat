@@ -1,9 +1,8 @@
-import { User} from './user';
+import { IUser} from './user';
+import {IEntity} from './entity';
 
-export interface Messages {
+export interface IMessages extends IEntity {
   text: string;
   userId: string;
-  createdAt: number;
-  _id: string;
-  user: User;
+  user: IUser;
 }
