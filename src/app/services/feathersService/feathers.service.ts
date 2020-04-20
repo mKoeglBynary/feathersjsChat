@@ -47,8 +47,8 @@ export class FeathersService {
     this.app.service(ServiceName.USERS).on(ServiceEvent.CREATED, addUser);
   }
 
-  getUsers(): Promise<IUser[]> {
-    const dataObj = this.app.service(ServiceName.USERS).find();
+  async getUsers(): Promise<IUser[]> {
+    const dataObj = await this.app.service(ServiceName.USERS).find();
     return dataObj.data;
   }
 
