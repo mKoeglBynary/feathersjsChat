@@ -23,7 +23,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    public readonly _translateService: TranslateService,
+    private readonly translateService: TranslateService,
     private readonly _authFacade: AuthFacade
   ) {
   }
@@ -37,7 +37,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this._onDestroy))
       .subscribe((language: Language) => {
         this.selectedLanguage = language;
-        this._translateService.use(this.selectedLanguage.value);
+        this.translateService.use(this.selectedLanguage.value);
     });
   }
 

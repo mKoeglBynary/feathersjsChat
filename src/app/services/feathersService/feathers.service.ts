@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import feathers from '@feathersjs/feathers';
+import feathers, {Application} from '@feathersjs/feathers';
 import socketio from '@feathersjs/socketio-client';
 import * as io from 'socket.io-client';
 import feathersAuthClient from '@feathersjs/authentication-client';
@@ -13,24 +13,19 @@ import {FeathersEnvironment} from '../../../environments/environment';
   providedIn: 'root'
 })
 export class FeathersService {
-  app;
-  socket;
+  public readonly _app: Application;
 
   constructor() {
-    this.initialize();
-  }
-
-  initialize(): void {
-    this.app = feathers();
-    this.socket = io(FeathersEnvironment.url);
-    this.app.configure(socketio(this.socket));
-    this.app.configure(feathersAuthClient({
+    this._app = feathers();
+    const socket: SocketIOClient.Socket = io(FeathersEnvironment.url);
+    this._app.configure(socketio(socket));
+    this._app.configure(feathersAuthClient({
       storageKey: FeathersEnvironment.storageKey
     }));
   }
 
    async getMessages(): Promise<IMessages[]> {
-    const dataObj = await this.app.service(ServiceName.MESSAGES).find({
+    const dataObj = await this._app.service(ServiceName.MESSAGES).find({
           query: {
             $sort: { createdAt: -1},
             $limit: 25
@@ -40,21 +35,21 @@ export class FeathersService {
   }
 
   getNewMessages(): Observable<IMessages> {
-    return fromEvent(this.app.service(ServiceName.MESSAGES), ServiceEvent.CREATED);
+    return fromEvent(this._app.service(ServiceName.MESSAGES), ServiceEvent.CREATED);
   }
 
   getNewUsers(): Observable<IUser> {
-    return fromEvent(this.app.service(ServiceName.USERS), ServiceEvent.CREATED);
+    return fromEvent(this._app.service(ServiceName.USERS), ServiceEvent.CREATED);
   }
 
   async getUsers(): Promise<IUser[]> {
-    const dataObj = await this.app.service(ServiceName.USERS).find();
+    const dataObj = await this._app.service(ServiceName.USERS).find();
     return dataObj.data;
   }
 
   async sendMessage(text: string): Promise<void> {
     console.log(text);
-    await this.app.service(ServiceName.MESSAGES).create({
+    await this._app.service(ServiceName.MESSAGES).create({
       text
     });
   }

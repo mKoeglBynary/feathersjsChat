@@ -8,7 +8,7 @@ import {AuthGuard} from './guards/auth.guard';
 
 const appRoutes: Routes = [
   { path: 'chat', component: ChatComponent, canActivate: [AuthGuard], data: { animationState: 'chat'} },
-  { path: '', component: LoginComponent, data: { animationState: 'login'}},
+  { path: '', component: LoginComponent, data: { animationState: 'login'}, pathMatch: 'full'},
   { path: '**', component: PageNotFoundComponent}
 ];
 @NgModule({
