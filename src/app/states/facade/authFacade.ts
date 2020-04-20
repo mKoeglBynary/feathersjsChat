@@ -41,7 +41,7 @@ export class AuthFacade {
     this.store.dispatch(new UserChangeLanguage(lang));
   }
 
-  getLanguage(): Observable<string> {
+  getLanguage(): Observable<LanguageSetting> {
     return this.store.select(state => state.activeUser.language);
   }
 

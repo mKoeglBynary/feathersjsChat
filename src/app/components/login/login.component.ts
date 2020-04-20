@@ -5,7 +5,8 @@ import {buttonClickedAnimations} from '../../animations/loginButtons';
 import {InputControls} from '../../interfaces/input-controls';
 import {User} from '../../interfaces/user';
 import {Subject} from 'rxjs';
-import {takeUntil} from 'rxjs/operators';
+import {take, takeUntil} from 'rxjs/operators';
+import {LanguageSetting} from '../../configs/language-settings.config';
 
 @Component({
   selector: 'app-login',
@@ -88,14 +89,12 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   async submitRegister(): Promise<void> {
     if (!this.validateForm()) { return; }
-    //TODO: change in subscription
-    this._authFacade.getLanguage()
-      .pipe(takeUntil(this._onDestroy))
-      .subscribe(lang => {
-      const data: Partial<User> = this.getFormData();
-      data.language = lang;
-      this._authFacade.register(data);
-    });
+
+    const language: LanguageSetting = await this._authFacade.getLanguage().pipe(take(1)).toPromise();
+    const data: Partial<User> = this.getFormData();
+    data.language = language;
+
+    this._authFacade.register(data);
   }
 
   resetErrors(): void {
