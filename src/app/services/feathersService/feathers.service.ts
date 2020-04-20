@@ -29,13 +29,14 @@ export class FeathersService {
     }));
   }
 
-   getMessages(): Observable<any> {
-        return from(this.app.service(ServiceName.MESSAGES).find({
+   async getMessages(): Promise<IMessages[]> {
+    const dataObj = await this.app.service(ServiceName.MESSAGES).find({
           query: {
             $sort: { createdAt: -1},
             $limit: 25
           }
-    }));
+    });
+    return dataObj.data;
   }
 
   getNewMessages(addMessage: (message: IMessages) => void ): void {
@@ -46,8 +47,9 @@ export class FeathersService {
     this.app.service(ServiceName.USERS).on(ServiceEvent.CREATED, addUser);
   }
 
-  getUsers(): Observable<any> {
-    return from(this.app.service(ServiceName.USERS).find());
+  getUsers(): Promise<IUser[]> {
+    const dataObj = this.app.service(ServiceName.USERS).find();
+    return dataObj.data;
   }
 
   async sendMessage(text: string): Promise<void> {

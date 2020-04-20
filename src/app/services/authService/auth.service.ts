@@ -4,28 +4,29 @@ import {ServiceName, ServiceEvent} from '../../configs/feathers-settings.config'
 import {FeathersEnvironment} from '../../../environments/environment';
 import {IUser} from '../../interfaces/user';
 import {Language} from '../../configs/language-settings.config';
+import {Application} from '@feathersjs/feathers';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  app = this.feathersService.app;
+  private readonly _app: Application;
 
-  constructor(
-    private feathersService: FeathersService,
-  ) { }
+  constructor( private readonly _feathersService: FeathersService) {
+    this._app = _feathersService.app;
+  }
 
   async login(data?: Partial<IUser>): Promise< IUser > {
     try {
       if (!data) {
-        await this.app.reAuthenticate();
+        await this._app.reAuthenticate();
       } else {
-        await this.app.authenticate({
+        await this._app.authenticate({
             strategy: FeathersEnvironment.strategy,
             ...data
         });
       }
-      const {user} =  await this.app.get(ServiceName.AUTHENTICATION);
+      const {user} =  await this._app.get(ServiceName.AUTHENTICATION);
       return user;
 
     } catch (error) {
@@ -34,22 +35,22 @@ export class AuthService {
 
   async logout(): Promise<void> {
     this.removeFeathersjsListeners();
-    await this.app.logout();
+    await this._app.logout();
   }
 
-  async removeFeathersjsListeners(): Promise<void> {
-    await this.app.service(ServiceName.MESSAGES).off(ServiceEvent.CREATED);
-    await this.app.service(ServiceName.USERS).off(ServiceEvent.CREATED);
+  removeFeathersjsListeners(): void {
+    this._app.service(ServiceName.MESSAGES).off(ServiceEvent.CREATED);
+    this._app.service(ServiceName.USERS).off(ServiceEvent.CREATED);
   }
 
   async changeLanguage(lang: Language) {
-    const {user} = await this.app.get(ServiceName.AUTHENTICATION);
-    await this.app.service(ServiceName.USERS).patch(user._id, {language: lang});
+    const {user} = await this._app.get(ServiceName.AUTHENTICATION);
+    await this._app.service(ServiceName.USERS).patch(user._id, {language: lang});
   }
 
   async register(data: Partial<IUser>): Promise<boolean> {
     try {
-      await this.app.service(ServiceName.USERS).create(data);
+      await this._app.service(ServiceName.USERS).create(data);
       return true;
     } catch (error) {
       return false;
