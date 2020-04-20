@@ -9,18 +9,18 @@ import {IMessages} from '../../interfaces/messages';
 })
 export class ChatFacade {
   constructor(
-    private store: Store
+    private readonly _store: Store
   ) {}
 
   getAllMessages(): Observable<IMessages[]> {
-    return this.store.select(state => state.chat.messages);
+    return this._store.select(state => state.chat.messages);
   }
 
   addMessage(message: IMessages) {
-    this.store.dispatch(new AddMessage(message));
+    this._store.dispatch(new AddMessage(message));
   }
 
   addMessages(messages: IMessages[]) {
-    this.store.dispatch(new AddMessages(messages));
+    this._store.dispatch(new AddMessages(messages));
   }
 }

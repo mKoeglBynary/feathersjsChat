@@ -3,7 +3,7 @@ import {Language} from '../../configs/language-settings.config';
 
 export class UserLogin {
   static readonly type = '[User] login';
-  constructor(public payload?: Partial<IUser>) {}
+  constructor(public readonly payload?: Partial<IUser>) {}
 }
 
 export class UserLogout {
@@ -12,17 +12,17 @@ export class UserLogout {
 
 export class UserRegister {
   static readonly type = '[User] register';
-  constructor(public payload: Partial<IUser>) {}
+  constructor(public readonly payload: Partial<IUser>) {}
 }
 
 export class UserErrors {
   static readonly type = '[User] errors';
-  constructor(public payload: string) {
+  constructor(public readonly payload: string) {
   }
 }
 
 export class UserChangeLanguage {
   static readonly type = '[User] change language';
-  constructor(public payload: Language) {
+  constructor(public readonly payload: Language) {
   }
 }

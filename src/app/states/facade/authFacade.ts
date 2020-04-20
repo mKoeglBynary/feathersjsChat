@@ -10,39 +10,39 @@ import {Language} from '../../configs/language-settings.config';
 })
 export class AuthFacade {
   constructor(
-    private store: Store
+    private readonly _store: Store
   ) {}
 
   login(user?: Partial<IUser>): void {
-    this.store.dispatch(new UserLogin(user));
+    this._store.dispatch(new UserLogin(user));
   }
 
   logout(): void {
-    this.store.dispatch(new UserLogout());
+    this._store.dispatch(new UserLogout());
   }
 
   register(user: Partial<IUser>): void {
-    this.store.dispatch(new UserRegister(user));
+    this._store.dispatch(new UserRegister(user));
   }
 
   addErrors(errors: string) {
-    this.store.dispatch(new UserErrors(errors));
+    this._store.dispatch(new UserErrors(errors));
   }
 
   getLoggedIn(): Observable<boolean> {
-    return this.store.select(state => state.activeUser.isLoggedIn);
+    return this._store.select(state => state.activeUser.isLoggedIn);
   }
 
   getErrors(): Observable<string> {
-    return this.store.select(state => state.activeUser.errors);
+    return this._store.select(state => state.activeUser.errors);
   }
 
   changeLanguage(lang: Language): void {
-    this.store.dispatch(new UserChangeLanguage(lang));
+    this._store.dispatch(new UserChangeLanguage(lang));
   }
 
   getLanguage(): Observable<Language> {
-    return this.store.select(state => state.activeUser.language);
+    return this._store.select(state => state.activeUser.language);
   }
 
 }

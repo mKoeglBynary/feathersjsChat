@@ -10,19 +10,19 @@ import {AddUser, AddUsers} from '../actions/user.action';
 })
 export class UsersFacade {
   constructor(
-    private store: Store
+    private readonly _store: Store
   ) {}
 
   getAllUsers(): Observable<IUser[]> {
-    return this.store.select( state => state.user.users);
+    return this._store.select( state => state.user.users);
   }
 
   addUser(user: IUser) {
-    this.store.dispatch(new AddUser(user));
+    this._store.dispatch(new AddUser(user));
   }
 
   addUsers(users: IUser[]) {
-    this.store.dispatch(new AddUsers(users));
+    this._store.dispatch(new AddUsers(users));
   }
 }
 

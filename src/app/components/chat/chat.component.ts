@@ -12,7 +12,7 @@ import {IUser} from '../../interfaces/user';
 import {IMessages} from '../../interfaces/messages';
 import {UsersFacade} from '../../states/facade/usersFacade';
 import {fadeInAfter, fadeInOverlay} from '../../animations/fadeIn';
-import {first, map, takeUntil} from 'rxjs/operators';
+import {first, map, take, takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-chat',
@@ -56,22 +56,14 @@ export class ChatComponent implements OnInit, OnDestroy {
   async _setAndConnectMessages() {
     const messages = await this._feathersService.getMessages();
     this._chatFacade.addMessages(messages);
-    this._feathersService.getNewMessages(this.addMessage);
+    this._feathersService.getNewMessages().pipe(takeUntil(this._onDestroy)).subscribe(message => this._chatFacade.addMessage(message));
     this.messages = this._chatFacade.getAllMessages();
   }
 
   async _setAndConnectUsers() {
     const users = await this._feathersService.getUsers();
     this._usersFacade.addUsers(users);
-    this._feathersService.getNewUsers(this.addUser);
+    this._feathersService.getNewUsers().pipe(takeUntil(this._onDestroy)).subscribe(user => this._usersFacade.addUser(user));
     this.users = this._usersFacade.getAllUsers();
-  }
-
-  addMessage = (message: IMessages): void => {
-    this._chatFacade.addMessage(message);
-  }
-
-  addUser = (user: IUser): void => {
-    this._usersFacade.addUser(user);
   }
 }

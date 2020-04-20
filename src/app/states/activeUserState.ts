@@ -6,7 +6,7 @@ import {AuthService} from '../services/authService/auth.service';
 import {Router} from '@angular/router';
 import {Language} from '../configs/language-settings.config';
 
-export class ActiveUserStateModel {
+export interface ActiveUserStateModel {
   user: IUser | {};
   isLoggedIn: boolean;
   language: Language;
@@ -24,9 +24,9 @@ export class ActiveUserStateModel {
 @Injectable()
 export class ActiveUserState {
   constructor(
-    private authService: AuthService,
-    private router: Router,
-    private ngZone: NgZone,
+    private readonly _authService: AuthService,
+    private readonly _router: Router,
+    private readonly _ngZone: NgZone,
   ) {}
 
   @Selector()
@@ -53,7 +53,7 @@ export class ActiveUserState {
 
   @Action(UserRegister)
   userRegister({dispatch, patchState}: StateContext<ActiveUserStateModel>, {payload}: UserRegister) {
-    this.authService.register(payload).then(obj => {
+    this._authService.register(payload).then(obj => {
       if (obj) {
         dispatch(new UserLogin(payload));
       } else {
@@ -67,7 +67,7 @@ export class ActiveUserState {
 
   @Action(UserLogin)
   async userLogin({patchState}: StateContext<ActiveUserStateModel>, {payload}: UserLogin): Promise<void> {
-    const user: IUser = await this.authService.login(payload);
+    const user: IUser = await this._authService.login(payload);
     if (!user) {
       patchState({
         errors: 'LOGIN.ERRORS.AUTH.WRONGINPUT'
@@ -86,7 +86,7 @@ export class ActiveUserState {
 
   @Action(UserLogout)
   async userLogout( {patchState}: StateContext<ActiveUserStateModel>): Promise<void> {
-    await this.authService.logout();
+    await this._authService.logout();
     patchState({
       user: {},
       isLoggedIn: false
@@ -98,7 +98,7 @@ export class ActiveUserState {
   async userChangeLanguage( {patchState, getState}: StateContext<ActiveUserStateModel>, {payload}: UserChangeLanguage): Promise<void> {
     const state: ActiveUserStateModel = getState();
     if (state.isLoggedIn) {
-      await this.authService.changeLanguage(payload);
+      await this._authService.changeLanguage(payload);
     }
     patchState({
       language: payload
@@ -106,8 +106,8 @@ export class ActiveUserState {
   }
 
   navigateTo(item): void {
-    this.ngZone.run( () => {
-        this.router.navigate([item]);
+    this._ngZone.run( () => {
+        this._router.navigate([item]);
       }
     );
   }

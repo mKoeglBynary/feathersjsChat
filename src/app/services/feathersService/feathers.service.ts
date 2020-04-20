@@ -3,7 +3,7 @@ import feathers from '@feathersjs/feathers';
 import socketio from '@feathersjs/socketio-client';
 import * as io from 'socket.io-client';
 import feathersAuthClient from '@feathersjs/authentication-client';
-import {from, Observable} from 'rxjs';
+import {from, fromEvent, Observable} from 'rxjs';
 import {ServiceName, ServiceEvent} from '../../configs/feathers-settings.config';
 import {IMessages} from '../../interfaces/messages';
 import {IUser} from '../../interfaces/user';
@@ -39,12 +39,12 @@ export class FeathersService {
     return dataObj.data;
   }
 
-  getNewMessages(addMessage: (message: IMessages) => void ): void {
-    this.app.service(ServiceName.MESSAGES).on(ServiceEvent.CREATED, addMessage);
+  getNewMessages(): Observable<IMessages> {
+    return fromEvent(this.app.service(ServiceName.MESSAGES), ServiceEvent.CREATED);
   }
 
-  getNewUsers(addUser: (user: IUser) => void ): void {
-    this.app.service(ServiceName.USERS).on(ServiceEvent.CREATED, addUser);
+  getNewUsers(): Observable<IUser> {
+    return fromEvent(this.app.service(ServiceName.USERS), ServiceEvent.CREATED);
   }
 
   async getUsers(): Promise<IUser[]> {
