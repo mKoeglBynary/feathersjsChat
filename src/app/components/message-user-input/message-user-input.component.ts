@@ -18,9 +18,11 @@ import {buttonClickedAnimation} from '../../animations/button-click.animation';
 export class MessageUserInputComponent implements OnInit {
   userInput: string;
   sendClicked = false;
+
   constructor(
     private readonly _feathersService: FeathersService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
   }
@@ -29,7 +31,9 @@ export class MessageUserInputComponent implements OnInit {
     const value: string = this.userInput;
     this.userInput = '';
 
-    if (!value || value.length === 0) { return; }
+    if (!value || value.length === 0) {
+      return;
+    }
 
     await this._feathersService.sendMessage(value);
   }

@@ -3,11 +3,8 @@ app-message-interface {
   height: inherit;
 }
 
-.app-message-interface{
-  > .app-message-interface__container {
-    margin-left: 1rem;
-    margin-right: 1rem;
-    position: relative;
-    height: inherit;
-  }
+.app-message-interface {
+  height: inherit;
+  margin: 0 1rem 0 2rem;
+  position: relative;
 }

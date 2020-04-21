@@ -3,8 +3,6 @@ app-active-users {
 }
 
 .app-active-users {
-
-  > .app-active-users__container {
     display: flex;
     flex-direction: column;
     height: 76vh;
@@ -13,15 +11,15 @@ app-active-users {
     > .app-active-users__user {
       display: flex;
       height: 3rem;
-      margin: 1rem 1rem;
+      margin: 0.5rem 1rem;
 
-      > img {
+      > .user__avatar {
         border-radius: 100%;
-        margin-right: 0.9rem;
-        width: 3.8rem;
+        margin-right: 0.938rem;
+        width: 3.875rem;
       }
 
-      > div {
+      > .user__email {
         display: flex;
         line-height: 3rem;
         overflow: hidden;
@@ -31,7 +29,6 @@ app-active-users {
         width: 10rem;
       }
     }
-  }
 }
 
 

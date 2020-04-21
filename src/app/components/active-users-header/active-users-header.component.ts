@@ -12,7 +12,9 @@ import {ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation} fr
 })
 export class ActiveUsersHeaderComponent implements OnInit {
   @Input() usersLength: number;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

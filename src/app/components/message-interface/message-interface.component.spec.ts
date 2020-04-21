@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MessageInterfaceComponent } from './message-interface.component';
+import {MessageInterfaceComponent} from './message-interface.component';
 
 describe('MessageInterfaceComponent', () => {
   let component: MessageInterfaceComponent;
@@ -8,9 +8,9 @@ describe('MessageInterfaceComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MessageInterfaceComponent ]
+      declarations: [MessageInterfaceComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

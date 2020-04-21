@@ -6,13 +6,13 @@ export const environment = {
   production: false
 };
 
-export const FeathersEnvironment = {
+export const FEATHERS_SETTINGS = {
   strategy: 'local',
   url: 'http://localhost:3030',
   storageKey: 'auth'
 };
 
-export const DateFormat = 'LLLL';
+export const DATE_FORMAT = 'LLLL';
 
 
 

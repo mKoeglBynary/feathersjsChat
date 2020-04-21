@@ -2,11 +2,15 @@ app-login {
   display: block;
 }
 
+$error-color: #fc0303;
+$button-color: #000000;
+$box-shadow-color: rgba(0, 0, 0, 0.75);
+
 .app-login {
 
   > .app-login__container {
     border-radius: 1rem;
-    box-shadow: -1px -1px 20px 3px rgba(0, 0, 0, 0.75);
+    box-shadow: -0.125rem -0.125rem 1.25rem 0.25rem $box-shadow-color;
     display: block;
     height: 30rem;
     margin: 3rem auto;
@@ -21,15 +25,16 @@ app-login {
 
       > .app-login__error {
         align-self: center;
-        border: 2px solid #fc0303;
-        border-radius: 10px;
-        color: #fc0303;
-        font-size: 1.1rem;
-        font-weight: 400;
-        padding: 3px;
-        position: absolute;
+        border: 0.125rem solid $error-color;
+        border-radius: 0.625rem;
+        color: $error-color;
+        font: {
+          size: 1.125rem;
+          weight: 400;
+        }
+        padding: 0.188rem;
+        position: absolute; top: 1rem;
         text-align: center;
-        top: 1rem;
         width: 90%;
       }
 
@@ -47,9 +52,9 @@ app-login {
         margin-top: 1rem;
 
         > button {
-          border: 0.1rem solid black;
+          border: 0.125rem solid $button-color;
           border-radius: 1rem;
-          font-size: 1.3rem;
+          font-size: 1.25rem;
           height: 2.5rem;
           margin-top: 1rem;
           outline: none;

@@ -2,6 +2,9 @@ app-input {
   display: block;
 }
 
+$input-border-color: #000000;
+$input-error-color: #fc0303;
+
 .app-input {
 
   > label {
@@ -11,25 +14,24 @@ app-input {
 
   > input {
     border: none;
-    border-bottom: 0.1rem solid black;
-    border-radius: 10px;
+    border-bottom: 0.125rem solid $input-border-color;
+    border-radius: 0.625rem;
     font-size: 1rem;
     margin-top: 0.5rem;
     outline: none;
+    padding: 0.75rem;
     text-align: center;
-    padding: 0.7rem;
   }
 
   > .form__input-error {
-    bottom: -2.5rem;
-    border: 2px solid #fc0303;
-    border-radius: 10px;
-    color: #fc3503;
-    height: 1.9rem;
-    line-height: 1.9rem;
+    border: 0.125rem solid $input-error-color;
+    border-radius: 0.625rem;
+    color: $input-error-color;
+    height: 1.938rem;
+    line-height: 1.938rem;
     text-align: center;
+    position: absolute; bottom: -2.5rem;
     vertical-align: center;
-    position: absolute;
     width: inherit;
   }
 }

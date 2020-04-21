@@ -1,6 +1,9 @@
-app-chat{
+app-chat {
   display: block;
 }
+
+$chat-header-background-color: #c916a9;
+$chat-header-font-color: #ffffff;
 
 .app-chat {
   > .app-chat__overlay {
@@ -20,19 +23,19 @@ app-chat{
     }
   }
 
-  >.app-chat__animation-container {
+  > .app-chat__animation-container {
 
     > .app-chat__header {
       align-items: center;
-      background: #c916a9;
-      color: #ffffff;
+      background: $chat-header-background-color;
+      color: $chat-header-font-color;
       display: flex;
       font: {
         size: 1.75rem;
         weight: 100;
       }
-      letter-spacing: 0.05rem;
       justify-content: center;
+      letter-spacing: 0.063rem;
       padding: 0.5rem;
       width: 100%;
 

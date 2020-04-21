@@ -2,36 +2,36 @@ app-users-interface {
   display: block;
 }
 
+$interface-background-color: #dbd9d9;
+$button-background-color: #c916a9;
+$button-font-color: #ffffff;
+$button-hover-background-color: #fc21d1;
+
 .app-users-interface {
   height: inherit;
+  background-color: $interface-background-color;
+  position: relative;
 
-  .app-users-interface__container {
-    background-color: #dbd9d9;
-    position: relative;
-    height: inherit;
+  > .app-users-interface__sign-out {
+    display: flex;
+    height: 4rem;
+    justify-content: center;
+    position: absolute; bottom: 0;
+    width: 100%;
 
-    > .app-users-interface__sign-out {
-      bottom: 0;
-      display: flex;
-      height: 4rem;
-      justify-content: center;
-      position: absolute;
-      width: 100%;
+    > button {
+      background-color: $button-background-color;
+      border: none;
+      border-radius: 0.313rem;
+      color: $button-font-color;
+      font-size: 1rem;
+      height: 2.5rem;
+      outline: none;
+      padding: 0.1rem;
+      width: 6rem;
 
-      > button {
-        background-color: #c916a9;
-        border: none;
-        border-radius: 5px;
-        color: #ffffff;
-        font-size: 1rem;
-        height: 2.5rem;
-        outline: none;
-        padding: 0.1rem;
-        width: 6rem;
-
-        &:hover {
-          background: #fc21d1;
-        }
+      &:hover {
+        background: $button-hover-background-color;
       }
     }
   }

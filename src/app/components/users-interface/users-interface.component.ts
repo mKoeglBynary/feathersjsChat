@@ -18,7 +18,8 @@ export class UsersInterfaceComponent implements OnInit {
 
   constructor(
     private readonly _authFacade: AuthFacade,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
   }

@@ -2,23 +2,24 @@ app-active-users-header {
   display: block;
 }
 
+$length-font-color: #c916a9;
+$text-font-color: #bfbfbf;
+
 .app-active-users-header {
-  > .app-active-users-header__container {
-    align-items: center;
-    display: flex;
-    font-size: 1.2rem;
-    height: 4rem;
-    justify-content: center;
+  align-items: center;
+  display: flex;
+  font-size: 1.25rem;
+  height: 4rem;
+  justify-content: center;
 
-    > .app-active-users-header__length {
-      color: #c916a9;
-      font-weight: 800;
-      padding-right: 1rem;
-    }
+  > .app-active-users-header__length {
+    color: $length-font-color;
+    font-weight: 800;
+    padding-right: 1rem;
+  }
 
-    > .app-active-users-header__users {
-      color: #bfbfbf;
-      letter-spacing: 0.6px;
-    }
+  > .app-active-users-header__users {
+    color: $text-font-color;
+    letter-spacing: 0.063rem;
   }
 }

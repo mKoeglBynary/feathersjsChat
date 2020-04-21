@@ -1,14 +1,12 @@
-<div class="app-message__container">
   <img src="{{message.user.avatar}}" alt="">
 
   <div class="app-message__details">
     <div class="app-message__header">
       <span>{{message.user.email}}</span>
-      <span id="app-message__date">{{message.createdAt | localizedDate }}</span>
+      <span class="app-message__date">{{message.createdAt | localizedDate }}</span>
     </div>
 
     <div class="app-message__content">
       {{message.text}}
     </div>
   </div>
-</div>

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MessageUserInputComponent } from './message-user-input.component';
+import {MessageUserInputComponent} from './message-user-input.component';
 
 describe('MessageUserInputComponent', () => {
   let component: MessageUserInputComponent;
@@ -8,9 +8,9 @@ describe('MessageUserInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MessageUserInputComponent ]
+      declarations: [MessageUserInputComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

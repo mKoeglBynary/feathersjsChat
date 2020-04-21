@@ -17,7 +17,9 @@ import {fadeInEnter} from '../../animations/fade-in.animation';
 })
 export class MessagesComponent implements OnInit {
   @Input() messages: IMessage[];
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

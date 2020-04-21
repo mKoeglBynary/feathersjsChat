@@ -1,6 +1,4 @@
-<div class="app-messages__container">
-  <div *ngFor="let message of messages">
-    <app-message [@fadeIn] [message]="message"></app-message>
-  </div>
+<div *ngFor="let message of messages">
+  <app-message [@fadeIn] [message]="message"></app-message>
 </div>
 

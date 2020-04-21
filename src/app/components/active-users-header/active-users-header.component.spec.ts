@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ActiveUsersHeaderComponent } from './active-users-header.component';
+import {ActiveUsersHeaderComponent} from './active-users-header.component';
 
 describe('ActiveUsersHeaderComponent', () => {
   let component: ActiveUsersHeaderComponent;
@@ -8,9 +8,9 @@ describe('ActiveUsersHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ActiveUsersHeaderComponent ]
+      declarations: [ActiveUsersHeaderComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

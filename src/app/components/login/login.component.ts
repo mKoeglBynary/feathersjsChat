@@ -33,7 +33,8 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly _authFacade: AuthFacade,
-  ) {}
+  ) {
+  }
 
   ngOnInit(): void {
     if (localStorage.getItem('auth')) {
@@ -43,9 +44,9 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this._authFacade.getErrors()
       .pipe(takeUntil(this._onDestroy))
-      .subscribe( (err) => {
-      this.errors = err;
-    });
+      .subscribe((err) => {
+        this.errors = err;
+      });
   }
 
   ngOnDestroy(): void {
@@ -64,8 +65,8 @@ export class LoginComponent implements OnInit, OnDestroy {
       name: 'email',
       label: 'LOGIN.EMAIL',
       errors: [
-        { name: 'required', text: 'LOGIN.ERRORS.EMAIL.REQUIRED'},
-        { name: 'email', text: 'LOGIN.ERRORS.EMAIL.INVALID'}]
+        {name: 'required', text: 'LOGIN.ERRORS.EMAIL.REQUIRED'},
+        {name: 'email', text: 'LOGIN.ERRORS.EMAIL.INVALID'}]
     };
 
     this.password = {
@@ -74,21 +75,25 @@ export class LoginComponent implements OnInit, OnDestroy {
       label: 'LOGIN.PASSWORD',
       type: 'password',
       errors: [
-        { name: 'required', text: 'LOGIN.ERRORS.PASSWORD.REQUIRED'},
-        { name: 'minlength', text: 'LOGIN.ERRORS.PASSWORD.MIN_LENGTH'}]
+        {name: 'required', text: 'LOGIN.ERRORS.PASSWORD.REQUIRED'},
+        {name: 'minlength', text: 'LOGIN.ERRORS.PASSWORD.MIN_LENGTH'}]
     };
 
   }
 
   async submitLogin(): Promise<void> {
-    if (!this.validateForm()) { return; }
+    if (!this.validateForm()) {
+      return;
+    }
 
     const data: Partial<IUser> = await this.getFormData();
     this._authFacade.login(data);
   }
 
   async submitRegister(): Promise<void> {
-    if (!this.validateForm()) { return; }
+    if (!this.validateForm()) {
+      return;
+    }
 
     const data: Partial<IUser> = await this.getFormData();
 
@@ -106,7 +111,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     return !this.loginAndRegisterForm.invalid;
   }
 
-  async getFormData(): Promise< Partial<IUser> > {
+  async getFormData(): Promise<Partial<IUser>> {
     const language: Language = await this._authFacade.getLanguage().pipe(take(1)).toPromise();
     return {
       email: this.loginAndRegisterForm.get('email').value,

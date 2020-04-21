@@ -13,7 +13,9 @@ import {IUser} from '../../models/interfaces/user.model.i';
 })
 export class ActiveUsersComponent implements OnInit {
   @Input() users: IUser[];
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

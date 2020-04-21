@@ -38,7 +38,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
       .subscribe((language: Language) => {
         this.selectedLanguage = language;
         this.translateService.use(this.selectedLanguage.value);
-    });
+      });
   }
 
   ngOnDestroy(): void {

@@ -13,7 +13,9 @@ import {IMessage} from '../../models/interfaces/message.model.i';
 })
 export class MessageComponent implements OnInit {
   @Input() message: IMessage;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

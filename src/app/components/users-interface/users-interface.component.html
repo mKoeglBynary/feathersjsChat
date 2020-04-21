@@ -1,10 +1,9 @@
-<div class="app-users-interface__container">
-  <app-active-users-header [usersLength]="users?.length"></app-active-users-header>
-  <app-active-users [users]="users"></app-active-users>
+<app-active-users-header [usersLength]="users?.length"></app-active-users-header>
+<app-active-users [users]="users"></app-active-users>
 
-  <div class="app-users-interface__sign-out">
-    <button [@clicked]="signOutClicked" (click)="signOut(); signOutClicked = !signOutClicked" appButton>{{ 'CHAT.SIGN_OUT' | translate }}</button>
-  </div>
-
+<div class="app-users-interface__sign-out">
+  <button [@clicked]="signOutClicked" (click)="signOut(); signOutClicked = !signOutClicked"
+          appButton>{{ 'CHAT.SIGN_OUT' | translate }}</button>
 </div>
+
 

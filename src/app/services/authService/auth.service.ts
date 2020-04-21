@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {FeathersService} from '../feathersService/feathers.service';
-import {ServiceName, ServiceEvent} from '../../models/configs/feathers-service.model';
-import {FeathersEnvironment} from '../../../environments/environment';
+import {FeathersEndpoint, FeathersEvent} from '../../models/configs/feathers-service.model';
+import {FEATHERS_SETTINGS} from '../../../environments/environment';
 import {IUser} from '../../models/interfaces/user.model.i';
 import {Language} from '../../models/configs/language-settings.model';
 import {Application} from '@feathersjs/feathers';
@@ -22,11 +22,11 @@ export class AuthService {
         await this._app.reAuthenticate();
       } else {
         await this._app.authenticate({
-            strategy: FeathersEnvironment.strategy,
+            strategy: FEATHERS_SETTINGS.strategy,
             ...data
         });
       }
-      const {user} =  await this._app.get(ServiceName.AUTHENTICATION);
+      const {user} =  await this._app.get(FeathersEndpoint.AUTHENTICATION);
       return user;
 
     } catch (error) {
@@ -39,18 +39,18 @@ export class AuthService {
   }
 
   removeFeathersjsListeners(): void {
-    this._app.service(ServiceName.MESSAGES).off(ServiceEvent.CREATED);
-    this._app.service(ServiceName.USERS).off(ServiceEvent.CREATED);
+    this._app.service(FeathersEndpoint.MESSAGES).off(FeathersEvent.CREATED);
+    this._app.service(FeathersEndpoint.USERS).off(FeathersEvent.CREATED);
   }
 
   async changeLanguage(lang: Language) {
-    const {user} = await this._app.get(ServiceName.AUTHENTICATION);
-    await this._app.service(ServiceName.USERS).patch(user._id, {language: lang});
+    const {user} = await this._app.get(FeathersEndpoint.AUTHENTICATION);
+    await this._app.service(FeathersEndpoint.USERS).patch(user._id, {language: lang});
   }
 
   async register(data: Partial<IUser>): Promise<boolean> {
     try {
-      await this._app.service(ServiceName.USERS).create(data);
+      await this._app.service(FeathersEndpoint.USERS).create(data);
       return true;
     } catch (error) {
       return false;

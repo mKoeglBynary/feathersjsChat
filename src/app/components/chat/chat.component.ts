@@ -4,7 +4,7 @@ import {
   OnInit,
   ViewEncapsulation
 } from '@angular/core';
-import { Router} from '@angular/router';
+import {Router} from '@angular/router';
 import {Observable, Subject} from 'rxjs';
 import {FeathersService} from '../../services/feathersService/feathers.service';
 import {ChatFacade} from '../../states/facade/chatFacade';
@@ -30,7 +30,7 @@ import {takeUntil} from 'rxjs/operators';
 export class ChatComponent implements OnInit, OnDestroy {
   private readonly _onDestroy = new Subject();
   messages: Observable<IMessage[]>;
-  users: Observable<IUser[]> ;
+  users: Observable<IUser[]>;
   load = false;
   loadOtherElements = 'hidden';
 
@@ -39,12 +39,13 @@ export class ChatComponent implements OnInit, OnDestroy {
     private readonly _feathersService: FeathersService,
     private readonly _chatFacade: ChatFacade,
     private readonly _usersFacade: UsersFacade,
-) {}
+  ) {
+  }
 
   ngOnInit(): void {
-      this._setAndConnectMessages();
-      this._setAndConnectUsers();
-      this.load = true;
+    this._setAndConnectMessages();
+    this._setAndConnectUsers();
+    this.load = true;
   }
 
   ngOnDestroy() {

@@ -2,48 +2,49 @@ app-message {
   display: block;
 }
 
+$message-font-color: #969696;
+$message-date-font-color: #b8b8b8;
+
 .app-message {
+  display: flex;
+  margin-top: 1rem;
+  width: 100%;
 
-  > .app-message__container {
+  > img {
+    border-radius: 100%;
+    display: inline-block;
+    height: 3rem;
+    margin-right: 0.938rem;
+    width: 3.875em;
+  }
+
+  > .app-message__details {
     display: flex;
-    margin-top: 1rem;
-    width: 100%;
+    flex: 1;
+    flex-direction: column;
+    width: 10rem;
 
-    > img {
-      border-radius: 100%;
-      display: inline-block;
-      height: 3rem;
-      margin-right: 0.9rem;
-      width: 3.8rem;
-    }
-
-    > .app-message__details {
+    > .app-message__header {
       display: flex;
       flex: 1;
-      flex-direction: column;
-      width: 10rem;
-
-      > .app-message__header {
-        display: flex;
-        flex: 1;
-        font-size: 0.9rem;
+      font-size: 0.938rem;
 
 
-        > #app-message__date {
-          color: #b8b8b8;
-          margin-left: 0.1rem;
-          min-width: fit-content;
-        }
-      }
-
-      > .app-message__content {
-        color: #969696;
-        flex: 2;
-        height: fit-content;
-        line-height: 1.3rem;
-        overflow-wrap: break-word;
-        padding-top: 0.3rem;
+      > .app-message__date {
+        color: $message-date-font-color;
+        margin-left: 0.125rem;
+        min-width: fit-content;
       }
     }
+
+    > .app-message__content {
+      color: $message-font-color;
+      flex: 2;
+      height: fit-content;
+      line-height: 1.313rem;
+      overflow-wrap: break-word;
+      padding-top: 0.313rem;
+    }
   }
+
 }

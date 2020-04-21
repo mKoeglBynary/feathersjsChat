@@ -12,7 +12,9 @@ import {ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation} fr
 })
 export class MessageInterfaceComponent implements OnInit {
   @Input() messages;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

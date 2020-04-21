@@ -1,8 +1,8 @@
-export enum ServiceEvent {
+export enum FeathersEvent {
   CREATED = 'created'
 }
 
-export enum ServiceName {
+export enum FeathersEndpoint {
   AUTHENTICATION  = 'authentication',
   MESSAGES = 'messages',
   USERS = 'users'

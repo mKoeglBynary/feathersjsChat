@@ -4,10 +4,10 @@ import socketio from '@feathersjs/socketio-client';
 import * as io from 'socket.io-client';
 import feathersAuthClient from '@feathersjs/authentication-client';
 import {from, fromEvent, Observable} from 'rxjs';
-import {ServiceName, ServiceEvent} from '../../models/configs/feathers-service.model';
+import {FeathersEndpoint, FeathersEvent} from '../../models/configs/feathers-service.model';
 import {IMessage} from '../../models/interfaces/message.model.i';
 import {IUser} from '../../models/interfaces/user.model.i';
-import {FeathersEnvironment} from '../../../environments/environment';
+import {FEATHERS_SETTINGS} from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -17,15 +17,15 @@ export class FeathersService {
 
   constructor() {
     this._app = feathers();
-    const socket: SocketIOClient.Socket = io(FeathersEnvironment.url);
+    const socket: SocketIOClient.Socket = io(FEATHERS_SETTINGS.url);
     this._app.configure(socketio(socket));
     this._app.configure(feathersAuthClient({
-      storageKey: FeathersEnvironment.storageKey
+      storageKey: FEATHERS_SETTINGS.storageKey
     }));
   }
 
    async getMessages(): Promise<IMessage[]> {
-    const dataObj = await this._app.service(ServiceName.MESSAGES).find({
+    const dataObj = await this._app.service(FeathersEndpoint.MESSAGES).find({
           query: {
             $sort: { createdAt: -1},
             $limit: 25
@@ -35,21 +35,21 @@ export class FeathersService {
   }
 
   getNewMessages(): Observable<IMessage> {
-    return fromEvent(this._app.service(ServiceName.MESSAGES), ServiceEvent.CREATED);
+    return fromEvent(this._app.service(FeathersEndpoint.MESSAGES), FeathersEvent.CREATED);
   }
 
   getNewUsers(): Observable<IUser> {
-    return fromEvent(this._app.service(ServiceName.USERS), ServiceEvent.CREATED);
+    return fromEvent(this._app.service(FeathersEndpoint.USERS), FeathersEvent.CREATED);
   }
 
   async getUsers(): Promise<IUser[]> {
-    const dataObj = await this._app.service(ServiceName.USERS).find();
+    const dataObj = await this._app.service(FeathersEndpoint.USERS).find();
     return dataObj.data;
   }
 
   async sendMessage(text: string): Promise<void> {
     console.log(text);
-    await this._app.service(ServiceName.MESSAGES).create({
+    await this._app.service(FeathersEndpoint.MESSAGES).create({
       text
     });
   }
