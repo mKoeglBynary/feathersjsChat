@@ -1,13 +1,13 @@
 import {State, Action, StateContext, Selector} from '@ngxs/store';
 import {Injectable} from '@angular/core';
-import {IUser} from '../interfaces/user';
+import {IUser} from '../models/interfaces/user.model.i';
 import {AddUser, AddUsers} from './actions/user.action';
 
-export class UserStateModel {
+export interface IUserStateModel {
   users: IUser[];
 }
 
-@State<UserStateModel>({
+@State<IUserStateModel>({
   name: 'user',
   defaults: {
     users: []
@@ -17,12 +17,12 @@ export class UserStateModel {
 export class UserState {
 
   @Selector()
-  static users(state: UserStateModel): IUser[] {
+  static users(state: IUserStateModel): IUser[] {
     return state.users;
   }
 
   @Action(AddUser)
-  addUser( {getState, patchState}: StateContext<UserStateModel>, {payload}: AddUser): void {
+  addUser({getState, patchState}: StateContext<IUserStateModel>, {payload}: AddUser): void {
     const state = getState();
     patchState({
       users: [...state.users, payload]
@@ -30,7 +30,7 @@ export class UserState {
   }
 
   @Action(AddUsers)
-  addUsers( {getState, patchState}: StateContext<UserStateModel>, {payload}: AddUsers): void {
+  addUsers({getState, patchState}: StateContext<IUserStateModel>, {payload}: AddUsers): void {
     patchState( {
       users: [...payload]
     });

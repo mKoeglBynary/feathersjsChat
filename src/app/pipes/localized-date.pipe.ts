@@ -9,11 +9,11 @@ import * as moment from 'moment';
 })
 export class LocalizedDatePipe implements PipeTransform {
   constructor(
-    private translateService: TranslateService
+    private _translateService: TranslateService
   ) {}
 
   transform(value: number, format?: string): string {
-    moment.locale(this.translateService.currentLang);
+    moment.locale(this._translateService.currentLang);
 
     return moment(value).format(format || DateFormat);
   }

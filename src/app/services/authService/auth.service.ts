@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {FeathersService} from '../feathersService/feathers.service';
-import {ServiceName, ServiceEvent} from '../../configs/feathers-settings.config';
+import {ServiceName, ServiceEvent} from '../../models/configs/feathers-service.model';
 import {FeathersEnvironment} from '../../../environments/environment';
-import {IUser} from '../../interfaces/user';
-import {Language} from '../../configs/language-settings.config';
+import {IUser} from '../../models/interfaces/user.model.i';
+import {Language} from '../../models/configs/language-settings.model';
 import {Application} from '@feathersjs/feathers';
 
 @Injectable({

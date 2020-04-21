@@ -1,8 +1,11 @@
 app-users-interface {
   display: block;
+}
+
+.app-users-interface {
   height: inherit;
 
-  > .app-users-interface__container {
+  .app-users-interface__container {
     background-color: #dbd9d9;
     position: relative;
     height: inherit;
@@ -25,6 +28,10 @@ app-users-interface {
         outline: none;
         padding: 0.1rem;
         width: 6rem;
+
+        &:hover {
+          background: #fc21d1;
+        }
       }
     }
   }

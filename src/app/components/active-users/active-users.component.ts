@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {IUser} from '../../interfaces/user';
+import {IUser} from '../../models/interfaces/user.model.i';
 
 @Component({
   selector: 'app-active-users',

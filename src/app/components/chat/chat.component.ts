@@ -8,11 +8,11 @@ import { Router} from '@angular/router';
 import {Observable, Subject} from 'rxjs';
 import {FeathersService} from '../../services/feathersService/feathers.service';
 import {ChatFacade} from '../../states/facade/chatFacade';
-import {IUser} from '../../interfaces/user';
-import {IMessages} from '../../interfaces/messages';
+import {IUser} from '../../models/interfaces/user.model.i';
+import {IMessage} from '../../models/interfaces/message.model.i';
 import {UsersFacade} from '../../states/facade/usersFacade';
 import {fadeInAfter, fadeInOverlay} from '../../animations/fadeIn';
-import {first, map, take, takeUntil} from 'rxjs/operators';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-chat',
@@ -29,7 +29,7 @@ import {first, map, take, takeUntil} from 'rxjs/operators';
 })
 export class ChatComponent implements OnInit, OnDestroy {
   private readonly _onDestroy = new Subject();
-  messages: Observable<IMessages[]>;
+  messages: Observable<IMessage[]>;
   users: Observable<IUser[]> ;
   load = false;
   loadOtherElements = 'hidden';

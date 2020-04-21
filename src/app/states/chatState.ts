@@ -1,14 +1,14 @@
 import {State, Action, StateContext, Selector, Select} from '@ngxs/store';
-import {IMessages} from '../interfaces/messages';
+import {IMessage} from '../models/interfaces/message.model.i';
 import {AddMessage, AddMessages} from './actions/chat.actions';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 
-export interface ChatStateModel {
-  messages: IMessages[];
+export interface IChatStateModel {
+  messages: IMessage[];
 }
 
-@State<ChatStateModel>({
+@State<IChatStateModel>({
   name: 'chat',
   defaults: {
     messages: [],
@@ -19,12 +19,12 @@ export class ChatState {
 
 
   @Selector()
-  static messages(state: ChatStateModel): IMessages[] {
+  static messages(state: IChatStateModel): IMessage[] {
     return state.messages;
   }
 
   @Action(AddMessage)
-  addMessage( {getState, patchState}: StateContext<ChatStateModel>, {payload}: AddMessage): void {
+  addMessage({getState, patchState}: StateContext<IChatStateModel>, {payload}: AddMessage): void {
     const state = getState();
     patchState({
       messages: [payload, ...state.messages]
@@ -32,7 +32,7 @@ export class ChatState {
   }
 
   @Action(AddMessages)
-  addMessages( {patchState}: StateContext<ChatStateModel>, {payload}: AddMessages): void {
+  addMessages({patchState}: StateContext<IChatStateModel>, {payload}: AddMessages): void {
     patchState({
       messages: [...payload]
     });

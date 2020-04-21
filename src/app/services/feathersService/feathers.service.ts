@@ -4,9 +4,9 @@ import socketio from '@feathersjs/socketio-client';
 import * as io from 'socket.io-client';
 import feathersAuthClient from '@feathersjs/authentication-client';
 import {from, fromEvent, Observable} from 'rxjs';
-import {ServiceName, ServiceEvent} from '../../configs/feathers-settings.config';
-import {IMessages} from '../../interfaces/messages';
-import {IUser} from '../../interfaces/user';
+import {ServiceName, ServiceEvent} from '../../models/configs/feathers-service.model';
+import {IMessage} from '../../models/interfaces/message.model.i';
+import {IUser} from '../../models/interfaces/user.model.i';
 import {FeathersEnvironment} from '../../../environments/environment';
 
 @Injectable({
@@ -24,7 +24,7 @@ export class FeathersService {
     }));
   }
 
-   async getMessages(): Promise<IMessages[]> {
+   async getMessages(): Promise<IMessage[]> {
     const dataObj = await this._app.service(ServiceName.MESSAGES).find({
           query: {
             $sort: { createdAt: -1},
@@ -34,7 +34,7 @@ export class FeathersService {
     return dataObj.data;
   }
 
-  getNewMessages(): Observable<IMessages> {
+  getNewMessages(): Observable<IMessage> {
     return fromEvent(this._app.service(ServiceName.MESSAGES), ServiceEvent.CREATED);
   }
 

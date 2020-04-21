@@ -8,7 +8,6 @@ import {animate, AnimationAnimateMetadata, AnimationBuilder, AnimationPlayer, An
 export class ButtonDirective {
   element: ElementRef;
   style: CSSStyleDeclaration;
-  hoverColor = '#fc21d1';
 
   constructor(
     private readonly _el: ElementRef,
@@ -16,16 +15,6 @@ export class ButtonDirective {
   ) {
     this.element = _el;
     this.style = _el.nativeElement.style;
-  }
-
-  @HostListener('mouseenter')
-  onMouseEnter() {
-    this.element.nativeElement.style.background = this.hoverColor;
-  }
-
-  @HostListener('mouseleave')
-  onMoueLeave() {
-    this.element.nativeElement.style = this.style;
   }
 
   @HostListener('click')

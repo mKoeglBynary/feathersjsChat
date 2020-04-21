@@ -1,19 +1,19 @@
-import {IUser} from '../interfaces/user';
+import {IUser} from '../models/interfaces/user.model.i';
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {Injectable, NgZone} from '@angular/core';
 import {UserChangeLanguage, UserErrors, UserLogin, UserLogout, UserRegister} from './actions/active-user.actions';
 import {AuthService} from '../services/authService/auth.service';
 import {Router} from '@angular/router';
-import {Language} from '../configs/language-settings.config';
+import {Language} from '../models/configs/language-settings.model';
 
-export interface ActiveUserStateModel {
+export interface IActiveUserStateModel {
   user: IUser | {};
   isLoggedIn: boolean;
   language: Language;
   errors?: string;
 }
 
-@State<ActiveUserStateModel>({
+@State<IActiveUserStateModel>({
   name: 'activeUser',
   defaults: {
     user: {},
@@ -30,29 +30,29 @@ export class ActiveUserState {
   ) {}
 
   @Selector()
-  static isLoggedIn(state: ActiveUserStateModel): boolean {
+  static isLoggedIn(state: IActiveUserStateModel): boolean {
     return state.isLoggedIn;
   }
 
   @Selector()
-  static errors(state: ActiveUserStateModel): string {
+  static errors(state: IActiveUserStateModel): string {
     return state.errors;
   }
 
   @Selector()
-  static language(state: ActiveUserStateModel): Language {
+  static language(state: IActiveUserStateModel): Language {
     return state.language;
   }
 
   @Action(UserErrors)
-  userErrors({patchState}: StateContext<ActiveUserStateModel>, {payload}: UserErrors): void {
+  userErrors({patchState}: StateContext<IActiveUserStateModel>, {payload}: UserErrors): void {
     patchState({
       errors: payload
     });
   }
 
   @Action(UserRegister)
-  async userRegister({dispatch, patchState}: StateContext<ActiveUserStateModel>, {payload}: UserRegister) {
+  async userRegister({dispatch, patchState}: StateContext<IActiveUserStateModel>, {payload}: UserRegister) {
     const result: boolean = await this._authService.register(payload);
     if (result) {
       dispatch(new UserLogin(payload));
@@ -65,7 +65,7 @@ export class ActiveUserState {
 
 
   @Action(UserLogin)
-  async userLogin({patchState}: StateContext<ActiveUserStateModel>, {payload}: UserLogin): Promise<void> {
+  async userLogin({patchState}: StateContext<IActiveUserStateModel>, {payload}: UserLogin): Promise<void> {
     const user: IUser = await this._authService.login(payload);
     if (!user) {
       patchState({
@@ -84,7 +84,7 @@ export class ActiveUserState {
   }
 
   @Action(UserLogout)
-  async userLogout( {patchState}: StateContext<ActiveUserStateModel>): Promise<void> {
+  async userLogout( {patchState}: StateContext<IActiveUserStateModel>): Promise<void> {
     await this._authService.logout();
     patchState({
       user: {},
@@ -94,8 +94,8 @@ export class ActiveUserState {
   }
 
   @Action(UserChangeLanguage)
-  async userChangeLanguage( {patchState, getState}: StateContext<ActiveUserStateModel>, {payload}: UserChangeLanguage): Promise<void> {
-    const state: ActiveUserStateModel = getState();
+  async userChangeLanguage({patchState, getState}: StateContext<IActiveUserStateModel>, {payload}: UserChangeLanguage): Promise<void> {
+    const state: IActiveUserStateModel = getState();
     if (state.isLoggedIn) {
       await this._authService.changeLanguage(payload);
     }

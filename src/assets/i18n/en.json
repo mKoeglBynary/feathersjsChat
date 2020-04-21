@@ -6,7 +6,7 @@
     "REGISTER": "Register",
     "ERRORS": {
       "AUTH": {
-        "WRONGINPUT": "Wrong e-mail or password",
+        "WRONG_INPUT": "Wrong e-mail or password",
         "REGISTERED": "Already registered"
       },
       "EMAIL": {
@@ -15,14 +15,14 @@
       },
       "PASSWORD":{
         "REQUIRED": "Password is required",
-        "MINLENGTH": "Must be min 5 characters"
+        "MIN_LENGTH": "Must be min 5 characters"
       }
     }
   },
   "CHAT": {
     "TITLE": "FeathersJsChat",
     "USERS": "Users",
-    "SIGNOUT": "Sign Out",
+    "SIGN_OUT": "Sign Out",
     "SEND": "Send"
   }
 }

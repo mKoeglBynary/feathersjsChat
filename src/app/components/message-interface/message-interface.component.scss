@@ -1,9 +1,11 @@
 app-message-interface {
   display: block;
   height: inherit;
+}
 
-  > .app-message-interface {
-    margin-left: 2rem;
+.app-message-interface{
+  > .app-message-interface__container {
+    margin-left: 1rem;
     margin-right: 1rem;
     position: relative;
     height: inherit;

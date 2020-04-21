@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {IMessages} from '../../interfaces/messages';
+import {IMessage} from '../../models/interfaces/message.model.i';
 
 @Component({
   selector: 'app-message',
@@ -12,7 +12,7 @@ import {IMessages} from '../../interfaces/messages';
   }
 })
 export class MessageComponent implements OnInit {
-  @Input() message: IMessages;
+  @Input() message: IMessage;
   constructor() { }
 
   ngOnInit(): void {

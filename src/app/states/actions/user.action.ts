@@ -1,4 +1,4 @@
-import { IUser} from '../../interfaces/user';
+import { IUser} from '../../models/interfaces/user.model.i';
 
 export class AddUser {
   static readonly type = '[User] Add';

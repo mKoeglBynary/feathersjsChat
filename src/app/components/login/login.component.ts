@@ -2,11 +2,11 @@ import {ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthFacade} from '../../states/facade/authFacade';
 import {buttonClickedAnimations} from '../../animations/loginButtons';
-import {IInputControls} from '../../interfaces/input-controls';
-import {IUser} from '../../interfaces/user';
+import {IInputControl} from '../../models/interfaces/input-control.model.i';
+import {IUser} from '../../models/interfaces/user.model.i';
 import {Subject} from 'rxjs';
 import {take, takeUntil} from 'rxjs/operators';
-import {Language} from '../../configs/language-settings.config';
+import {Language} from '../../models/configs/language-settings.model';
 
 @Component({
   selector: 'app-login',
@@ -26,8 +26,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   private readonly _onDestroy = new Subject();
   loginAndRegisterForm: FormGroup;
   errors: string;
-  email: IInputControls;
-  password: IInputControls;
+  email: IInputControl;
+  password: IInputControl;
   registerClicked = false;
   loginClicked = false;
 
@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       type: 'password',
       errors: [
         { name: 'required', text: 'LOGIN.ERRORS.PASSWORD.REQUIRED'},
-        { name: 'minlength', text: 'LOGIN.ERRORS.PASSWORD.MINLENGTH'}]
+        { name: 'minlength', text: 'LOGIN.ERRORS.PASSWORD.MIN_LENGTH'}]
     };
 
   }

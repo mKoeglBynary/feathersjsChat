@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Store} from '@ngxs/store';
 import {Observable} from 'rxjs';
-import {IUser} from '../../interfaces/user';
+import {IUser} from '../../models/interfaces/user.model.i';
 import {AddUser, AddUsers} from '../actions/user.action';
 import {UserState} from '../userState';
 

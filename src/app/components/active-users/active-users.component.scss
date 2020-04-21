@@ -1,13 +1,16 @@
 app-active-users {
   display: block;
+}
 
-  > .app-active-users__users {
+.app-active-users {
+
+  > .app-active-users__container {
     display: flex;
     flex-direction: column;
     height: 76vh;
     overflow: scroll;
 
-    > .app-active-users__container {
+    > .app-active-users__user {
       display: flex;
       height: 3rem;
       margin: 1rem 1rem;
@@ -24,9 +27,11 @@ app-active-users {
         overflow: hidden;
         text-overflow: ellipsis;
         vertical-align: center;
-        width: 10rem;
         white-space: nowrap;
+        width: 10rem;
       }
     }
   }
 }
+
+

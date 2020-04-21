@@ -1,5 +1,5 @@
-import {IUser} from '../../interfaces/user';
-import {Language} from '../../configs/language-settings.config';
+import {IUser} from '../../models/interfaces/user.model.i';
+import {Language} from '../../models/configs/language-settings.model';
 
 export class UserLogin {
   static readonly type = '[User] login';

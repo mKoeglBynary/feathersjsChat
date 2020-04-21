@@ -1,12 +1,14 @@
 app-language-selector{
+ display: block;
+}
+
+.app-language-selector {
   bottom: 0;
-  display: block;
   height: 100%;
   left: 0;
   opacity: 1;
   position: absolute;
   z-index: 3;
-
 
   .app-language-selector__flag {
     width: 1.8rem;
@@ -35,5 +37,3 @@ app-language-selector{
   }
 
 }
-
-
