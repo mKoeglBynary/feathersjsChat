@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import {FeathersService} from '../feathersService/feathers.service';
-import {FeathersEndpoint, FeathersEvent} from '../../models/configs/feathers-service.model';
+import {FeathersEvent} from '../../models/configs/feathers-event.model';
 import {FEATHERS_SETTINGS} from '../../../environments/environment';
 import {IUser} from '../../models/interfaces/user.model.i';
-import {Language} from '../../models/configs/language-settings.model';
+import {Language} from '../../models/configs/language-options.model';
 import {Application} from '@feathersjs/feathers';
+import {FeathersEndpoint} from '../../models/configs/feathers-endpoints.model';
 
 @Injectable({
   providedIn: 'root'

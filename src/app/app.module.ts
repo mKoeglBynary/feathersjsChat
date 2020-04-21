@@ -53,6 +53,7 @@ export function createTranslateLoader(http: HttpClient) {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
     NgxsModule.forRoot([
@@ -69,7 +70,6 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
     FormsModule,
-    BrowserAnimationsModule,
     AppRoutingModule
   ],
   providers: [],

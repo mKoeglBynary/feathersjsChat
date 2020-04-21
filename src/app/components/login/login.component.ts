@@ -6,7 +6,7 @@ import {IInputControl} from '../../models/interfaces/input-control.model.i';
 import {IUser} from '../../models/interfaces/user.model.i';
 import {Subject} from 'rxjs';
 import {take, takeUntil} from 'rxjs/operators';
-import {Language} from '../../models/configs/language-settings.model';
+import {Language} from '../../models/configs/language-options.model';
 
 @Component({
   selector: 'app-login',

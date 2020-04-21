@@ -3,7 +3,7 @@ import {Store} from '@ngxs/store';
 import {UserLogin, UserLogout, UserRegister, UserErrors, UserChangeLanguage} from '../actions/active-user.actions';
 import {Observable} from 'rxjs';
 import {IUser} from '../../models/interfaces/user.model.i';
-import {Language} from '../../models/configs/language-settings.model';
+import {Language} from '../../models/configs/language-options.model';
 import {ActiveUserState} from '../activeUserState';
 
 @Injectable({

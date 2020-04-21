@@ -4,7 +4,7 @@ import {Injectable, NgZone} from '@angular/core';
 import {UserChangeLanguage, UserErrors, UserLogin, UserLogout, UserRegister} from './actions/active-user.actions';
 import {AuthService} from '../services/authService/auth.service';
 import {Router} from '@angular/router';
-import {Language} from '../models/configs/language-settings.model';
+import {Language} from '../models/configs/language-options.model';
 
 export interface IActiveUserStateModel {
   user: IUser | {};
@@ -18,7 +18,7 @@ export interface IActiveUserStateModel {
   defaults: {
     user: {},
     isLoggedIn: false,
-    language: Language.ENGLISH
+    language: Language.EN
   }
 })
 @Injectable()
@@ -69,7 +69,7 @@ export class ActiveUserState {
     const user: IUser = await this._authService.login(payload);
     if (!user) {
       patchState({
-        errors: 'LOGIN.ERRORS.AUTH.WRONGINPUT'
+        errors: 'LOGIN.ERRORS.AUTH.WRONG_INPUT'
       });
     } else {
       patchState({

@@ -1,19 +1,20 @@
-import { Injectable } from '@angular/core';
+import {Injectable, InjectionToken} from '@angular/core';
 import feathers, {Application} from '@feathersjs/feathers';
 import socketio from '@feathersjs/socketio-client';
 import * as io from 'socket.io-client';
 import feathersAuthClient from '@feathersjs/authentication-client';
-import {from, fromEvent, Observable} from 'rxjs';
-import {FeathersEndpoint, FeathersEvent} from '../../models/configs/feathers-service.model';
+import {fromEvent, Observable} from 'rxjs';
+import {FeathersEvent} from '../../models/configs/feathers-event.model';
 import {IMessage} from '../../models/interfaces/message.model.i';
 import {IUser} from '../../models/interfaces/user.model.i';
 import {FEATHERS_SETTINGS} from '../../../environments/environment';
+import {FeathersEndpoint} from '../../models/configs/feathers-endpoints.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FeathersService {
-  public readonly _app: Application;
+  readonly _app: Application;
 
   constructor() {
     this._app = feathers();

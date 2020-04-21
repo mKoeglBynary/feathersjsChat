@@ -1,4 +1,4 @@
-import {Language} from '../configs/language-settings.model';
+import {Language} from '../configs/language-options.model';
 
 export interface IUser {
   _id: string;
