@@ -1,7 +1,7 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
-import {IUser} from '../../models/interfaces/user.model.i';
+import {ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {AuthFacade} from '../../states/facade/authFacade';
 import {buttonClickedAnimation} from '../../animations/button-click.animation';
+import {IUser} from '../../models/interfaces/user.model.i';
 
 @Component({
   selector: 'app-users-interface',

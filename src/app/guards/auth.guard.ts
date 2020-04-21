@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
 import { Observable } from 'rxjs';
+import {first, map} from 'rxjs/operators';
 import {AuthFacade} from '../states/facade/authFacade';
-import {first, map, take} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

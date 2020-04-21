@@ -1,13 +1,13 @@
-import {Injectable, InjectionToken} from '@angular/core';
+import {Injectable} from '@angular/core';
 import feathers, {Application} from '@feathersjs/feathers';
+import feathersAuthClient from '@feathersjs/authentication-client';
 import socketio from '@feathersjs/socketio-client';
 import * as io from 'socket.io-client';
-import feathersAuthClient from '@feathersjs/authentication-client';
 import {fromEvent, Observable} from 'rxjs';
-import {FeathersEvent} from '../../models/configs/feathers-event.model';
+import {FEATHERS_SETTINGS} from '../../../environments/environment';
 import {IMessage} from '../../models/interfaces/message.model.i';
 import {IUser} from '../../models/interfaces/user.model.i';
-import {FEATHERS_SETTINGS} from '../../../environments/environment';
+import {FeathersEvent} from '../../models/configs/feathers-event.model';
 import {FeathersEndpoint} from '../../models/configs/feathers-endpoints.model';
 
 @Injectable({
