@@ -14,6 +14,7 @@ import {AuthFacade} from '../../states/facade/authFacade';
 })
 export class UsersInterfaceComponent implements OnInit {
   @Input() users: IUser[];
+  signOutClicked = false;
 
   constructor(
     private readonly _authFacade: AuthFacade,

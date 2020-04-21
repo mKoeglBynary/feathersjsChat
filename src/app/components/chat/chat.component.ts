@@ -11,7 +11,7 @@ import {ChatFacade} from '../../states/facade/chatFacade';
 import {IUser} from '../../models/interfaces/user.model.i';
 import {IMessage} from '../../models/interfaces/message.model.i';
 import {UsersFacade} from '../../states/facade/usersFacade';
-import {fadeInAfter, fadeInOverlay} from '../../animations/fadeIn';
+import {fadeInAfter, fadeInOverlay} from '../../animations/fade-in.animation';
 import {takeUntil} from 'rxjs/operators';
 
 @Component({

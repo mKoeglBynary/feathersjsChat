@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthFacade} from '../../states/facade/authFacade';
-import {buttonClickedAnimations} from '../../animations/loginButtons';
+import {buttonClickedAnimation} from '../../animations/button-click.animation';
 import {IInputControl} from '../../models/interfaces/input-control.model.i';
 import {IUser} from '../../models/interfaces/user.model.i';
 import {Subject} from 'rxjs';
@@ -13,7 +13,7 @@ import {Language} from '../../models/configs/language-settings.model';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   animations: [
-    buttonClickedAnimations
+    buttonClickedAnimation
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.Default,

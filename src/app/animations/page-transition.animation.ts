@@ -1,6 +1,6 @@
 import {animate, animateChild, group, keyframes, query, style, transition, trigger} from '@angular/animations';
 
-export const routerAnimations = trigger('routeAnimations', [
+export const pageTransitionAnimation = trigger('routeAnimations', [
   loginToChatTransition(),
   chatToLoginTransition(),
 ]);

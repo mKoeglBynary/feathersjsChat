@@ -1,4 +1,4 @@
 <div class="app-message-user-input__container" >
   <input [(ngModel)]="userInput" (keydown.enter)="sendMessage()">
-  <button (click)="sendMessage()" appButton>{{ 'CHAT.SEND' | translate }}</button>
+  <button [@clicked]='sendClicked' (click)="sendMessage(); sendClicked = !sendClicked" appButton>{{ 'CHAT.SEND' | translate }}</button>
 </div>

@@ -1,6 +1,6 @@
 import {animate, keyframes, style, transition, trigger} from '@angular/animations';
 
-export const buttonClickedAnimations = trigger('clicked', [
+export const buttonClickedAnimation = trigger('clicked', [
   transition('true <=> false', [
     animate('300ms ease-in-out', keyframes([
       style({

@@ -26,7 +26,6 @@ import { LanguageSelectorComponent } from './components/common/language-selector
 import {ChatState} from './states/chatState';
 import {UserState} from './states/userState';
 import {ActiveUserState} from './states/activeUserState';
-import { ButtonDirective } from './directives/button.directive';
 import { LocalizedDatePipe } from './pipes/localized-date.pipe';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 
@@ -48,7 +47,6 @@ export function createTranslateLoader(http: HttpClient) {
     MessageInterfaceComponent,
     PageNotFoundComponent,
     InputComponent,
-    ButtonDirective,
     LanguageSelectorComponent,
     LocalizedDatePipe,
     ClickOutsideDirective,

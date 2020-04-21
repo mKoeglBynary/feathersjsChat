@@ -1,12 +1,12 @@
 import {Component, ViewEncapsulation} from '@angular/core';
-import {routerAnimations} from './animations/routerAnimations';
+import {pageTransitionAnimation} from './animations/page-transition.animation';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    routerAnimations
+    pageTransitionAnimation
   ],
   encapsulation: ViewEncapsulation.None,
   host: {
