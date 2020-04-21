@@ -42,10 +42,10 @@ export class ChatComponent implements OnInit, OnDestroy {
   ) {
   }
 
-  ngOnInit(): void {
-    this._setAndConnectMessages();
-    this._setAndConnectUsers();
+  async ngOnInit() {
     this.load = true;
+    await this._setAndConnectMessages();
+    await this._setAndConnectUsers();
   }
 
   ngOnDestroy() {

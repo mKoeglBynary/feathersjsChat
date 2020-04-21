@@ -9,3 +9,5 @@ export function getFlag(language: Language): string {
   const country = COUNTRY_FLAGS[language];
   return `https://api.iconify.design/twemoji:flag-for-flag-${country}.svg`;
 }
+
+

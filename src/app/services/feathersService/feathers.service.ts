@@ -14,19 +14,19 @@ import {FeathersEndpoint} from '../../models/configs/feathers-endpoints.model';
   providedIn: 'root'
 })
 export class FeathersService {
-  readonly _app: Application;
+  readonly app: Application;
 
   constructor() {
-    this._app = feathers();
+    this.app = feathers();
     const socket: SocketIOClient.Socket = io(FEATHERS_SETTINGS.url);
-    this._app.configure(socketio(socket));
-    this._app.configure(feathersAuthClient({
+    this.app.configure(socketio(socket));
+    this.app.configure(feathersAuthClient({
       storageKey: FEATHERS_SETTINGS.storageKey
     }));
   }
 
    async getMessages(): Promise<IMessage[]> {
-    const dataObj = await this._app.service(FeathersEndpoint.MESSAGES).find({
+    const dataObj = await this.app.service(FeathersEndpoint.MESSAGES).find({
           query: {
             $sort: { createdAt: -1},
             $limit: 25
@@ -36,21 +36,21 @@ export class FeathersService {
   }
 
   getNewMessages(): Observable<IMessage> {
-    return fromEvent(this._app.service(FeathersEndpoint.MESSAGES), FeathersEvent.CREATED);
+    return fromEvent(this.app.service(FeathersEndpoint.MESSAGES), FeathersEvent.CREATED);
   }
 
   getNewUsers(): Observable<IUser> {
-    return fromEvent(this._app.service(FeathersEndpoint.USERS), FeathersEvent.CREATED);
+    return fromEvent(this.app.service(FeathersEndpoint.USERS), FeathersEvent.CREATED);
   }
 
   async getUsers(): Promise<IUser[]> {
-    const dataObj = await this._app.service(FeathersEndpoint.USERS).find();
+    const dataObj = await this.app.service(FeathersEndpoint.USERS).find();
     return dataObj.data;
   }
 
   async sendMessage(text: string): Promise<void> {
     console.log(text);
-    await this._app.service(FeathersEndpoint.MESSAGES).create({
+    await this.app.service(FeathersEndpoint.MESSAGES).create({
       text
     });
   }

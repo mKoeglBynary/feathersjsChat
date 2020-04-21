@@ -14,7 +14,7 @@ export class AuthService {
   private readonly _app: Application;
 
   constructor( private readonly _feathersService: FeathersService) {
-    this._app = _feathersService._app;
+    this._app = _feathersService.app;
   }
 
   async login(data?: Partial<IUser>): Promise< IUser > {
