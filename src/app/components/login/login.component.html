@@ -12,8 +12,8 @@
     <app-input [data]="password" (keydown)="resetErrors()"></app-input>
 
     <div class="app-login__buttons">
-      <button [@clicked]='loginClicked' name="login" type="submit">{{'LOGIN.LOGIN' | translate}}</button>
-      <button [@clicked]='registerClicked' name="register" type="button"
+      <button [disabled]="this.loginAndRegisterForm.invalid" [@clicked]='loginClicked' name="login" type="submit">{{'LOGIN.LOGIN' | translate}}</button>
+      <button [disabled]="this.loginAndRegisterForm.invalid" [@clicked]='registerClicked' name="register" type="button"
               (click)="submitRegister(); registerClicked = !registerClicked"
       >{{'LOGIN.REGISTER' | translate}}</button>
     </div>
