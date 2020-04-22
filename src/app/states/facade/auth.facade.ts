@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Store} from '@ngxs/store';
-import {UserLogin, UserLogout, UserRegister, UserAuthError, UserChangeLanguage} from '../actions/active-user.actions';
 import {Observable} from 'rxjs';
+import {UserLogin, UserLogout, UserRegister, UserAuthError, UserChangeLanguage} from '../actions/active-user.actions';
 import {IUser} from '../../models/interfaces/user.model.i';
 import {Language} from '../../models/configs/language-options.model';
 import {ActiveUserState} from '../active-user.state';

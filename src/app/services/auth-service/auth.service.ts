@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable} from '@angular/core';
 import {Application} from '@feathersjs/feathers';
 import {FeathersService} from '../feathers-service/feathers.service';
 import {environment} from '../../../environments/environment';
@@ -6,15 +6,15 @@ import {Language} from '../../models/configs/language-options.model';
 import {FeathersEvent} from '../../models/configs/feathers-event.model';
 import {FeathersEndpoint} from '../../models/configs/feathers-endpoints.model';
 import {IUser} from '../../models/interfaces/user.model.i';
+import {FEATHERS_APP_TOKEN} from '../../provider/feathers-app.provider';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly _app: Application;
 
-  constructor( private readonly _feathersService: FeathersService) {
-    this._app = _feathersService.app;
+  constructor( @Inject(FEATHERS_APP_TOKEN) private readonly _app: Application,
+               private readonly _feathersService: FeathersService) {
   }
 
   async login(data?: Partial<IUser>): Promise< IUser > {

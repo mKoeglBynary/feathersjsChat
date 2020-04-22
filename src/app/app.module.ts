@@ -28,6 +28,7 @@ import {UserState} from './states/user.state';
 import {ActiveUserState} from './states/active-user.state';
 import { LocalizedDatePipe } from './pipes/localized-date.pipe';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
+import {FEATHERS_APP_PROVIDER, FEATHERS_APP_TOKEN} from './provider/feathers-app.provider';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, '../assets/i18n/', '.json');
@@ -72,7 +73,7 @@ export function createTranslateLoader(http: HttpClient) {
     FormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [FEATHERS_APP_PROVIDER, ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
