@@ -37,14 +37,9 @@ export class AuthService {
   async logout(): Promise<void> {
     this.removeFeathersjsListeners();
     await this._app.logout();
-  }
+}
 
-  removeFeathersjsListeners(): void {
-    this._app.service(FeathersEndpoint.MESSAGES).off(FeathersEvent.CREATED);
-    this._app.service(FeathersEndpoint.USERS).off(FeathersEvent.CREATED);
-  }
-
-  async changeLanguage(lang: Language) {
+async changeLanguage(lang: Language) {
     const {user} = await this._app.get(FeathersEndpoint.AUTHENTICATION);
     await this._app.service(FeathersEndpoint.USERS).patch(user._id, {language: lang});
   }
@@ -56,5 +51,10 @@ export class AuthService {
     } catch (error) {
       return false;
     }
+  }
+
+  private removeFeathersjsListeners(): void {
+    this._app.service(FeathersEndpoint.MESSAGES).off(FeathersEvent.CREATED);
+    this._app.service(FeathersEndpoint.USERS).off(FeathersEvent.CREATED);
   }
 }

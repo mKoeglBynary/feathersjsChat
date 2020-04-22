@@ -1,6 +1,6 @@
 import {State, Action, StateContext, Selector, Select} from '@ngxs/store';
 import {IMessage} from '../models/interfaces/message.model.i';
-import {AddMessage, AddMessages} from './actions/chat.actions';
+import {ChatActions} from './actions/chat.actions';
 import {Injectable} from '@angular/core';
 
 export interface IChatStateModel {
@@ -22,16 +22,16 @@ export class ChatState {
     return state.messages;
   }
 
-  @Action(AddMessage)
-  addMessage({getState, patchState}: StateContext<IChatStateModel>, {payload}: AddMessage): void {
+  @Action(ChatActions.AddMessage)
+  addMessage({getState, patchState}: StateContext<IChatStateModel>, {payload}: ChatActions.AddMessage): void {
     const state = getState();
     patchState({
       messages: [payload, ...state.messages]
     });
   }
 
-  @Action(AddMessages)
-  addMessages({patchState}: StateContext<IChatStateModel>, {payload}: AddMessages): void {
+  @Action(ChatActions.SetMessages)
+  addMessages({patchState}: StateContext<IChatStateModel>, {payload}: ChatActions.SetMessages): void {
     patchState({
       messages: [...payload]
     });

@@ -1,15 +1,17 @@
 import { IMessage } from '../../models/interfaces/message.model.i';
 
-export class AddMessage {
-  static readonly type = '[Message] Add';
+export namespace ChatActions {
+  export class AddMessage {
+    static readonly type = '[Message] Add';
 
-  constructor(public readonly payload: IMessage ) {
+    constructor(public readonly payload: IMessage) {
+    }
   }
-}
 
-export class AddMessages {
-  static readonly type = '[Messages] Add';
+  export class SetMessages {
+    static readonly type = '[Messages] set';
 
-  constructor(public readonly payload: IMessage[]) {
+    constructor(public readonly payload: IMessage[]) {
+    }
   }
 }

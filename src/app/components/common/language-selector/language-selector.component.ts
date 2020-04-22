@@ -4,7 +4,7 @@ import {AuthFacade} from '../../../states/facade/auth.facade';
 import {Language} from '../../../models/configs/language-options.model';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-import {getFlag} from '../../../models/configs/country-flags.model';
+import {LanguageUtils} from '../../../utils/language.utils';
 
 @Component({
   selector: 'app-language-selector',
@@ -20,7 +20,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
   private readonly _onDestroy = new Subject();
   selectedLanguage: Language;
   dropdownClicked = false;
-  getFlag = getFlag;
+  getCountryFlag = LanguageUtils.getCountryFlag;
   languages: Language[] = Object.keys(Language).map(language => Language[language]);
 
 

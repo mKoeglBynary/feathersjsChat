@@ -1,7 +1,7 @@
 import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
 import { Store } from '@ngxs/store';
-import {AddMessage, AddMessages} from '../actions/chat.actions';
+import {ChatActions} from '../actions/chat.actions';
 import {IMessage} from '../../models/interfaces/message.model.i';
 import {ChatState} from '../chat.state';
 
@@ -18,10 +18,10 @@ export class ChatFacade {
   }
 
   addMessage(message: IMessage) {
-    this._store.dispatch(new AddMessage(message));
+    this._store.dispatch(new ChatActions.AddMessage(message));
   }
 
-  addMessages(messages: IMessage[]) {
-    this._store.dispatch(new AddMessages(messages));
+  setMessages(messages: IMessage[]) {
+    this._store.dispatch(new ChatActions.SetMessages(messages));
   }
 }

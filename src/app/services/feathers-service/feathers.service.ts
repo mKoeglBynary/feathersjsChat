@@ -27,13 +27,13 @@ export class FeathersService {
   }
 
    async getMessages(): Promise<IMessage[]> {
-    const dataObj = await this._app.service(FeathersEndpoint.MESSAGES).find({
+    const result = await this._app.service(FeathersEndpoint.MESSAGES).find({
           query: {
             $sort: { createdAt: -1},
             $limit: 25
           }
     });
-    return dataObj.data;
+    return Array.isArray(result) ? result : result.data;
   }
 
   getNewMessages(): Observable<IMessage> {
@@ -45,8 +45,8 @@ export class FeathersService {
   }
 
   async getUsers(): Promise<IUser[]> {
-    const dataObj = await this._app.service(FeathersEndpoint.USERS).find();
-    return dataObj.data;
+    const result = await this._app.service(FeathersEndpoint.USERS).find();
+    return Array.isArray(result) ? result : result.data;
   }
 
   async sendMessage(text: string): Promise<void> {

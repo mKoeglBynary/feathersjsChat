@@ -56,7 +56,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   async _setAndConnectMessages() {
     const messages = await this._feathersService.getMessages();
-    this._chatFacade.addMessages(messages);
+    this._chatFacade.setMessages(messages);
     this._feathersService.getNewMessages().pipe(takeUntil(this._onDestroy)).subscribe(message => this._chatFacade.addMessage(message));
     this.messages = this._chatFacade.getAllMessages();
   }

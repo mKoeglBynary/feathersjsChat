@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Store} from '@ngxs/store';
 import {Observable} from 'rxjs';
 import {IUser} from '../../models/interfaces/user.model.i';
-import {AddUser, AddUsers} from '../actions/user.action';
+import {UserActions} from '../actions/user.action';
 import {UserState} from '../user.state';
 
 
@@ -19,11 +19,11 @@ export class UsersFacade {
   }
 
   addUser(user: IUser) {
-    this._store.dispatch(new AddUser(user));
+    this._store.dispatch(new UserActions.AddUser(user));
   }
 
   addUsers(users: IUser[]) {
-    this._store.dispatch(new AddUsers(users));
+    this._store.dispatch(new UserActions.AddUsers(users));
   }
 }
 
