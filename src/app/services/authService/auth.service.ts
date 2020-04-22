@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Application} from '@feathersjs/feathers';
 import {FeathersService} from '../feathersService/feathers.service';
-import {FEATHERS_SETTINGS} from '../../../environments/environment';
+import {environment} from '../../../environments/environment';
 import {Language} from '../../models/configs/language-options.model';
 import {FeathersEvent} from '../../models/configs/feathers-event.model';
 import {FeathersEndpoint} from '../../models/configs/feathers-endpoints.model';
@@ -23,7 +23,7 @@ export class AuthService {
         await this._app.reAuthenticate();
       } else {
         await this._app.authenticate({
-            strategy: FEATHERS_SETTINGS.strategy,
+            strategy: environment.FEATHERS_SETTINGS.strategy,
             ...data
         });
       }

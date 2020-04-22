@@ -3,18 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  FEATHERS_SETTINGS: {
+    strategy: 'local',
+    url: 'https://localhost:3030',
+    storageKey: 'auth'
+  }
 };
-
-export const FEATHERS_SETTINGS = {
-  strategy: 'local',
-  url: 'http://localhost:3030',
-  storageKey: 'auth'
-};
-
-export const DATE_FORMAT = 'LLLL';
-
-
 
 /*
  * For easier debugging in development mode, you can import the following file
