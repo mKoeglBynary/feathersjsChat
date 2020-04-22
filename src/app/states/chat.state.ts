@@ -2,7 +2,6 @@ import {State, Action, StateContext, Selector, Select} from '@ngxs/store';
 import {IMessage} from '../models/interfaces/message.model.i';
 import {AddMessage, AddMessages} from './actions/chat.actions';
 import {Injectable} from '@angular/core';
-import {Observable} from 'rxjs';
 
 export interface IChatStateModel {
   messages: IMessage[];

@@ -7,10 +7,10 @@ import {
 import {Router} from '@angular/router';
 import {Observable, Subject} from 'rxjs';
 import {FeathersService} from '../../services/feathersService/feathers.service';
-import {ChatFacade} from '../../states/facade/chatFacade';
+import {ChatFacade} from '../../states/facade/chat.facade';
 import {IUser} from '../../models/interfaces/user.model.i';
 import {IMessage} from '../../models/interfaces/message.model.i';
-import {UsersFacade} from '../../states/facade/usersFacade';
+import {UsersFacade} from '../../states/facade/users.facade';
 import {fadeInAfter, fadeInOverlay} from '../../animations/fade-in.animation';
 import {takeUntil} from 'rxjs/operators';
 

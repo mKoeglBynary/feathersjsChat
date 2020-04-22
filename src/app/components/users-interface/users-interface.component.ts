@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
-import {AuthFacade} from '../../states/facade/authFacade';
+import {AuthFacade} from '../../states/facade/auth.facade';
 import {buttonClickedAnimation} from '../../animations/button-click.animation';
 import {IUser} from '../../models/interfaces/user.model.i';
 

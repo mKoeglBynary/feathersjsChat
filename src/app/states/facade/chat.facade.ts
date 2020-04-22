@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import { Store } from '@ngxs/store';
 import {AddMessage, AddMessages} from '../actions/chat.actions';
 import {IMessage} from '../../models/interfaces/message.model.i';
-import {ChatState} from '../chatState';
+import {ChatState} from '../chat.state';
 
 @Injectable({
   providedIn: 'root'

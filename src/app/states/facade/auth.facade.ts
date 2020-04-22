@@ -4,7 +4,7 @@ import {UserLogin, UserLogout, UserRegister, UserErrors, UserChangeLanguage} fro
 import {Observable} from 'rxjs';
 import {IUser} from '../../models/interfaces/user.model.i';
 import {Language} from '../../models/configs/language-options.model';
-import {ActiveUserState} from '../activeUserState';
+import {ActiveUserState} from '../active-user.state';
 
 @Injectable({
   providedIn: 'root'

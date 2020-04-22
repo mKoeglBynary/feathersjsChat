@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
-import {AuthFacade} from '../../../states/facade/authFacade';
+import {AuthFacade} from '../../../states/facade/auth.facade';
 import {Language} from '../../../models/configs/language-options.model';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';

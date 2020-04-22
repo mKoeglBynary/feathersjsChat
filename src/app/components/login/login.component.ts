@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthFacade} from '../../states/facade/authFacade';
+import {AuthFacade} from '../../states/facade/auth.facade';
 import {buttonClickedAnimation} from '../../animations/button-click.animation';
 import {IInputControl} from '../../models/interfaces/input-control.model.i';
 import {IUser} from '../../models/interfaces/user.model.i';

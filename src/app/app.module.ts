@@ -23,9 +23,9 @@ import { MessageInterfaceComponent } from './components/message-interface/messag
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { InputComponent } from './components/common/input/input.component';
 import { LanguageSelectorComponent } from './components/common/language-selector/language-selector.component';
-import {ChatState} from './states/chatState';
-import {UserState} from './states/userState';
-import {ActiveUserState} from './states/activeUserState';
+import {ChatState} from './states/chat.state';
+import {UserState} from './states/user.state';
+import {ActiveUserState} from './states/active-user.state';
 import { LocalizedDatePipe } from './pipes/localized-date.pipe';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 
