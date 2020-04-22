@@ -49,7 +49,6 @@ export class FeathersService {
   }
 
   async sendMessage(text: string): Promise<void> {
-    console.log(text);
     await this.app.service(FeathersEndpoint.MESSAGES).create({
       text
     });

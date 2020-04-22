@@ -11,7 +11,7 @@ export class LocalizedDatePipe implements PipeTransform {
     private _translateService: TranslateService
   ) {}
 
-  transform(value: number, format: string = 'LLLLL'): string {
+  transform(value: number, format: string = 'LLL'): string {
     moment.locale(this._translateService.currentLang);
 
     return moment(value).format(format);
