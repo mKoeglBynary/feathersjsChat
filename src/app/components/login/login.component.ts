@@ -25,7 +25,7 @@ import {Language} from '../../models/configs/language-options.model';
 export class LoginComponent implements OnInit, OnDestroy {
   private readonly _onDestroy = new Subject();
   loginAndRegisterForm: FormGroup;
-  errors: string;
+  authError: string;
   email: IInputControl;
   password: IInputControl;
   registerClicked = false;
@@ -42,10 +42,10 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
     this.createFormGroup();
 
-    this._authFacade.getErrors()
+    this._authFacade.getAuthError()
       .pipe(takeUntil(this._onDestroy))
       .subscribe((err) => {
-        this.errors = err;
+        this.authError = err;
       });
   }
 
@@ -101,8 +101,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   resetErrors(): void {
-    if (this.errors && this.errors.length > 0) {
-      this._authFacade.addErrors('');
+    if (this.authError && this.authError.length > 0) {
+      this._authFacade.addAuthError('');
     }
   }
 
@@ -121,7 +121,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   get isAuthError(): boolean {
-    return this.errors && this.errors.length && this.validateForm();
+    return this.authError && this.authError.length && this.validateForm();
   }
 
 }

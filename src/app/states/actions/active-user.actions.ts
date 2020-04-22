@@ -15,8 +15,8 @@ export class UserRegister {
   constructor(public readonly payload: Partial<IUser>) {}
 }
 
-export class UserErrors {
-  static readonly type = '[User] errors';
+export class UserAuthError {
+  static readonly type = '[User] auth error';
   constructor(public readonly payload: string) {
   }
 }

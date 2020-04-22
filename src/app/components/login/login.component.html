@@ -5,7 +5,7 @@
         (ngSubmit)="submitLogin(); loginClicked = !loginClicked">
 
     <div class="app-login__error" *ngIf="isAuthError">
-      {{ errors | translate}}
+      {{ authError | translate}}
     </div>
 
     <app-input [data]="email" (keydown)="resetErrors()"></app-input>

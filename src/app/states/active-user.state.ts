@@ -1,7 +1,7 @@
 import {IUser} from '../models/interfaces/user.model.i';
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {Injectable, NgZone} from '@angular/core';
-import {UserChangeLanguage, UserErrors, UserLogin, UserLogout, UserRegister} from './actions/active-user.actions';
+import {UserChangeLanguage, UserAuthError, UserLogin, UserLogout, UserRegister} from './actions/active-user.actions';
 import {AuthService} from '../services/auth-service/auth.service';
 import {Router} from '@angular/router';
 import {Language} from '../models/configs/language-options.model';
@@ -10,7 +10,7 @@ export interface IActiveUserStateModel {
   user: IUser | {};
   isLoggedIn: boolean;
   language: Language;
-  errors?: string;
+  authError?: string;
 }
 
 @State<IActiveUserStateModel>({
@@ -35,8 +35,8 @@ export class ActiveUserState {
   }
 
   @Selector()
-  static errors(state: IActiveUserStateModel): string {
-    return state.errors;
+  static authError(state: IActiveUserStateModel): string {
+    return state.authError;
   }
 
   @Selector()
@@ -44,10 +44,10 @@ export class ActiveUserState {
     return state.language;
   }
 
-  @Action(UserErrors)
-  userErrors({patchState}: StateContext<IActiveUserStateModel>, {payload}: UserErrors): void {
+  @Action(UserAuthError)
+  userErrors({patchState}: StateContext<IActiveUserStateModel>, {payload}: UserAuthError): void {
     patchState({
-      errors: payload
+      authError: payload
     });
   }
 
@@ -58,7 +58,7 @@ export class ActiveUserState {
       dispatch(new UserLogin(payload));
     } else {
       patchState({
-        errors: 'LOGIN.ERRORS.AUTH.REGISTERED'
+        authError: 'LOGIN.ERRORS.AUTH.REGISTERED'
       });
     }
   }
@@ -69,13 +69,13 @@ export class ActiveUserState {
     const user: IUser = await this._authService.login(payload);
     if (!user) {
       patchState({
-        errors: 'LOGIN.ERRORS.AUTH.WRONG_INPUT'
+        authError: 'LOGIN.ERRORS.AUTH.WRONG_INPUT'
       });
     } else {
       patchState({
         user,
         isLoggedIn: true,
-        errors: '',
+        authError: '',
         language: user.language
       });
 
