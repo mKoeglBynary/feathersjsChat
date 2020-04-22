@@ -28,11 +28,11 @@ import {takeUntil} from 'rxjs/operators';
   }
 })
 export class ChatComponent implements OnInit, OnDestroy {
-  private readonly _onDestroy = new Subject();
   messages$: Observable<IMessage[]>;
   users$: Observable<IUser[]>;
-  load = false;
-  loadOtherElements = 'hidden';
+  load: boolean = false;
+  loadOtherElements: string = 'hidden';
+  private readonly _onDestroy = new Subject();
 
   constructor(
     private readonly _router: Router,

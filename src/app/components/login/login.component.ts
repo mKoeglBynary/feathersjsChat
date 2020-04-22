@@ -23,13 +23,13 @@ import {Language} from '../../models/configs/language-options.model';
 })
 
 export class LoginComponent implements OnInit, OnDestroy {
-  private readonly _onDestroy = new Subject();
   loginAndRegisterForm: FormGroup;
   authError: string;
   email: IInputControl;
   password: IInputControl;
   registerClicked = false;
   loginClicked = false;
+  private readonly _onDestroy = new Subject();
 
   constructor(
     private readonly _authFacade: AuthFacade,

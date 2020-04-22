@@ -18,7 +18,7 @@ import {IUser} from '../../models/interfaces/user.model.i';
 })
 export class UsersInterfaceComponent implements OnInit {
   @Input() users: IUser[];
-  signOutClicked = false;
+  signOutClicked: boolean = false;
 
   constructor(
     private readonly _authFacade: AuthFacade,
