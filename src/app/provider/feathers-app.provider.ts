@@ -1,5 +1,5 @@
-import feathers from '@feathersjs/feathers';
 import {InjectionToken} from '@angular/core';
+import feathers from '@feathersjs/feathers';
 
 
 const APP = feathers();

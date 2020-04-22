@@ -1,0 +1,17 @@
+@import "../settings/shared-styles.settings";
+
+@mixin shared-chat-button-styles() {
+    background-color: $chat-button-background-color;
+    border: none;
+    border-radius: 0.313rem;
+    color: $chat-button-font-color;
+    font-size: 1rem;
+    height: 2.5rem;
+    outline: none;
+    padding: 0.1rem;
+    width: 6rem;
+
+  &:hover {
+    background: $chat-button-hover-background-color;
+  }
+}

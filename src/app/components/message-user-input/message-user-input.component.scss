@@ -1,4 +1,4 @@
-@import "message-user-input.component.settings";
+@import "../../styles/globals/tools/shared-styles.tools";
 
 app-message-user-input {
   display: block;
@@ -21,18 +21,6 @@ app-message-user-input {
   }
 
   > button {
-    color: $button-font-color;
-    background-color: $button-background-color;
-    border: none;
-    border-radius: 0.313rem;
-    font-size: 1rem;
-    height: 2.5rem;
-    outline: none;
-    padding: 0.125rem;
-    width: 5rem;
-
-    &:hover {
-      background: $button-hover-background-color;
-    }
+    @include shared-chat-button-styles;
   }
 }
