@@ -1,9 +1,8 @@
+@import "chat.component.settings";
+
 app-chat {
   display: block;
 }
-
-$chat-header-background-color: #c916a9;
-$chat-header-font-color: #ffffff;
 
 .app-chat {
   > .app-chat__overlay {

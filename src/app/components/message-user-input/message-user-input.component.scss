@@ -1,10 +1,8 @@
+@import "message-user-input.component.settings";
+
 app-message-user-input {
   display: block;
 }
-
-$button-font-color: #ffffff;
-$button-background-color: #c916a9;
-$button-hover-background-color: #fc21d1;
 
 .app-message-user-input {
   display: flex;

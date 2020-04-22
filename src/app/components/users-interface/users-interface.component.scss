@@ -1,11 +1,8 @@
+@import "users-interface.component.settings";
+
 app-users-interface {
   display: block;
 }
-
-$interface-background-color: #dbd9d9;
-$button-background-color: #c916a9;
-$button-font-color: #ffffff;
-$button-hover-background-color: #fc21d1;
 
 .app-users-interface {
   height: inherit;
