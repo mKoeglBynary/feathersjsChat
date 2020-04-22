@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import {Router} from '@angular/router';
 import {Observable, Subject} from 'rxjs';
-import {FeathersService} from '../../services/feathersService/feathers.service';
+import {FeathersService} from '../../services/feathers-service/feathers.service';
 import {ChatFacade} from '../../states/facade/chat.facade';
 import {IUser} from '../../models/interfaces/user.model.i';
 import {IMessage} from '../../models/interfaces/message.model.i';

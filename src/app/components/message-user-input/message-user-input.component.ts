@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {FeathersService} from '../../services/feathersService/feathers.service';
+import {FeathersService} from '../../services/feathers-service/feathers.service';
 import {buttonClickedAnimation} from '../../animations/button-click.animation';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Application} from '@feathersjs/feathers';
-import {FeathersService} from '../feathersService/feathers.service';
+import {FeathersService} from '../feathers-service/feathers.service';
 import {environment} from '../../../environments/environment';
 import {Language} from '../../models/configs/language-options.model';
 import {FeathersEvent} from '../../models/configs/feathers-event.model';

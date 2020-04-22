@@ -2,7 +2,7 @@ import {IUser} from '../models/interfaces/user.model.i';
 import {Action, Selector, State, StateContext} from '@ngxs/store';
 import {Injectable, NgZone} from '@angular/core';
 import {UserChangeLanguage, UserErrors, UserLogin, UserLogout, UserRegister} from './actions/active-user.actions';
-import {AuthService} from '../services/authService/auth.service';
+import {AuthService} from '../services/auth-service/auth.service';
 import {Router} from '@angular/router';
 import {Language} from '../models/configs/language-options.model';
 
