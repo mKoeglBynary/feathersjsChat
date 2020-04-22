@@ -12,7 +12,6 @@ const appRoutes: Routes = [
   { path: '**', component: PageNotFoundComponent}
 ];
 @NgModule({
-  declarations: [],
   imports: [
     RouterModule.forRoot(appRoutes),
   ],

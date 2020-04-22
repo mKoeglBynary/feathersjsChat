@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
+import {coerceNumberProperty} from '@angular/cdk/coercion';
 
 @Component({
   selector: 'app-active-users-header',
@@ -11,7 +12,16 @@ import {ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation} fr
   }
 })
 export class ActiveUsersHeaderComponent implements OnInit {
-  @Input() usersLength: number;
+  private _usersLength: number;
+
+  @Input()
+  set usersLength(value: number) {
+    this._usersLength = coerceNumberProperty(value);
+  }
+
+  get usersLength(): number {
+    return this._usersLength;
+  }
 
   constructor() {
   }
