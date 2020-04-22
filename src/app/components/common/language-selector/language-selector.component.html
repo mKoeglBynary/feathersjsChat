@@ -1,17 +1,15 @@
-<div class="app-language-selector__container" (appClickOutside)="dropdownClicked=false">
+<div class="app-language-selector__container" (appClickOutside)="setDropdownVisibility(false)">
 
-  <div class="app-language-selector__dropdown" (click)="dropdownClicked = !dropdownClicked">
+  <div class="app-language-selector__dropdown" (click)="setDropdownVisibility(!showDropdown)">
     <img class="app-language-selector__flag" *ngIf="selectedLanguage" [src]="getCountryFlag(selectedLanguage)" alt=""/>
-    <div [ngClass]="dropdownClicked ? 'arrow-up' : 'arrow-down'">
+    <div [ngClass]="showDropdown ? 'arrow-up' : 'arrow-down'">
     </div>
   </div>
 
-  <div *ngIf="dropdownClicked">
+  <div *ngIf="showDropdown">
     <div *ngFor="let language of languages">
       <img *ngIf="language != selectedLanguage"
-           (click)="selectedLanguage = language;
-             dropdownClicked = false;
-             changeLanguage()"
+           (click)="languageSelected(language)"
            class="app-language-selector__flag"
            [src]="getCountryFlag(language)" alt=""/>
     </div>

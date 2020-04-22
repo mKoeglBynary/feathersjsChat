@@ -23,7 +23,7 @@ export class AuthService {
         await this._app.reAuthenticate();
       } else {
         await this._app.authenticate({
-            strategy: environment.FEATHERS_SETTINGS.strategy,
+            strategy: environment.feathersSettings.strategy,
             ...data
         });
       }

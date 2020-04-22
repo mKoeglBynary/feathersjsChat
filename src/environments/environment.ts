@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  FEATHERS_SETTINGS: {
+  feathersSettings: {
     strategy: 'local',
     url: 'http://localhost:3030',
     storageKey: 'auth'

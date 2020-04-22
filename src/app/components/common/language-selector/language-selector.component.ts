@@ -19,7 +19,7 @@ import {LanguageUtils} from '../../../utils/language.utils';
 export class LanguageSelectorComponent implements OnInit, OnDestroy {
   private readonly _onDestroy = new Subject();
   selectedLanguage: Language;
-  dropdownClicked = false;
+  showDropdown: boolean = false;
   getCountryFlag = LanguageUtils.getCountryFlag;
   languages: Language[] = Object.keys(Language).map(language => Language[language]);
 
@@ -31,8 +31,18 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
 
   }
 
-  changeLanguage(): void {
+  languageSelected(language: Language): void {
+    this.changeLanguage(language);
+    this.setDropdownVisibility(false);
+  }
+
+  changeLanguage(language: Language): void {
+    this.selectedLanguage = language;
     this._authFacade.changeLanguage(this.selectedLanguage);
+  }
+
+  setDropdownVisibility(showDropdown: boolean): void {
+    this.showDropdown = showDropdown;
   }
 
   ngOnInit(): void {

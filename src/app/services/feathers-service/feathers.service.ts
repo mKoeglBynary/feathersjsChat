@@ -19,10 +19,10 @@ export class FeathersService {
   constructor(
     @Inject(FEATHERS_APP_TOKEN) private readonly _app: Application
   ) {
-    const socket: SocketIOClient.Socket = io(environment.FEATHERS_SETTINGS.url);
+    const socket: SocketIOClient.Socket = io(environment.feathersSettings.url);
     this._app.configure(socketio(socket));
     this._app.configure(feathersAuthClient({
-      storageKey: environment.FEATHERS_SETTINGS.storageKey
+      storageKey: environment.feathersSettings.storageKey
     }));
   }
 

@@ -10,7 +10,7 @@
   </div>
 
   <div class="app-chat__container">
-    <app-users-interface [users]="users | async"></app-users-interface>
-    <app-message-interface [messages]="messages | async"></app-message-interface>
+    <app-users-interface [users]="users$ | async"></app-users-interface>
+    <app-message-interface [messages]="messages$ | async"></app-message-interface>
   </div>
 </div>

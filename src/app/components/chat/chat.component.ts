@@ -29,8 +29,8 @@ import {takeUntil} from 'rxjs/operators';
 })
 export class ChatComponent implements OnInit, OnDestroy {
   private readonly _onDestroy = new Subject();
-  messages: Observable<IMessage[]>;
-  users: Observable<IUser[]>;
+  messages$: Observable<IMessage[]>;
+  users$: Observable<IUser[]>;
   load = false;
   loadOtherElements = 'hidden';
 
@@ -58,13 +58,13 @@ export class ChatComponent implements OnInit, OnDestroy {
     const messages = await this._feathersService.getMessages();
     this._chatFacade.setMessages(messages);
     this._feathersService.getNewMessages().pipe(takeUntil(this._onDestroy)).subscribe(message => this._chatFacade.addMessage(message));
-    this.messages = this._chatFacade.getAllMessages();
+    this.messages$ = this._chatFacade.getAllMessages();
   }
 
   async _setAndConnectUsers() {
     const users = await this._feathersService.getUsers();
     this._usersFacade.addUsers(users);
     this._feathersService.getNewUsers().pipe(takeUntil(this._onDestroy)).subscribe(user => this._usersFacade.addUser(user));
-    this.users = this._usersFacade.getAllUsers();
+    this.users$ = this._usersFacade.getAllUsers();
   }
 }
