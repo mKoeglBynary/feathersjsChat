@@ -17,7 +17,7 @@ import {buttonClickedAnimation} from '../../animations/button-click.animation';
 })
 export class MessageUserInputComponent implements OnInit {
   userInput: string;
-  sendClicked = false;
+  sendButtonClicked: boolean = false;
 
   constructor(
     private readonly _feathersService: FeathersService,

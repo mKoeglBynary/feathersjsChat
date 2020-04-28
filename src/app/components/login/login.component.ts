@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   authError: string;
   email: IInputControl;
   password: IInputControl;
-  registerClicked = false;
-  loginClicked = false;
+  registerClicked: boolean = false;
+  loginClicked: boolean = false;
   private readonly _onDestroy = new Subject();
 
   constructor(

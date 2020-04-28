@@ -35,9 +35,9 @@ export class ChatComponent implements OnInit, OnDestroy {
   private readonly _onDestroy = new Subject();
 
   constructor(
-    private readonly _router: Router,
-    private readonly _feathersService: FeathersService,
     private readonly _chatFacade: ChatFacade,
+    private readonly _feathersService: FeathersService,
+    private readonly _router: Router,
     private readonly _usersFacade: UsersFacade,
   ) {
   }

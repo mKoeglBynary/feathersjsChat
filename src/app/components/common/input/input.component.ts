@@ -18,7 +18,6 @@ import {IInputControl} from '../../../models/interfaces/entity/input-control.mod
 })
 export class InputComponent implements OnInit {
   @Input() data: IInputControl;
-
   inputControl: IInputControl;
   error: string;
 
@@ -32,6 +31,7 @@ export class InputComponent implements OnInit {
   isErrorState(): boolean {
     const control = this.inputControl.formControl;
     const errors = this.inputControl.errors;
+
     if (0 === errors.length) {
       return false;
     }
@@ -48,4 +48,5 @@ export class InputComponent implements OnInit {
       }
     }
   }
+
 }

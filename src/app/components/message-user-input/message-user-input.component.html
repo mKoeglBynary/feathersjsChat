@@ -1,3 +1,3 @@
 <input [(ngModel)]="userInput" (keydown.enter)="sendMessage()">
-<button [@clicked]='sendClicked' (click)="sendMessage(); sendClicked = !sendClicked"
+<button [@clicked]='sendButtonClicked' (click)="sendMessage(); sendButtonClicked = !sendButtonClicked"
         appButton>{{ 'CHAT.SEND' | translate }}</button>
