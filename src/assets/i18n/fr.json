@@ -1,0 +1,28 @@
+{
+  "LOGIN": {
+    "EMAIL": "E-Mail",
+    "PASSWORD": "Mot de passe",
+    "LOGIN": "S'identifier",
+    "REGISTER": "S'inscrire",
+    "ERRORS": {
+      "AUTH": {
+        "WRONG_INPUT": "E-mail ou mot de passe incorrect",
+        "REGISTERED": "Déjà enregistré"
+      },
+      "EMAIL": {
+        "REQUIRED": "Un e-mail est requis",
+        "INVALID": "Doit être un e-mail valide"
+      },
+      "PASSWORD":{
+        "REQUIRED": "Mot de passe requis",
+        "MIN_LENGTH": "Contenir au moins 5 caractères"
+      }
+    }
+  },
+  "CHAT": {
+    "TITLE": "FeathersJsChat",
+    "USERS": "Utilisatrices",
+    "SIGN_OUT": "Déconnexion",
+    "SEND": "Envoyer"
+  }
+}

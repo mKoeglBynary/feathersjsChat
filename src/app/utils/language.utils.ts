@@ -4,7 +4,8 @@ export namespace LanguageUtils {
 
   export const COUNTRY_FLAGS: Record<Language, string> = {
     [Language.EN]: 'united-kingdom',
-    [Language.DE]: 'germany'
+    [Language.DE]: 'germany',
+    [Language.FR]: 'france'
   };
 
   export function getCountryFlag(language: Language): string {
