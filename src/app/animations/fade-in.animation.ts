@@ -1,4 +1,5 @@
 import {animate, AnimationTriggerMetadata, state, style, transition, trigger} from '@angular/animations';
+import {AnimationTransitions} from './animation';
 
 export const fadeInAnimations: {
   readonly fadeIn: AnimationTriggerMetadata,
@@ -8,21 +9,21 @@ export const fadeInAnimations: {
   fadeIn: trigger('fadeIn', [
     transition(':enter', [
       style({ opacity: 0}),
-      animate('800ms ease-in'),
+      animate(AnimationTransitions.FADE_IN),
     ]),
   ]),
   fadeInOverlay: trigger('fadeInOverlay', [
     transition('* => true', [
-      animate('600ms ease-in-out', style({
+      animate(AnimationTransitions.OVERLAY_IN_OUT, style({
         opacity: 0,
         visibility: 'visible',
         transform: 'translateY(-150px) scale(0)'
       })),
-      animate('1300ms ease-in-out', style({
+      animate(AnimationTransitions.OVERLAY_SHOW, style({
         opacity: 1,
         transform: 'translateY(200px)'
       })),
-      animate('0.8s 200ms ease-in-out', style({
+      animate(AnimationTransitions.OVERLAY_IN_OUT, style({
         visibility: 'hidden',
         opacity: 0,
         transform: 'rotate(-90deg) translateY(-100px) scale(0.3)',
@@ -34,7 +35,7 @@ export const fadeInAnimations: {
     state('false', style({opacity: 0, visibility: 'hidden'})),
     state('true', style({opacity: 1, visibility: 'visible'})),
     transition('false => true', [
-      animate('0.4s ease-in')
+      animate(AnimationTransitions.DEFAULT)
     ])
   ])
 };
