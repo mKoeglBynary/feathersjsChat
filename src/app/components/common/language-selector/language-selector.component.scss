@@ -1,3 +1,5 @@
+@import "language-selector.component.settings";
+
 app-language-selector {
   display: block;
 }
@@ -5,7 +7,7 @@ app-language-selector {
 .app-language-selector {
   height: 100%;
   opacity: 1;
-  position: absolute;  bottom: 0;  left: 0;
+  position: absolute;  top: 0;  left: 0;
   z-index: 3;
 
   .app-language-selector__flag {
@@ -13,13 +15,18 @@ app-language-selector {
   }
 
   > .app-language-selector__container {
+    background: $dropdown-background-color;
+    border-radius: 1rem;
     height: fit-content;
-    margin: 0.75rem;
+    margin: 0.125rem;
     position: relative; top: 0;
     width: fit-content;
 
     > .app-language-selector__dropdown {
+      background: $dropdown-background-color;
+      border-radius: 1rem;
       display: flex;
+      padding: 0.5rem;
       position: relative;
 
       > .arrow-up {
@@ -30,6 +37,10 @@ app-language-selector {
         content: url('https://api.iconify.design/dashicons-arrow-down-alt2.svg?height=20');
       }
 
+    }
+
+    > .app-language-selector__options {
+      padding: 0.5rem;
     }
 
   }

@@ -6,7 +6,7 @@
     </div>
   </div>
 
-  <div *ngIf="showDropdown">
+  <div *ngIf="showDropdown" class="app-language-selector__options">
     <div *ngFor="let language of languages">
       <img *ngIf="language != selectedLanguage"
            (click)="languageSelected(language)"

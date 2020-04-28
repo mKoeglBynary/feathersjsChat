@@ -5,6 +5,11 @@ app-chat {
 }
 
 .app-chat {
+  box-shadow: 0 0 2.688rem 1rem $app-chat-border-shadow-color;
+  margin: auto;
+  max-width: 60rem;
+  position: relative;
+
   > .app-chat__overlay {
     background: none;
     display: flex;
