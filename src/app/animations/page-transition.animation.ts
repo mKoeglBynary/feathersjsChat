@@ -7,7 +7,7 @@ export const pageTransitionAnimation = trigger('routeAnimations', [
 
 function chatToLoginTransition() {
   return (transition('chat => login', [
-    query('.app-chat__animation-container', style({
+    query('.app-chat__animation-container',  style({
       opacity: 1,
       visibility: 'visible'
     })),

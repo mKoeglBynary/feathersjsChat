@@ -16,4 +16,4 @@ export const buttonClickedAnimation = trigger('clicked', [
       })
     ]))
   ])
-])
+]);
