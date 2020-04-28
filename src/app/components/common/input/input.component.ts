@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {ControlContainer, FormGroupDirective} from '@angular/forms';
-import {IInputControl} from '../../../models/interfaces/input-control.model.i';
+import {IInputControl} from '../../../models/interfaces/entity/input-control.model.i';
 
 @Component({
   selector: 'app-input',

@@ -28,6 +28,7 @@
     "@ngx-translate/http-loader": "^4.0.0",
     "@ngxs/logger-plugin": "^3.6.2",
     "@ngxs/store": "^3.6.2",
+    "lodash": "^4.17.15",
     "moment": "^2.24.0",
     "rxjs": "~6.5.4",
     "socket.io": "^2.3.0",

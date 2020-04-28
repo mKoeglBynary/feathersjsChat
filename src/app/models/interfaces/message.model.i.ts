@@ -1,5 +1,5 @@
 import { IUser} from './user.model.i';
-import {IEntity} from './entity.model.i';
+import {IEntity} from './entity/entity.model.i';
 
 export interface IMessage extends IEntity {
   text: string;

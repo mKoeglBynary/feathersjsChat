@@ -5,6 +5,7 @@ import {Language} from '../../../models/configs/language-options.model';
 import {Subject} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {LanguageUtils} from '../../../utils/language.utils';
+import {EnumUtils} from '../../../utils/enum.utils';
 
 @Component({
   selector: 'app-language-selector',
@@ -20,7 +21,7 @@ export class LanguageSelectorComponent implements OnInit, OnDestroy {
   selectedLanguage: Language;
   showDropdown: boolean = false;
   getCountryFlag = LanguageUtils.getCountryFlag;
-  languages: Language[] = Object.keys(Language).map(language => Language[language]);
+  languages: Language[] = EnumUtils.getValues(Language);
   private readonly _onDestroy = new Subject();
 
 

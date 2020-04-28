@@ -9,6 +9,7 @@ import {ActiveUserState} from '../active-user.state';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthFacade {
   constructor(
     private readonly _store: Store

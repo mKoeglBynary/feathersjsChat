@@ -31,7 +31,7 @@ export class ChatState {
   }
 
   @Action(ChatActions.SetMessages)
-  addMessages({patchState}: StateContext<IChatStateModel>, {payload}: ChatActions.SetMessages): void {
+  setMessages({patchState}: StateContext<IChatStateModel>, {payload}: ChatActions.SetMessages): void {
     patchState({
       messages: [...payload]
     });

@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulation
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthFacade} from '../../states/facade/auth.facade';
 import {buttonClickedAnimation} from '../../animations/button-click.animation';
-import {IInputControl} from '../../models/interfaces/input-control.model.i';
+import {IInputControl} from '../../models/interfaces/entity/input-control.model.i';
 import {IUser} from '../../models/interfaces/user.model.i';
 import {Subject} from 'rxjs';
 import {take, takeUntil} from 'rxjs/operators';
