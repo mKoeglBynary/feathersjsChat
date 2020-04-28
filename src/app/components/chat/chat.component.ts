@@ -31,7 +31,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   messages$: Observable<IMessage[]>;
   users$: Observable<IUser[]>;
   load: boolean = false;
-  loadOtherElements: string = 'hidden';
+  loadOtherElements: boolean = false;
   private readonly _onDestroy = new Subject();
 
   constructor(

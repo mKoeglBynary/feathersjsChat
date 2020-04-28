@@ -31,9 +31,9 @@ export const fadeInAnimations: {
   ]),
 
   fadeInAfter: trigger('fadeInAfter', [
-    state('hidden', style({opacity: 0, visibility: 'hidden'})),
-    state('show', style({opacity: 1, visibility: 'visible'})),
-    transition('hidden => show', [
+    state('false', style({opacity: 0, visibility: 'hidden'})),
+    state('true', style({opacity: 1, visibility: 'visible'})),
+    transition('false => true', [
       animate('0.4s ease-in')
     ])
   ])
