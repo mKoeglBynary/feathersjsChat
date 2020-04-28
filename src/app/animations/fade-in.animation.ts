@@ -24,7 +24,7 @@ export const fadeInAnimations: {
   fadeIn: trigger('fadeIn', [
     transition(':enter', [
       style(fadeInStyles.hidden),
-      animate(AnimationTransitions.FADE_IN),
+      animate(AnimationTransitions.FADE),
     ]),
   ]),
   fadeInOverlay: trigger('fadeInOverlay', [

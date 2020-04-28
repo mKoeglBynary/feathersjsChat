@@ -10,7 +10,7 @@ const clickStyles = {
     transform: 'translateY(-2px)',
     opacity: 1
   }
-}
+};
 
 export const buttonClickedAnimation = trigger('clicked', [
   transition('true <=> false', [
