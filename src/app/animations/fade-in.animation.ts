@@ -4,7 +4,7 @@ import {AnimationTransitions} from './animation';
 const fadeInStyles = {
   hidden: {
     opacity: 0,
-    visibility: 'hidden'
+    visibility: 'hidden',
   },
   visible: {
     opacity: 1,
@@ -39,7 +39,7 @@ export const fadeInAnimations: {
       })),
       animate(AnimationTransitions.OVERLAY_IN_OUT, style({
         ...fadeInStyles.hidden,
-        transform: 'translateY(-100px) scale(0.3)',
+        transform: 'translateY(-100px) scale(0)',
       })),
     ])
   ]),

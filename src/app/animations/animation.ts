@@ -1,6 +1,6 @@
 export class AnimationDurations {
   static DEFAULT = '300ms';
-  static FADE = '800ms';
+  static FADE = '1000ms';
   static OVERLAY_IN_OUT = '600ms 100ms';
   static OVERLAY_SHOW = '1.3s';
 }

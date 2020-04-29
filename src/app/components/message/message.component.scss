@@ -45,5 +45,25 @@ app-message {
       padding-top: 0.3125rem;
     }
   }
-
 }
+
+@media screen and (max-width: 700px){
+  .app-message__header{
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .app-message{
+    width: 100vw;
+
+    > .app-message__details{
+      width: 50%;
+
+      > .app-message__header{
+        flex-wrap: nowrap;
+      }
+    }
+  }
+}
+

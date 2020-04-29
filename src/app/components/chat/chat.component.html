@@ -1,16 +1,16 @@
-<div class="app-chat__overlay" [@fadeInOverlay]="load" (@fadeInOverlay.done)="loadOtherElements=true">
-  <span class="iconify" data-icon="logos-feathersjs" data-inline="false"></span>
+<div (window:resize)="onResize($event)" class="app-chat__overlay" [@fadeInOverlay]="load" (@fadeInOverlay.done)="loadOtherElements=true">
 </div>
 
 <div class="app-chat__animation-container" [@fadeInAfter]="loadOtherElements">
   <div class="app-chat__header">
     <app-language-selector></app-language-selector>
+    <img  [ngClass]="{'app-chat__menu-button-open': toggleResponsiveMenu}" class="app-chat__menu-button"  (click)="menuButtonClicked()" alt="">
     <span class="iconify" data-icon="logos-feathersjs" data-inline="false"></span>
     {{'CHAT.TITLE' | translate}}
   </div>
 
   <div class="app-chat__container">
-    <app-users-interface [users]="users$ | async"></app-users-interface>
-    <app-message-interface [messages]="messages$ | async"></app-message-interface>
+    <app-users-interface [@fadeIn] *ngIf="toggleResponsiveMenu" [users]="users$ | async"></app-users-interface>
+    <app-message-interface  [messages]="messages$ | async"></app-message-interface>
   </div>
 </div>

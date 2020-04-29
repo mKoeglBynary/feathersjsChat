@@ -27,7 +27,7 @@ export const pageTransitionAnimation = trigger('routeAnimations', [
 function chatToLoginTransition() {
   return (transition('chat => login', [
     query('.app-chat__animation-container',  style(pageTransitionStyles.visible)),
-    query(':enter, :leave', style(pageTransitionStyles.absolute)),
+    query(':enter', style(pageTransitionStyles.absolute)),
     group([
       query(':enter', animate(AnimationTransitions.FADE, keyframes([
         style({ left: '-100%'}),

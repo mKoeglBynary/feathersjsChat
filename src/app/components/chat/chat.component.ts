@@ -19,7 +19,7 @@ import {takeUntil} from 'rxjs/operators';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss'],
   animations: [
-    fadeInAnimations.fadeInAfter, fadeInAnimations.fadeInOverlay
+    fadeInAnimations.fadeInAfter, fadeInAnimations.fadeInOverlay, fadeInAnimations.fadeIn
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -32,6 +32,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   users$: Observable<IUser[]>;
   load: boolean = false;
   loadOtherElements: boolean = false;
+  toggleResponsiveMenu: boolean = false;
   private readonly _onDestroy = new Subject();
 
   constructor(
@@ -43,6 +44,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
+    this.toggleResponsiveMenu = window.innerWidth > 600;
     this.load = true;
     await this._setAndConnectMessages();
     await this._setAndConnectUsers();
@@ -66,5 +68,14 @@ export class ChatComponent implements OnInit, OnDestroy {
     this._usersFacade.addUsers(users);
     this._feathersService.getNewUsers().pipe(takeUntil(this._onDestroy)).subscribe(user => this._usersFacade.addUser(user));
     this.users$ = this._usersFacade.getAllUsers();
+  }
+
+  onResize(event) {
+    this.toggleResponsiveMenu = event.target.innerWidth >= 600;
+  }
+
+  menuButtonClicked() {
+    this.toggleResponsiveMenu = !this.toggleResponsiveMenu;
+
   }
 }
