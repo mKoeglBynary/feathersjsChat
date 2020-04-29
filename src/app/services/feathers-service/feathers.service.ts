@@ -1,5 +1,5 @@
 import {Inject, Injectable} from '@angular/core';
-import feathers, {Application} from '@feathersjs/feathers';
+import {Application} from '@feathersjs/feathers';
 import feathersAuthClient from '@feathersjs/authentication-client';
 import socketio from '@feathersjs/socketio-client';
 import * as io from 'socket.io-client';
@@ -10,6 +10,7 @@ import {IUser} from '../../models/interfaces/user.model.i';
 import {FeathersEvent} from '../../models/configs/feathers-event.model';
 import {FeathersEndpoint} from '../../models/configs/feathers-endpoints.model';
 import {FEATHERS_APP_TOKEN} from '../../provider/feathers-app.provider';
+import {IEntity} from '../../models/interfaces/entity/entity.model.i';
 
 @Injectable({
   providedIn: 'root'
@@ -37,11 +38,15 @@ export class FeathersService {
   }
 
   getNewMessages(): Observable<IMessage> {
-    return fromEvent(this._app.service(FeathersEndpoint.MESSAGES), FeathersEvent.CREATED);
+    return this._getNewData(FeathersEndpoint.MESSAGES);
   }
 
   getNewUsers(): Observable<IUser> {
-    return fromEvent(this._app.service(FeathersEndpoint.USERS), FeathersEvent.CREATED);
+    return this._getNewData(FeathersEndpoint.USERS);
+  }
+
+  private _getNewData<T extends IEntity>(endpoint: FeathersEndpoint): Observable<T> {
+    return fromEvent(this._app.service(endpoint), FeathersEvent.CREATED);
   }
 
   async getUsers(): Promise<IUser[]> {
