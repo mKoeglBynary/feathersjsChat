@@ -5,7 +5,7 @@ app-chat {
 }
 
 .app-chat {
-  box-shadow: 0 0 2.688rem 1rem $app-chat-border-shadow-color;
+  box-shadow: 0 0 2.6875rem 1rem $app-chat-border-shadow-color;
   margin: auto;
   max-width: 60rem;
   position: relative;
@@ -39,7 +39,7 @@ app-chat {
         weight: 100;
       }
       justify-content: center;
-      letter-spacing: 0.063rem;
+      letter-spacing: 0.0625rem;
       padding: 0.5rem;
       width: 100%;
 

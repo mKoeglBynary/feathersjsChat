@@ -13,7 +13,7 @@ app-message {
     border-radius: 100%;
     display: inline-block;
     height: 3rem;
-    margin-right: 0.938rem;
+    margin-right: 0.9375rem;
     width: 3.875em;
   }
 
@@ -26,7 +26,7 @@ app-message {
     > .app-message__header {
       display: flex;
       flex: 1;
-      font-size: 0.938rem;
+      font-size: 0.9375rem;
 
 
       > .app-message__date {
@@ -40,9 +40,9 @@ app-message {
       color: $message-font-color;
       flex: 2;
       height: fit-content;
-      line-height: 1.313rem;
+      line-height: 1.3125rem;
       overflow-wrap: break-word;
-      padding-top: 0.313rem;
+      padding-top: 0.3125rem;
     }
   }
 
