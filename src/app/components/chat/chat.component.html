@@ -6,7 +6,7 @@
     <app-language-selector></app-language-selector>
     <img  [ngClass]="{'app-chat__menu-button-open': toggleResponsiveMenu}" class="app-chat__menu-button"  (click)="menuButtonClicked()" alt="">
     <span class="iconify" data-icon="logos-feathersjs" data-inline="false"></span>
-    {{'CHAT.TITLE' | translate}}
+    <span *ngIf="hideHeader">{{'CHAT.TITLE' | translate}}</span>
   </div>
 
   <div class="app-chat__container">

@@ -3,7 +3,8 @@ app-messages {
 }
 
 .app-messages {
-  height: 92%;
+  position: relative;
+  height: calc(90% - 2vh);
   overflow: scroll;
 }
 

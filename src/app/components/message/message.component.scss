@@ -47,12 +47,6 @@ app-message {
   }
 }
 
-@media screen and (max-width: 43.75rem){
-  .app-message__header{
-    flex-wrap: wrap;
-  }
-}
-
 @media screen and (max-width: 37.5rem){
   .app-message{
     width: 100vw;

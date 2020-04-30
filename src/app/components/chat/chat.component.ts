@@ -33,6 +33,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   load: boolean = false;
   loadOtherElements: boolean = false;
   toggleResponsiveMenu: boolean = false;
+  hideHeader = false;
   private readonly _onDestroy = new Subject();
 
   constructor(
@@ -72,6 +73,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   onResize(event) {
     this.toggleResponsiveMenu = event.target.innerWidth >= 600;
+    this.hideHeader = event.target.innerWidth >= 320;
   }
 
   menuButtonClicked() {
