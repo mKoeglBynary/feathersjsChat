@@ -19,7 +19,7 @@ import {takeUntil} from 'rxjs/operators';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss'],
   animations: [
-    fadeInAnimations.fadeInAfter, fadeInAnimations.fadeInOverlay, fadeInAnimations.fadeIn
+    fadeInAnimations.fadeInAfter, fadeInAnimations.fadeInOverlay, fadeInAnimations.fadeOut, fadeInAnimations.fadeIn
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -33,7 +33,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   load: boolean = false;
   loadOtherElements: boolean = false;
   toggleResponsiveMenu: boolean = false;
-  hideHeader = false;
+  hideHeader: boolean = false;
   private readonly _onDestroy = new Subject();
 
   constructor(
