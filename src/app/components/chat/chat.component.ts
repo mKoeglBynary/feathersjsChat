@@ -45,7 +45,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   async ngOnInit() {
-    this.toggleResponsiveMenu = window.innerWidth > 600;
+    this.setScreenSensitiveVariables();
     this.load = true;
     await this._setAndConnectMessages();
     await this._setAndConnectUsers();
@@ -78,6 +78,10 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   menuButtonClicked() {
     this.toggleResponsiveMenu = !this.toggleResponsiveMenu;
+  }
 
+  private setScreenSensitiveVariables() {
+    this.toggleResponsiveMenu = window.innerWidth > 600;
+    this.hideHeader = window.innerWidth > 320;
   }
 }

@@ -11,9 +11,10 @@ app-message {
 
   > img {
     border-radius: 50%;
-    display: inline-block;
+    display: block;
     height: 3.5rem;
     margin-right: 0.9375rem;
+    vertical-align: middle;
     width: 3.5rem;
   }
 
