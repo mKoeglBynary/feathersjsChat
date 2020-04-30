@@ -77,13 +77,13 @@ export const fadeInAnimations: {
           The real animation is in the query with the selector ':self'
         */
         query('*',
-          animate(AnimationTransitions.FADE, keyframes([
+          animate(AnimationTransitions.DEFAULT, keyframes([
             style({ left: 0}),
             style({ left: 0}), ])
           )
         ),
         query(':self',
-          animate( AnimationTransitions.FADE,
+          animate( AnimationTransitions.DEFAULT,
             style(fadeInStyles.hidden)))
         ])
 

@@ -70,13 +70,13 @@ app-chat {
     cursor: pointer;
     left: 0.5rem;
     position: absolute;
-    transition: 1s ease-in-out;
+    transition: 300ms ease-in-out;
     z-index: 3;
   }
 
   .app-chat__menu-button-open{
     transform: rotate(90deg);
-    transition: 1s ease-in-out;
+    transition: 800ms ease-in-out;
   }
 
   .app-chat__container {

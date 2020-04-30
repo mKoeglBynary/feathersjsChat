@@ -27,6 +27,7 @@ app-message {
     > .app-message__header {
       display: flex;
       flex: 1;
+      flex-wrap: wrap;
       font-size: 0.9375rem;
 
 
@@ -54,10 +55,6 @@ app-message {
 
     > .app-message__details{
       width: 50%;
-
-      > .app-message__header{
-        flex-wrap: nowrap;
-      }
     }
   }
 }
