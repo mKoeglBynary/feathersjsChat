@@ -10,7 +10,7 @@
   </div>
 
   <div class="app-chat__container">
-    <app-users-interface [@fadeOut] [@fadeIn]
+    <app-users-interface [@slideOut] [@slideIn]
                          *ngIf="toggleResponsiveMenu"
                          [users]="users$ | async"></app-users-interface>
     <app-message-interface  [messages]="messages$ | async"></app-message-interface>

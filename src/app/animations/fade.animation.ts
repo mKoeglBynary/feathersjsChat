@@ -1,9 +1,6 @@
 import {
   animate,
   AnimationTriggerMetadata,
-  group,
-  keyframes,
-  query,
   state,
   style,
   transition,
@@ -30,7 +27,6 @@ export const fadeInAnimations: {
   readonly fadeIn: AnimationTriggerMetadata,
   readonly fadeInOverlay: AnimationTriggerMetadata,
   readonly fadeInAfter: AnimationTriggerMetadata,
-  readonly fadeOut: AnimationTriggerMetadata
   } = {
   fadeIn: trigger('fadeIn', [
     transition(':enter', [
@@ -54,7 +50,6 @@ export const fadeInAnimations: {
       })),
     ])
   ]),
-
   fadeInAfter: trigger('fadeInAfter', [
     state('false', style(fadeInStyles.hidden)),
     state('true', style(fadeInStyles.visible)),
@@ -62,31 +57,4 @@ export const fadeInAnimations: {
       animate(AnimationTransitions.DEFAULT)
     ])
   ]),
-
-  fadeOut: trigger('fadeOut', [
-    transition(':leave',
-      group([
-        /*
-          Strange Workaround.
-          NgIf destroys component but does not trigger ':leave'.
-          If the selector '*' is used, an animation is triggered and
-          the component is destroyed after that animation.
-          But the selector '*' does not select the component itself, but
-          a child-component.
-          So in the query with '*' nothing happens, except to set the animation-time.
-          The real animation is in the query with the selector ':self'
-        */
-        query('*',
-          animate(AnimationTransitions.DEFAULT, keyframes([
-            style({ left: 0}),
-            style({ left: 0}), ])
-          )
-        ),
-        query(':self',
-          animate( AnimationTransitions.DEFAULT,
-            style(fadeInStyles.hidden)))
-        ])
-
-      )
-  ])
 };

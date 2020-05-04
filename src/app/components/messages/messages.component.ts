@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit, ViewEncapsulation} from '@angular/core';
 import {IMessage} from '../../models/interfaces/message.model.i';
-import {fadeInAnimations} from '../../animations/fade-in.animation';
+import {fadeInAnimations} from '../../animations/fade.animation';
 
 @Component({
   selector: 'app-messages',

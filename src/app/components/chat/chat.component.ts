@@ -11,15 +11,19 @@ import {ChatFacade} from '../../states/facade/chat.facade';
 import {IUser} from '../../models/interfaces/user.model.i';
 import {IMessage} from '../../models/interfaces/message.model.i';
 import {UsersFacade} from '../../states/facade/users.facade';
-import {fadeInAnimations} from '../../animations/fade-in.animation';
+import {fadeInAnimations} from '../../animations/fade.animation';
 import {takeUntil} from 'rxjs/operators';
+import {slideAnimations} from '../../animations/slide.animation';
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss'],
   animations: [
-    fadeInAnimations.fadeInAfter, fadeInAnimations.fadeInOverlay, fadeInAnimations.fadeOut, fadeInAnimations.fadeIn
+    fadeInAnimations.fadeInAfter,
+    fadeInAnimations.fadeInOverlay,
+    slideAnimations.slideOut,
+    slideAnimations.slideIn
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
