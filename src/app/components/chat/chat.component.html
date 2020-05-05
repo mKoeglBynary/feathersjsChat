@@ -4,7 +4,7 @@
 <div class="app-chat__animation-container" [@fadeInAfter]="loadOtherElements">
     <div class="app-chat__header">
         <app-language-selector></app-language-selector>
-        <img [ngClass]="{'app-chat__menu-button-open': toggleResponsiveMenu}" class="app-chat__menu-button"
+        <img [ngClass]="{'app-chat__menu-button--is-open': toggleResponsiveMenu}" class="app-chat__menu-button"
              (click)="menuButtonClicked()" alt="">
         <span class="iconify" data-icon="logos-feathersjs" data-inline="false"></span>
         <span *ngIf="hideHeader">{{'CHAT.TITLE' | translate}}</span>

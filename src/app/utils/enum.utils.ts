@@ -11,7 +11,9 @@ export namespace EnumUtils {
     }
 
     export function getValues<ENUM>(enumLike: ENUM): ENUM[keyof ENUM][] {
-        return _without(Object.keys(enumLike).map((key) => enumLike[key as keyof ENUM]), ...getKeys(enumLike) as any []) as ENUM[keyof ENUM][];
+        return _without(Object.keys(enumLike)
+            .map((key) =>
+                enumLike[key as keyof ENUM]), ...getKeys(enumLike) as any []) as ENUM[keyof ENUM][];
 
     }
 
