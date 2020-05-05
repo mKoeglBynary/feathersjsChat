@@ -14,6 +14,7 @@ import {UsersFacade} from '../../states/facade/users.facade';
 import {fadeInAnimations} from '../../animations/fade.animation';
 import {takeUntil} from 'rxjs/operators';
 import {slideAnimations} from '../../animations/slide.animation';
+import {BreakpointObserver} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-chat',
@@ -27,7 +28,7 @@ import {slideAnimations} from '../../animations/slide.animation';
     slideAnimations.slideIn,
   ],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.Default,
   host: {
     class: 'app-chat'
   }
@@ -39,7 +40,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   loadOtherElements: boolean = false;
   toggleResponsiveMenu: boolean = false;
   hideHeader: boolean = false;
-  messageInterfaceAnimation: boolean = false;
   private readonly _onDestroy = new Subject();
 
   constructor(
@@ -47,12 +47,13 @@ export class ChatComponent implements OnInit, OnDestroy {
     private readonly _feathersService: FeathersService,
     private readonly _router: Router,
     private readonly _usersFacade: UsersFacade,
+    private readonly _breakPointObserver: BreakpointObserver
   ) {
   }
 
   async ngOnInit() {
-    this.setScreenSensitiveVariables();
     this.load = true;
+    this.setScreenSensitiveVariables();
     await this._setAndConnectMessages();
     await this._setAndConnectUsers();
   }
@@ -77,22 +78,16 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.users$ = this._usersFacade.getAllUsers();
   }
 
-  onResize(event) {
-    this.toggleResponsiveMenu = event.target.innerWidth >= 600;
-    this.hideHeader = event.target.innerWidth >= 320;
-  }
-
   menuButtonClicked() {
     this.toggleResponsiveMenu = !this.toggleResponsiveMenu;
   }
 
-  toggleMessageInterfaceAnimationStart() {
-    console.log('not working ?')
-    this.messageInterfaceAnimation = !this.messageInterfaceAnimation;
-  }
-
   private setScreenSensitiveVariables() {
-    this.toggleResponsiveMenu = window.innerWidth > 600;
-    this.hideHeader = window.innerWidth > 320;
+    this._breakPointObserver.observe('(min-width: 600px').subscribe(result => {
+      this.toggleResponsiveMenu = result.matches;
+    });
+    this._breakPointObserver.observe('(min-width: 320px)').subscribe(result => {
+      this.hideHeader = result.matches;
+    });
   }
 }
