@@ -23,7 +23,8 @@ import {slideAnimations} from '../../animations/slide.animation';
     fadeInAnimations.fadeInAfter,
     fadeInAnimations.fadeInOverlay,
     slideAnimations.slideOut,
-    slideAnimations.slideIn
+    slideAnimations.slideOutDefault,
+    slideAnimations.slideIn,
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -38,6 +39,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   loadOtherElements: boolean = false;
   toggleResponsiveMenu: boolean = false;
   hideHeader: boolean = false;
+  messageInterfaceAnimation: boolean = false;
   private readonly _onDestroy = new Subject();
 
   constructor(
@@ -82,6 +84,11 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   menuButtonClicked() {
     this.toggleResponsiveMenu = !this.toggleResponsiveMenu;
+  }
+
+  toggleMessageInterfaceAnimationStart() {
+    console.log('not working ?')
+    this.messageInterfaceAnimation = !this.messageInterfaceAnimation;
   }
 
   private setScreenSensitiveVariables() {

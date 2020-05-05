@@ -4,10 +4,11 @@ import {AnimationTransitions} from './animation';
 
 export const slideAnimations: {
   readonly slideIn: AnimationTriggerMetadata,
-  readonly slideOut: AnimationTriggerMetadata
+  readonly slideOut: AnimationTriggerMetadata,
+  readonly slideOutDefault: AnimationTriggerMetadata
 } = {
   slideIn: trigger('slideIn', [
-    transition(':enter',
+    transition(':enter, false => true',
       animate(AnimationTransitions.DEFAULT,
         keyframes([
           style({ left: '-50%'}),
@@ -16,9 +17,17 @@ export const slideAnimations: {
     ),
 
   ]),
+  slideOutDefault: trigger('slideOutDefault', [
+    transition('true => false', [
+      animate(AnimationTransitions.DEFAULT, keyframes([
+        style({left: '0%'}),
+        style({left: '-50vw'})
+      ]))
+    ])
+  ]),
 
   slideOut: trigger('slideOut', [
-    transition(':leave',
+    transition(':leave, true => false',
       group([
         /*
           Strange Workaround.
@@ -37,8 +46,9 @@ export const slideAnimations: {
           )
         ),
         query(':self',
-          animate( AnimationTransitions.DEFAULT,
-            style({transform: 'translateX(-100%)'})
+          animate(AnimationTransitions.DEFAULT, keyframes([
+            style({ left: '0%'}),
+            style({ left: '-50%'}), ])
           )
         ),
       ])

@@ -11,8 +11,11 @@
 
   <div class="app-chat__container">
     <app-users-interface [@slideOut] [@slideIn]
-                         *ngIf="toggleResponsiveMenu"
-                         [users]="users$ | async"></app-users-interface>
-    <app-message-interface  [messages]="messages$ | async"></app-message-interface>
+                         *ngIf= 'toggleResponsiveMenu'
+                         [users]= 'users$ | async'></app-users-interface>
+    <app-message-interface
+      [@slideIn] = 'toggleResponsiveMenu'
+      [@slideOutDefault] = 'toggleResponsiveMenu'
+      [messages]="messages$ | async"></app-message-interface>
   </div>
 </div>
