@@ -27,7 +27,7 @@ export const slideAnimations: {
   ]),
 
   slideOut: trigger('slideOut', [
-    transition(':leave, true => false',
+    transition(':leave',
       group([
         /*
           Strange Workaround.
