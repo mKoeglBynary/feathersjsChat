@@ -1,3 +1,4 @@
+@import "../../../styles/_globals";
 @import "chat.component.settings";
 
 app-chat {
@@ -57,13 +58,13 @@ app-chat {
     }
 }
 
-@media screen and (min-width: 43.75rem) {
+@include mq($from: mobile-lg) {
     .app-chat {
         width: calc(20vw + 35rem);
     }
 }
 
-@media screen and (max-width: 37.5rem) {
+@include mq($until: mobile-lg) {
     .app-chat__menu-button {
         background: $app-chat-menu-button-background-color;
         border-radius: 20%;
@@ -79,7 +80,6 @@ app-chat {
             transition: 800ms ease-in-out;
         }
     }
-
 
     .app-chat__container {
         display: block;
