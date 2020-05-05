@@ -2,20 +2,21 @@
 </div>
 
 <div class="app-chat__animation-container" [@fadeInAfter]="loadOtherElements">
-  <div class="app-chat__header">
-    <app-language-selector></app-language-selector>
-    <img  [ngClass]="{'app-chat__menu-button-open': toggleResponsiveMenu}" class="app-chat__menu-button"  (click)="menuButtonClicked()" alt="">
-    <span class="iconify" data-icon="logos-feathersjs" data-inline="false"></span>
-    <span *ngIf="hideHeader">{{'CHAT.TITLE' | translate}}</span>
-  </div>
+    <div class="app-chat__header">
+        <app-language-selector></app-language-selector>
+        <img [ngClass]="{'app-chat__menu-button-open': toggleResponsiveMenu}" class="app-chat__menu-button"
+             (click)="menuButtonClicked()" alt="">
+        <span class="iconify" data-icon="logos-feathersjs" data-inline="false"></span>
+        <span *ngIf="hideHeader">{{'CHAT.TITLE' | translate}}</span>
+    </div>
 
-  <div class="app-chat__container">
-    <app-users-interface [@slideOut] [@slideIn]
-                         *ngIf= 'toggleResponsiveMenu'
-                         [users]= 'users$ | async'></app-users-interface>
-    <app-message-interface
-      [@slideIn] = 'toggleResponsiveMenu'
-      [@slideOutDefault] = 'toggleResponsiveMenu'
-      [messages]="messages$ | async"></app-message-interface>
-  </div>
+    <div class="app-chat__container">
+        <app-users-interface [@slideOut] [@slideIn]
+                             *ngIf='toggleResponsiveMenu'
+                             [users]='users$ | async'></app-users-interface>
+        <app-message-interface
+            [@slideIn]='toggleResponsiveMenu'
+            [@slideOutDefault]='toggleResponsiveMenu'
+            [messages]="messages$ | async"></app-message-interface>
+    </div>
 </div>

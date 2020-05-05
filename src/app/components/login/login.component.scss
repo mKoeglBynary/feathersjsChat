@@ -1,67 +1,68 @@
 @import "login.component.settings";
 
 app-login {
-  display: block;
+    display: block;
 }
 
 .app-login {
 
-  > .app-login__container {
-    border-radius: 1rem;
-    box-shadow: -0.125rem -0.125rem 1.25rem 0.25rem $box-shadow-color;
-    display: block;
-    height: 30rem;
-    margin: 3rem auto;
-    position: relative;
-    width: 20rem;
-
-    > .app-login__form {
-      display: flex;
-      flex-direction: column;
-      height: inherit;
-      padding: 2rem;
-
-      > .app-login__error {
-        align-self: center;
-        border: 0.125rem solid $error-color;
-        border-radius: 0.625rem;
-        color: $error-color;
-        font: {
-          size: 1.125rem;
-          weight: 400;
-        }
-        padding: 0.1875rem;
-        position: absolute; top: 1rem;
-        text-align: center;
-        width: 90%;
-      }
-
-      > app-input {
-        display: flex;
-        flex-direction: column;
-        margin: 2rem auto;
+    > .app-login__container {
+        border-radius: 1rem;
+        box-shadow: -0.125rem -0.125rem 1.25rem 0.25rem $box-shadow-color;
+        display: block;
+        height: 30rem;
+        margin: 3rem auto;
         position: relative;
-        width: 15rem;
-      }
+        width: 20rem;
 
-      .app-login__buttons {
-        display: flex;
-        flex-direction: column;
-        margin-top: 1rem;
+        > .app-login__form {
+            display: flex;
+            flex-direction: column;
+            height: inherit;
+            padding: 2rem;
 
-        > button {
-          border: 0.125rem solid $button-color;
-          border-radius: 1rem;
-          font-size: 1.25rem;
-          height: 2.5rem;
-          margin-top: 1rem;
-          outline: none;
+            > .app-login__error {
+                align-self: center;
+                border: 0.125rem solid $error-color;
+                border-radius: 0.625rem;
+                color: $error-color;
+                font: {
+                    size: 1.125rem;
+                    weight: 400;
+                }
+                padding: 0.1875rem;
+                position: absolute;
+                top: 1rem;
+                text-align: center;
+                width: 90%;
+            }
 
-          &:hover{
-            transform: scale(1.02);
-          }
+            > app-input {
+                display: flex;
+                flex-direction: column;
+                margin: 2rem auto;
+                position: relative;
+                width: 15rem;
+            }
+
+            .app-login__buttons {
+                display: flex;
+                flex-direction: column;
+                margin-top: 1rem;
+
+                > button {
+                    border: 0.125rem solid $button-color;
+                    border-radius: 1rem;
+                    font-size: 1.25rem;
+                    height: 2.5rem;
+                    margin-top: 1rem;
+                    outline: none;
+
+                    &:hover {
+                        transform: scale(1.02);
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }

@@ -1,3 +1,3 @@
 export enum FeathersEvent {
-  CREATED = 'created'
+    CREATED = 'created'
 }

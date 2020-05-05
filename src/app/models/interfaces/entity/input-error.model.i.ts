@@ -1,4 +1,4 @@
 export interface IInputError {
-  name: string;
-  text: string;
+    name: string;
+    text: string;
 }

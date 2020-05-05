@@ -1,9 +1,9 @@
-import {Language} from '../configs/language-options.model';
-import {IEntity} from './entity/entity.model.i';
+import { Language } from '../configs/language-options.model';
+import { IEntity } from './entity/entity.model.i';
 
 export interface IUser extends IEntity {
-  avatar: string;
-  email: string;
-  language: Language;
-  password?: string;
+    avatar: string;
+    email: string;
+    language: Language;
+    password?: string;
 }

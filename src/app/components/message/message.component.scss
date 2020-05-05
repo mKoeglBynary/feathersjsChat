@@ -1,61 +1,61 @@
 @import "message.component.settings";
 
 app-message {
-  display: block;
+    display: block;
 }
 
 .app-message {
-  display: flex;
-  margin-top: 1rem;
-  width: 100%;
-
-  > img {
-    border-radius: 50%;
-    display: block;
-    height: 3.5rem;
-    margin-right: 0.9375rem;
-    vertical-align: middle;
-    width: 3.5rem;
-  }
-
-  > .app-message__details {
     display: flex;
-    flex: 1;
-    flex-direction: column;
-    width: 10rem;
+    margin-top: 1rem;
+    width: 100%;
 
-    > .app-message__header {
-      display: flex;
-      flex: 1;
-      flex-wrap: wrap;
-      font-size: 0.9375rem;
-
-
-      > .app-message__date {
-        color: $message-date-font-color;
-        margin-left: 0.125rem;
-        min-width: fit-content;
-      }
+    > img {
+        border-radius: 50%;
+        display: block;
+        height: 3.5rem;
+        margin-right: 0.9375rem;
+        vertical-align: middle;
+        width: 3.5rem;
     }
 
-    > .app-message__content {
-      color: $message-font-color;
-      flex: 2;
-      height: fit-content;
-      line-height: 1.3125rem;
-      overflow-wrap: break-word;
-      padding-top: 0.3125rem;
+    > .app-message__details {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        width: 10rem;
+
+        > .app-message__header {
+            display: flex;
+            flex: 1;
+            flex-wrap: wrap;
+            font-size: 0.9375rem;
+
+
+            > .app-message__date {
+                color: $message-date-font-color;
+                margin-left: 0.125rem;
+                min-width: fit-content;
+            }
+        }
+
+        > .app-message__content {
+            color: $message-font-color;
+            flex: 2;
+            height: fit-content;
+            line-height: 1.3125rem;
+            overflow-wrap: break-word;
+            padding-top: 0.3125rem;
+        }
     }
-  }
 }
 
-@media screen and (max-width: 37.5rem){
-  .app-message{
-    width: 100vw;
+@media screen and (max-width: 37.5rem) {
+    .app-message {
+        width: 100vw;
 
-    > .app-message__details{
-      width: 50%;
+        > .app-message__details {
+            width: 50%;
+        }
     }
-  }
 }
 

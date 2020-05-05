@@ -1,16 +1,18 @@
-import { IUser} from '../../models/interfaces/user.model.i';
+import { IUser } from '../../models/interfaces/user.model.i';
 
 export namespace UserActions {
 
-  export class AddUser {
-    static readonly type = '[User] Add';
-    constructor(public readonly payload: IUser) {
-    }
-  }
+    export class AddUser {
+        static readonly type = '[User] Add';
 
-  export class AddUsers {
-    static readonly type = '[Users] Add';
-    constructor(public readonly payload: IUser[]) {
+        constructor(public readonly payload: IUser) {
+        }
     }
-  }
+
+    export class AddUsers {
+        static readonly type = '[Users] Add';
+
+        constructor(public readonly payload: IUser[]) {
+        }
+    }
 }

@@ -1,25 +1,25 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {MessageInterfaceComponent} from './message-interface.component';
+import { MessageInterfaceComponent } from './message-interface.component';
 
 describe('MessageInterfaceComponent', () => {
-  let component: MessageInterfaceComponent;
-  let fixture: ComponentFixture<MessageInterfaceComponent>;
+    let component: MessageInterfaceComponent;
+    let fixture: ComponentFixture<MessageInterfaceComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [MessageInterfaceComponent]
-    })
-      .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [MessageInterfaceComponent]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(MessageInterfaceComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(MessageInterfaceComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

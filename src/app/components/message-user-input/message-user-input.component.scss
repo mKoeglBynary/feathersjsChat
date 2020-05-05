@@ -1,51 +1,53 @@
-@import "../../styles/globals/tools/shared-styles.tools";
+@import "../../../styles/tools/shared-styles.tools";
 @import './message-user-input.component.settings.scss';
 
 app-message-user-input {
-  display: block;
+    display: block;
 }
 
 .app-message-user-input {
-  background: $app-message-user-input-background-color;
-  display: flex;
-  height: 4rem;
-  justify-content: flex-end;
-  margin: 1.125rem 0.125rem 0 0.125rem;
-  min-width: 100%;
-  position: absolute; bottom: 0;
+    background: $app-message-user-input-background-color;
+    display: flex;
+    height: 4rem;
+    justify-content: flex-end;
+    margin: 1.125rem 0.125rem 0 0.125rem;
+    min-width: 100%;
+    position: absolute;
+    bottom: 0;
 
-  &:after{
-    background: $app-message-user-input-after-background-gradient;
-    content: '';
-    height: 15vh;
-    position: absolute; top: -15vh;
-    width: 100%;
-  }
+    &:after {
+        background: $app-message-user-input-after-background-gradient;
+        content: '';
+        height: 15vh;
+        position: absolute;
+        top: -15vh;
+        width: 100%;
+    }
 
-  > input {
-    border: 0.125rem solid black;
-    border-radius: 0.5rem;
-    flex: 5;
-    font-size: 1rem;
-    height: 2.5rem;
-    margin-right: 1rem;
-    outline: none;
-    padding-left: 0.5rem;
-    text-align: left;
-  }
-
-  > button {
-    @include shared-chat-button-styles;
-  }
-}
-
-@media screen and (max-width: 600px){
-  .app-message-user-input{
-    padding: 0 0.125rem 0 0.5rem;
-    width: 100%;
+    > input {
+        border: 0.125rem solid black;
+        border-radius: 0.5rem;
+        flex: 5;
+        font-size: 1rem;
+        height: 2.5rem;
+        margin-right: 1rem;
+        outline: none;
+        padding-left: 0.5rem;
+        text-align: left;
+    }
 
     > button {
-      margin-right: 0.5rem;
+        @include shared-chat-button-styles;
     }
-  }
+}
+
+@media screen and (max-width: 600px) {
+    .app-message-user-input {
+        padding: 0 0.125rem 0 0.5rem;
+        width: 100%;
+
+        > button {
+            margin-right: 0.5rem;
+        }
+    }
 }

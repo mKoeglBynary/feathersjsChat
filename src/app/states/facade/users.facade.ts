@@ -1,29 +1,30 @@
-import {Injectable} from '@angular/core';
-import {Store} from '@ngxs/store';
-import {Observable} from 'rxjs';
-import {IUser} from '../../models/interfaces/user.model.i';
-import {UserActions} from '../actions/user.action';
-import {UserState} from '../user.state';
+import { Injectable } from '@angular/core';
+import { Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { IUser } from '../../models/interfaces/user.model.i';
+import { UserActions } from '../actions/user.action';
+import { UserState } from '../user.state';
 
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class UsersFacade {
-  constructor(
-    private readonly _store: Store
-  ) {}
+    constructor(
+        private readonly _store: Store
+    ) {
+    }
 
-  getAllUsers(): Observable<IUser[]> {
-    return this._store.select(UserState.users);
-  }
+    getAllUsers(): Observable<IUser[]> {
+        return this._store.select(UserState.users);
+    }
 
-  addUser(user: IUser) {
-    this._store.dispatch(new UserActions.AddUser(user));
-  }
+    addUser(user: IUser) {
+        this._store.dispatch(new UserActions.AddUser(user));
+    }
 
-  addUsers(users: IUser[]) {
-    this._store.dispatch(new UserActions.AddUsers(users));
-  }
+    addUsers(users: IUser[]) {
+        this._store.dispatch(new UserActions.AddUsers(users));
+    }
 }
 

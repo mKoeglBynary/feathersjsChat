@@ -2,8 +2,8 @@
 <app-active-users [users]="users"></app-active-users>
 
 <div class="app-users-interface__sign-out">
-  <button [@clicked]="signOutClicked" (click)="signOut(); signOutClicked = !signOutClicked"
-          appButton>{{ 'CHAT.SIGN_OUT' | translate }}</button>
+    <button [@clicked]="signOutClicked" (click)="signOut(); signOutClicked = !signOutClicked"
+            appButton>{{ 'CHAT.SIGN_OUT' | translate }}</button>
 </div>
 
 

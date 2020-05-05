@@ -1,24 +1,25 @@
 @import "users-interface.component.settings";
-@import "../../styles/globals/tools/shared-styles.tools";
+@import "../../../styles/tools/shared-styles.tools";
 
 app-users-interface {
-  display: block;
+    display: block;
 }
 
 .app-users-interface {
-  height: inherit;
-  background-color: $interface-background-color;
-  position: relative;
+    height: inherit;
+    background-color: $interface-background-color;
+    position: relative;
 
-  > .app-users-interface__sign-out {
-    display: flex;
-    height: 4rem;
-    justify-content: center;
-    position: absolute; bottom: 0;
-    width: 100%;
+    > .app-users-interface__sign-out {
+        display: flex;
+        height: 4rem;
+        justify-content: center;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
 
-    > button {
-      @include shared-chat-button-styles;
+        > button {
+            @include shared-chat-button-styles;
+        }
     }
-  }
 }

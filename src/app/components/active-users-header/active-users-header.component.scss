@@ -1,24 +1,24 @@
 @import "active-users-header.component.settings";
 
 app-active-users-header {
-  display: block;
+    display: block;
 }
 
 .app-active-users-header {
-  align-items: center;
-  display: flex;
-  font-size: 1.25rem;
-  height: 4rem;
-  justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 1.25rem;
+    height: 4rem;
+    justify-content: center;
 
-  > .app-active-users-header__length {
-    color: $length-font-color;
-    font-weight: 800;
-    padding-right: 1rem;
-  }
+    > .app-active-users-header__length {
+        color: $length-font-color;
+        font-weight: 800;
+        padding-right: 1rem;
+    }
 
-  > .app-active-users-header__users {
-    color: $text-font-color;
-    letter-spacing: 0.0625rem;
-  }
+    > .app-active-users-header__users {
+        color: $text-font-color;
+        letter-spacing: 0.0625rem;
+    }
 }

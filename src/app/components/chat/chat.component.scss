@@ -1,93 +1,95 @@
 @import "chat.component.settings";
 
 app-chat {
-  display: block;
+    display: block;
 }
 
 .app-chat {
-  margin: auto;
-  position: relative;
+    margin: auto;
+    position: relative;
 
-  > .app-chat__overlay {
-    background: url('https://api.iconify.design/logos:feathersjs.svg') no-repeat center center / contain;
-    height: 10rem;
-    margin: 0;
-    opacity: 0;
-    position: absolute; left: 40%;
-    visibility: hidden;
-    width: 10rem;
-    z-index: 2;
-  }
-
-  > .app-chat__animation-container {
-
-    > .app-chat__header {
-      align-items: center;
-      background: $chat-header-background-color;
-      color: $chat-header-font-color;
-      display: flex;
-      font: {
-        size: calc(1vw + 1rem);
-        weight: 100;
-      }
-      height: 3rem;
-      justify-content: center;
-      letter-spacing: 0.0625rem;
-      padding: 0.5rem;
-
-      > .iconify {
-        margin-right: 0.5rem;
-      }
+    > .app-chat__overlay {
+        background: url('https://api.iconify.design/logos:feathersjs.svg') no-repeat center center / contain;
+        height: 10rem;
+        margin: 0;
+        opacity: 0;
+        position: absolute;
+        left: 40%;
+        visibility: hidden;
+        width: 10rem;
+        z-index: 2;
     }
 
-    > .app-chat__container {
-      box-shadow: 0 0 2.6875rem 1rem $app-chat-border-shadow-color;
-      display: flex;
-      height: 95vh;
+    > .app-chat__animation-container {
 
-      > app-users-interface {
-        flex: 1;
-      }
+        > .app-chat__header {
+            align-items: center;
+            background: $chat-header-background-color;
+            color: $chat-header-font-color;
+            display: flex;
+            font: {
+                size: calc(1vw + 1rem);
+                weight: 100;
+            }
+            height: 3rem;
+            justify-content: center;
+            letter-spacing: 0.0625rem;
+            padding: 0.5rem;
 
-      > app-message-interface {
-        flex: 5;
-      }
+            > .iconify {
+                margin-right: 0.5rem;
+            }
+        }
+
+        > .app-chat__container {
+            box-shadow: 0 0 2.6875rem 1rem $app-chat-border-shadow-color;
+            display: flex;
+            height: 95vh;
+
+            > app-users-interface {
+                flex: 1;
+            }
+
+            > app-message-interface {
+                flex: 5;
+            }
+        }
     }
-  }
 }
 
-@media screen and (min-width: 43.75rem){
-  .app-chat{
-    width: calc(20vw + 35rem);
-  }
+@media screen and (min-width: 43.75rem) {
+    .app-chat {
+        width: calc(20vw + 35rem);
+    }
 }
 
 @media screen and (max-width: 37.5rem) {
-  .app-chat__menu-button{
-    background: $app-chat-menu-button-background-color;
-    border-radius: 20%;
-    content: url('https://api.iconify.design/mdi-menu.svg?height=24');
-    cursor: pointer;
-    left: 0.5rem;
-    position: absolute;
-    transition: 300ms ease-in-out;
-    z-index: 3;
-  }
+    .app-chat__menu-button {
+        background: $app-chat-menu-button-background-color;
+        border-radius: 20%;
+        content: url('https://api.iconify.design/mdi-menu.svg?height=24');
+        cursor: pointer;
+        left: 0.5rem;
+        position: absolute;
+        transition: 300ms ease-in-out;
+        z-index: 3;
 
-  .app-chat__menu-button-open{
-    transform: rotate(90deg);
-    transition: 800ms ease-in-out;
-  }
-
-  .app-chat__container {
-    display: block;
-    overflow: hidden;
-
-    > app-message-interface {
-      align-items: center;
-      display: flex;
-      flex-direction: column;
-      margin: 0 0 0 0.25rem;
+        &.app-chat__menu-button--is-open {
+            transform: rotate(90deg) translate3d(0, 0, 0);
+            transition: 800ms ease-in-out;
+        }
     }
-  }
+
+
+    .app-chat__container {
+        display: block;
+        overflow: hidden;
+
+        > app-message-interface {
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            margin: 0 0 0 0.25rem;
+        }
+    }
 }

@@ -1,28 +1,28 @@
 {
-  "LOGIN": {
-    "EMAIL": "E-Mail",
-    "PASSWORD": "Passwort",
-    "LOGIN": "Login",
-    "REGISTER": "Registrieren",
-    "ERRORS": {
-      "AUTH": {
-        "WRONG_INPUT": "Falsche E-Mail oder Passwort",
-        "REGISTERED": "E-Mail schon registriert"
-      },
-      "EMAIL": {
-        "REQUIRED": "E-Mail ist erforderlich",
-        "INVALID": "Muss eine valide E-Mail sein"
-      },
-      "PASSWORD":{
-        "REQUIRED": "Passwort ist erforderlich",
-        "MIN_LENGTH": "Mindestens 5 Zeichen"
-      }
+    "LOGIN": {
+        "EMAIL": "E-Mail",
+        "PASSWORD": "Passwort",
+        "LOGIN": "Login",
+        "REGISTER": "Registrieren",
+        "ERRORS": {
+            "AUTH": {
+                "WRONG_INPUT": "Falsche E-Mail oder Passwort",
+                "REGISTERED": "E-Mail schon registriert"
+            },
+            "EMAIL": {
+                "REQUIRED": "E-Mail ist erforderlich",
+                "INVALID": "Muss eine valide E-Mail sein"
+            },
+            "PASSWORD": {
+                "REQUIRED": "Passwort ist erforderlich",
+                "MIN_LENGTH": "Mindestens 5 Zeichen"
+            }
+        }
+    },
+    "CHAT": {
+        "TITLE": "FeathersJsChat",
+        "USERS": "Benutzer",
+        "SIGN_OUT": "Ausloggen",
+        "SEND": "Senden"
     }
-  },
-  "CHAT": {
-    "TITLE": "FeathersJsChat",
-    "USERS": "Benutzer",
-    "SIGN_OUT": "Ausloggen",
-    "SEND": "Senden"
-  }
 }

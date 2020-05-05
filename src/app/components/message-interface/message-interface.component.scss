@@ -1,13 +1,13 @@
 app-message-interface {
-  display: block;
-  height: inherit;
+    display: block;
+    height: inherit;
 }
 
 .app-message-interface {
-  margin: 0 1rem 0 2rem;
-  position: relative;
+    margin: 0 1rem 0 2rem;
+    position: relative;
 
-  > app-messages {
-    margin-left: 0.25rem;
-  }
+    > app-messages {
+        margin-left: 0.25rem;
+    }
 }
