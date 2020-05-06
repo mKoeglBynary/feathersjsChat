@@ -73,7 +73,7 @@ export function createTranslateLoader(http: HttpClient) {
         FormsModule,
         AppRoutingModule
     ],
-    providers: [FEATHERS_APP_PROVIDER,],
+    providers: [FEATHERS_APP_PROVIDER, ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
