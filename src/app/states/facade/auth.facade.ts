@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { Language } from '../../models/configs/language-options.model';
+import { Language } from '../../models/language-options.model';
 import { IUser } from '../../models/interfaces/user.model.i';
 import { AuthActions } from '../actions/active-user.actions';
 import { ActiveUserState } from '../active-user.state';

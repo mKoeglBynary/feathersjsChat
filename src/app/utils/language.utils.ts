@@ -1,4 +1,4 @@
-import { Language } from '../models/configs/language-options.model';
+import { Language } from '../models/language-options.model';
 
 export namespace LanguageUtils {
 

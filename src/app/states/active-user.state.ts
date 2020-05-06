@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Language } from '../models/configs/language-options.model';
+import { Language } from '../models/language-options.model';
 import { IUser } from '../models/interfaces/user.model.i';
 import { AuthService } from '../services/auth-service/auth.service';
 import { AuthActions } from './actions/active-user.actions';

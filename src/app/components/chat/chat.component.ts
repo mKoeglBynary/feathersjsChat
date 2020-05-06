@@ -5,6 +5,7 @@ import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { fadeInAnimations } from '../../animations/fade.animation';
 import { slideAnimations } from '../../animations/slide.animation';
+import { Breakpoint } from '../../models/breakpoint.model';
 import { IMessage } from '../../models/interfaces/message.model.i';
 import { IUser } from '../../models/interfaces/user.model.i';
 import { FeathersService } from '../../services/feathers-service/feathers.service';
@@ -42,7 +43,7 @@ export class ChatComponent implements OnInit, OnDestroy {
         private readonly _feathersService: FeathersService,
         private readonly _router: Router,
         private readonly _usersFacade: UsersFacade,
-        private readonly _breakPointObserver: BreakpointObserver
+        private readonly _breakPointObserver: BreakpointObserver,
     ) {
     }
 
@@ -78,11 +79,14 @@ export class ChatComponent implements OnInit, OnDestroy {
     }
 
     private setScreenSensitiveVariables() {
-        this._breakPointObserver.observe('(min-width: 768px').subscribe(result => {
-            this.toggleResponsiveMenu = result.matches;
+        this._breakPointObserver.observe(Breakpoint.minWidth(Breakpoint.TABLET_SM))
+            .subscribe(result => {
+                this.toggleResponsiveMenu = result.matches;
         });
-        this._breakPointObserver.observe('(min-width: 320px)').subscribe(result => {
-            this.hideHeader = result.matches;
+
+        this._breakPointObserver.observe(Breakpoint.minWidth(Breakpoint.MOBILE_SM))
+            .subscribe(result => {
+                this.hideHeader = result.matches;
         });
     }
 }

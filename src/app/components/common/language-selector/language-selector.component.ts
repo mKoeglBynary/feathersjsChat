@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit, ViewEncapsulatio
 import { TranslateService } from '@ngx-translate/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { Language } from '../../../models/configs/language-options.model';
+import { Language } from '../../../models/language-options.model';
 import { AuthFacade } from '../../../states/facade/auth.facade';
 import { EnumUtils } from '../../../utils/enum.utils';
 import { LanguageUtils } from '../../../utils/language.utils';

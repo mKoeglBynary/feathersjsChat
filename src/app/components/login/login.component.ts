@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { buttonClickedAnimation } from '../../animations/button-click.animation';
-import { Language } from '../../models/configs/language-options.model';
+import { Language } from '../../models/language-options.model';
 import { IInputControl } from '../../models/interfaces/entity/input-control.model.i';
 import { IUser } from '../../models/interfaces/user.model.i';
 import { AuthFacade } from '../../states/facade/auth.facade';

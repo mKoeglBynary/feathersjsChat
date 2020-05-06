@@ -1,4 +1,4 @@
-import { Language } from '../configs/language-options.model';
+import { Language } from '../language-options.model';
 import { IEntity } from './entity/entity.model.i';
 
 export interface IUser extends IEntity {

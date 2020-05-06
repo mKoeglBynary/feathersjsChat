@@ -1,9 +1,9 @@
 import { Inject, Injectable } from '@angular/core';
 import { Application } from '@feathersjs/feathers';
 import { environment } from '../../../environments/environment';
-import { FeathersEndpoint } from '../../models/configs/feathers-endpoints.model';
-import { FeathersEvent } from '../../models/configs/feathers-event.model';
-import { Language } from '../../models/configs/language-options.model';
+import { FeathersEndpoint } from '../../models/feathers-endpoints.model';
+import { FeathersEvent } from '../../models/feathers-event.model';
+import { Language } from '../../models/language-options.model';
 import { IUser } from '../../models/interfaces/user.model.i';
 import { FEATHERS_APP_TOKEN } from '../../provider/feathers-app.provider';
 import { FeathersService } from '../feathers-service/feathers.service';
