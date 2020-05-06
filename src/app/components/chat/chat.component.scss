@@ -58,13 +58,13 @@ app-chat {
     }
 }
 
-@include mq($from: mobile-lg) {
+@include mq($from: tablet) {
     .app-chat {
         width: calc(20vw + 35rem);
     }
 }
 
-@include mq($until: mobile-lg) {
+@include mq($until: tablet-sm) {
     .app-chat__menu-button {
         background: $app-chat-menu-button-background-color;
         border-radius: 20%;

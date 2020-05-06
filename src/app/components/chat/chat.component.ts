@@ -78,7 +78,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     }
 
     private setScreenSensitiveVariables() {
-        this._breakPointObserver.observe('(min-width: 600px').subscribe(result => {
+        this._breakPointObserver.observe('(min-width: 768px').subscribe(result => {
             this.toggleResponsiveMenu = result.matches;
         });
         this._breakPointObserver.observe('(min-width: 320px)').subscribe(result => {
