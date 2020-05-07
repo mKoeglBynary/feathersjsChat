@@ -12,12 +12,11 @@ app-message-user-input {
     height: 4rem;
     justify-content: flex-end;
     margin: 1.125rem 0.125rem 0 0.125rem;
+    position: absolute; bottom: 0;
     min-width: 100%;
-    position: absolute;
-    bottom: 0;
 
     &:after {
-        background: $app-message-user-input-after-background-gradient;
+        background: $user-input-background-gradient;
         content: '';
         height: 15vh;
         position: absolute;
@@ -42,7 +41,7 @@ app-message-user-input {
     }
 }
 
-@media screen and (max-width: 600px) {
+@include mq($until: mobile-lg){
     .app-message-user-input {
         padding: 0 0.125rem 0 0.5rem;
         width: 100%;
