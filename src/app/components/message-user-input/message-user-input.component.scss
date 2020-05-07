@@ -1,4 +1,5 @@
-@import "../../../styles/tools/shared-styles.tools";
+@import '../../../styles/_globals';
+@import '../../../styles/tools/shared-styles.tools';
 @import 'message-user-input.component.settings';
 
 app-message-user-input {
@@ -6,7 +7,7 @@ app-message-user-input {
 }
 
 .app-message-user-input {
-    background: $app-message-user-input-background-color;
+    background: $color-white;
     display: flex;
     height: 4rem;
     justify-content: flex-end;

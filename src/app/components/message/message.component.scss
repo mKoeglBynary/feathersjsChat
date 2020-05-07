@@ -1,5 +1,4 @@
 @import '../../../styles/_globals';
-@import "message.component.settings";
 
 app-message {
     display: block;
@@ -33,14 +32,14 @@ app-message {
 
 
             > .app-message__date {
-                color: $message-date-font-color;
+                color: $color-secondary;
                 margin-left: 0.125rem;
                 min-width: fit-content;
             }
         }
 
         > .app-message__content {
-            color: $message-font-color;
+            color: darken($color-secondary, 30%);
             flex: 2;
             height: fit-content;
             line-height: 1.3125rem;

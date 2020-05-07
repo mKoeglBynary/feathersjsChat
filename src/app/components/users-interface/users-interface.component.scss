@@ -1,5 +1,5 @@
-@import "users-interface.component.settings";
-@import "../../../styles/tools/shared-styles.tools";
+@import '../../../styles/_globals';
+@import '../../../styles/tools/shared-styles.tools';
 
 app-users-interface {
     display: block;
@@ -7,7 +7,7 @@ app-users-interface {
 
 .app-users-interface {
     height: inherit;
-    background-color: $interface-background-color;
+    background-color: lighten($color-secondary, 20%);
     position: relative;
 
     > .app-users-interface__sign-out {

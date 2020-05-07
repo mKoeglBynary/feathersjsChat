@@ -1,4 +1,5 @@
-@import "active-users-header.component.settings";
+@import '../../../styles/_globals';
+@import 'active-users-header.component.settings';
 
 app-active-users-header {
     display: block;
@@ -12,7 +13,7 @@ app-active-users-header {
     justify-content: center;
 
     > .app-active-users-header__length {
-        color: $length-font-color;
+        color: $color-primary;
         font-weight: 800;
         padding-right: 1rem;
     }
